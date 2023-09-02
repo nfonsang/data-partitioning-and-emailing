@@ -1,0 +1,246 @@
+{
+    "meta": {
+        "label": "Emailing data partitions",
+        "description": "This recipe partitions data emails data partitions as CSV files to email recipients. Emailed data partitions can be optionally saved in folder",
+        "icon": "icon-envelope-alt"
+    },
+    
+    // kind of plugin recipe
+    "kind": "PYTHON",
+    "selectableFromDataset": "input_dataset",
+    
+        // the input of this recipe component 
+    "inputRoles": [
+        {
+            "name": "input_dataset",
+            "label": "Input dataset",
+            "description": "This is the input dataset that will be partitioned",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": true
+        }
+     ],
+    
+    // the output of this recipe component 
+    "outputRoles": [
+        {
+            "name": "output_folder",
+            "label": "Output Folder",
+            "description": "This is the folder where the data partitions will saved",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": false,
+            "acceptsManagedFolder":true
+        }
+    ],
+    
+    // parameters
+    "params": [
+                        
+        {
+            "name": "separator_1",
+            "label":"Email header parameters",
+            "type":"SEPARATOR"
+             
+        },
+        {
+            "name": "sender_name",
+            "label": "Sender name (required)",
+            "description": "Name of email sender",
+            "type": "STRING",
+            "mandatory":true 
+        },
+        {
+            "name": "sender_email",
+            "label": "Sender email (required)",
+            "description": "Email address of sender",
+            "type": "STRING",
+            "mandatory":true 
+        },
+        {
+            "name": "recipient_emails",
+            "label": "Recipient email(s) (required)",
+            "description": "Email address(es) of recipient(s). Separate email addresses with commas",
+            "type": "STRING",
+            "mandatory":true 
+        },
+        {
+            "name": "cc",
+            "label": "CC",
+            "description": "Email addres(es) in the CC field. Separate email addresses with commas",
+            "type": "STRING",
+            "mandatory":false 
+        },
+        {
+            "name": "bcc",
+            "label": "BCC",
+            "description": "Email addres(es) in the BCC field. Separate email addresses with commas",
+            "type": "STRING",
+            "mandatory":false 
+        },
+        {
+            "name": "email_subject",
+            "label": "Email Subject",
+            "type": "STRING",
+            "mandatory":true 
+        },
+        
+                        
+        {
+            "name": "separator_2",
+            "label":"Data file format",
+            "type":"SEPARATOR"
+             
+        },
+               
+        {
+            "name": "file_format",
+            "label" : "File format",
+            "type": "SELECT",
+            "defaultValue" : "csv",
+            "description" : "Select the file format of the data to be sent through email",
+            "selectChoices" : [
+                {"value":  "csv" , "label":"CSV attachement"},
+                {"value":  "html" , "label":"Embedded HTML table"},
+                {"value":  "csv_html" , "label":"CSV attachement and Embedded HTML table"}
+            ]
+        },       
+        
+        {
+            "name": "separator_3",
+            "label":"Email Body Text",
+            "type":"SEPARATOR"
+             
+        },  
+        {
+            "name": "use_email_body_text",
+            "label" : "Use email body text",
+            "type": "BOOLEAN",
+            "description": "Checking this box allows you to write the email body text if needed"
+        },
+        
+        {
+            "name": "email_body_text",
+            "label" : "Email body text",
+            "type": "TEXTAREA",
+            "description" : "Provide the text of the email body. You can use recipient's name in email by using the variable {recipient}. You can also use the value used to partition the data as {partition}. For example: Hi {name}, this is the {partion} data",
+            "mandatory": false,
+            "visibilityCondition" : "model.use_email_body_text"        
+        },
+        {
+            "name": "recipient_name_column",
+            "label" : "Column with recipient names",
+            "type": "STRING",
+            "description": "To use the recipient's name in the email body dynamically, provide column in the input dataset containing the recipient's name. This is optional.",
+            "mandatory": true,
+            "visibilityCondition" : "model.use_email_body_text" 
+        },             
+        
+        {
+            "name": "separator_4",
+            "label":"SMTP authentication server parameters",
+            "type":"SEPARATOR"
+             
+        },    
+        
+        {
+            "name": "smtp_host",
+            "label" : "SMTP Host (required)",
+            "defaultValue" : "localhost",
+            "description": "Domain of the sender's SMTP Host server. For example: smtp.gmail.com",
+            "type": "STRING",
+            "mandatory": true
+        },          
+        {
+            "name": "smtp_port",
+            "label" : "SMTP port (required)",
+            "defaultValue" : 25,
+            "type": "INT"
+        },
+        {
+            "name": "smtp_use_tls",
+            "label" : "Use TLS",
+            "type": "BOOLEAN",
+            "description": "TLS encryption may be required depending on the SMTP Host Server used"
+        },
+        {
+            "name": "smtp_use_ssl",
+            "label" : "Use SSL",
+            "type": "BOOLEAN",
+            "description": "SSL encryption may be required depending on the SMTP Host Server used"
+        },
+        
+        {
+            "name": "smtp_use_auth",
+            "label" : "Use authentication",
+            "description": "Check this button if SMTP server requires authentication. For example: smtp.gmail.com requires SSL or TLS authentication.",               
+            "type": "BOOLEAN"
+        },  
+        
+        {
+            "name": "smtp_user",
+            "label" : "SMTP Server Username",
+            "type": "STRING",
+            "visibilityCondition" : "model.smtp_use_auth"
+        },
+        {
+            "name": "smtp_password",
+            "label" : "SMTP Sever Password",
+            "type": "PASSWORD",
+            "visibilityCondition" : "model.smtp_use_auth"
+        },
+        
+        {
+            "name": "separator_5",
+            "label":"Data management parameters",
+            "type":"SEPARATOR"
+             
+        }, 
+        {
+            "name": "partitioning_column",
+            "label": "Partitioning column",
+            "type": "STRING",
+            "description": "Name of column in the input dataset whose unique values will be used to filter data partitions",
+            "mandatory": true
+        },
+                
+        {
+            "name": "columns_to_exclude",
+            "label": "Columns to exclude",
+            "type": "STRING",
+            "description": "These are the columns to exclude in the dataset to email. For example, you may want to exclude email columns in the final data partition to be sent through email",
+            "mandatory": true
+        },
+        {
+            "name": "write_data_to_folder",
+            "label": "Write data partitions to folder",
+            "description": "Check this button to write emailed data partitions to folder",
+            "type": "BOOLEAN"
+        },
+        
+        {
+            "name": "include_timestamp",
+            "label": "Include timestamp to CSV file names",
+            "description": "Check this button to include timestamps to csv file names. The default file name is the value of the partitioning column used to create the file",
+            "type": "BOOLEAN",
+            "visibilityCondition" : "model.write_data_to_folder"
+        },
+        {
+            "name": "clear_folder",
+            "label": "Clear folder",
+            "description": "Check this button to clear the folder before writing new CSV files",
+            "type": "BOOLEAN",
+            "visibilityCondition" : "model.write_data_to_folder"
+        }
+        
+
+    ],
+
+    "resourceKeys": []
+
+}
+
+
+
+
+

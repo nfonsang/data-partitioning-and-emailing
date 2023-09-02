@@ -1,0 +1,17 @@
+{
+    "id": "data-partitioning-and-emailing",
+    "version": "0.1.0",
+    "meta": {
+        "label": "data partitioning and emailing",
+        "description": "This email partitions data based on a partition column and emails data 
+partitions",
+        "author": "Organization (Neba Nfonsang)",
+        "icon": "icon-font-awesome-3.2.1",
+        "licenseInfo": "Apache Software License",
+        "url": "https://www.dataiku.com/product/plugins/data-partitioning-and-emailing",
+        "tags": [
+            "partitioning", "emailing"
+        ],
+        "supportLevel": "NOT_SUPPORTED"
+    }
+}

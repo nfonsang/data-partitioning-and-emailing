@@ -1,0 +1,77 @@
+{
+    "meta": {
+        "label": "Data partitioning",
+        "description": "This recipe partitions data and saves the partitions as CSV files in managed folder",
+        "icon": "icon-file-text"
+    },
+    
+    // kind of plugin recipe
+    "kind": "PYTHON",
+    "selectableFromDataset": "input_dataset",
+    
+        // the input of this recipe component 
+    "inputRoles": [
+        {
+            "name": "input_dataset",
+            "label": "Input dataset",
+            "description": "This is the input dataset that will be partitioned",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": true
+        }
+     ],
+    
+    // the output of this recipe component 
+    "outputRoles": [
+        {
+            "name": "output_folder",
+            "label": "Output Folder",
+            "description": "This is the folder where the data partitions will saved",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": false,
+            "acceptsManagedFolder":true
+        }
+    ],
+    
+    // parameters
+    "params": [
+                        
+        {
+            "name": "separator_1",
+            "label":"Data paritioning parameters",
+            "type":"SEPARATOR"
+             
+        },
+        
+                
+        {
+            "name": "partitioning_column",
+            "label": "Partitioning column",
+            "type": "STRING",
+            "description": "Name of column in the input dataset whose unique values will be used to filter partitions",
+            "mandatory": true
+        },
+        
+        {
+            "name": "include_timestamp",
+            "label": "Include timestamp to CSV file names",
+            "description": "Check this button to include timestamps to csv file names. The default file name is the value of the partitioning column used to create the file",
+            "type": "BOOLEAN"
+        },
+        {
+            "name": "clear_folder",
+            "label": "Clear folder",
+            "description": "Check this button to clear the folder before writing new CSV files",
+            "type": "BOOLEAN"
+        }
+
+    ],
+
+    "resourceKeys": []
+
+}
+
+
+
+
