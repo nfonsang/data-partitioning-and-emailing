@@ -4,7 +4,6 @@ import pandas as pd
 import datetime
 import logging
 
-
 from dataiku.customrecipe import get_input_names_for_role
 from dataiku.customrecipe import get_output_names_for_role
 from dataiku.customrecipe import get_recipe_config
