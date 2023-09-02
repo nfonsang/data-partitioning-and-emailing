@@ -39,8 +39,6 @@ bc_list = "neba.nfonsang@gmail.com"
 email_subject = "This is the heading of the email"
 
 
-
-
 # Get parameter values from the UI
 
 partitioning_column = get_recipe_config()["partitioning_column"]
