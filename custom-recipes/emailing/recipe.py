@@ -11,7 +11,7 @@ from dataiku.customrecipe import get_recipe_config
 
 # set logging configurations 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
-logging.info("Started executing the recipe code")
+logging.info("Start executing the recipe code")
 
 # Get the input of the recipe
 input_dataset_name = get_input_names_for_role('input_dataset')[0]
