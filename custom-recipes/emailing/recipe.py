@@ -24,6 +24,8 @@ output_folder = dataiku.Folder(output_folder_name)
 sender_name = get_recipe_config()["sender_name"]
 sender_email = get_recipe_config()["sender_email"]
 recipient_emails = get_recipe_config()["recipient_emails"]
+cc = get_recipe_config()["cc"]
+
 
 
 
