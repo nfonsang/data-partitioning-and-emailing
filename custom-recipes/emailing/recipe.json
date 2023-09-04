@@ -203,7 +203,7 @@
             "description": "Name of column in the input dataset whose unique values will be used to filter data partitions",
             "mandatory": false
         },
-                
+
         {
             "name": "columns_to_exclude",
             "label": "Columns to exclude",
