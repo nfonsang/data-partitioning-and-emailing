@@ -28,6 +28,10 @@ cc = get_recipe_config()["cc"]
 bcc = get_recipe_config()["bcc"]
 email_subject = get_recipe_config()["email_subject"]
 
+# get file format
+file_format = get_recipe_config()["file_format"]
+
+
 
 
 
