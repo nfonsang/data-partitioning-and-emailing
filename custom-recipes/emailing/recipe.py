@@ -20,6 +20,10 @@ input_dataset = dataiku.Dataset(input_dataset_name)
 output_folder_name = get_output_names_for_role('output_folder')[0]
 output_folder = dataiku.Folder(output_folder_name)
 
+# get email header parametrs 
+sender_name = get_recipe_config()["sender_name"]
+recipient_emails = get_recipe_config()["recipient_emails"]
+
 
 
 # get smtp authentication server parameters
