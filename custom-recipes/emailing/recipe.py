@@ -80,7 +80,7 @@ def pretty_table(df_partition):
     return html_table
 
 # email data partition 
-def send_email_tls(partition_df):
+def send_email(partition_df):
     msg = MIMEMultipart()
     msg["From"] = sender_name
     msg["To"] = recipient_emails # string
@@ -95,6 +95,7 @@ def send_email_tls(partition_df):
     html_table = pretty_table(partition_df)
 
     # Leave some space for proper displaying of the attachment
+    if attachment_type==
     part1 = MIMEText(email_text + '\n\n' + html_table, _subtype='html', _charset= "UTF-8")
     part2 = MIMEApplication(data)
     part2['Content-Disposition'] = f'attachment; filename="{file_name}"'
@@ -108,19 +109,20 @@ def send_email_tls(partition_df):
         logging.info(f"Sending email to {recipient_email_list}")
         # connect to smtp server and switch connection to tls encryption
         with smtplib.SMTP(smtp_host, port=smtp_port) as smtp_client:
-            smtp_client.starttls()
-            # authenticate into the smtp server
-            smtp_client.login(smtp_user, smtp_password)
+            if smtp_use_tls:
+                smtp_client.starttls()
+                # authenticate into the smtp server
+            if (smtp_use_auth):
+                smtp_client.login(smtp_user, smtp_password)
             # send email message/attachment
             smtp_client.sendmail(from_addr=sender_email,
                                  to_addrs=recipient_email_list.split(",") + cc_list.split(",") + bc_list.split(","),
                                  msg=msg.as_string())
             # log success message
-            logging.info(f"Email was successfully sent to {recipient_email_list} ")
+            logging.info(f"Email was successfully sent to {recipient_emails} ")
 
     except Exception as e:
         logging.exception("Email sending failed")
-        #logging.execption(e)
 
 # send emails
 partition_values = input_data_df[partitioning_column].unique()
@@ -129,11 +131,6 @@ for partition_df in partition_dfs:
     partition_value = partition_values[i]
     send_email_tls(partition_df)
     i = i+1
-
-
-
-
-
 
 
 
