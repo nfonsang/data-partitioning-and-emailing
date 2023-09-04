@@ -146,6 +146,7 @@ partition_values = input_data_df[partitioning_column].unique()
 i=0
 for partition_df in partition_dfs:
     partition_value = partition_values[i]
+    partition = partition_value
     send_email(partition_df)
     i = i+1
 
