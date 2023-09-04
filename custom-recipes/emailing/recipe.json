@@ -146,7 +146,6 @@
         {
             "name": "smtp_host",
             "label" : "SMTP Host (required)",
-            "defaultValue" : "localhost",
             "description": "Domain of the sender's SMTP Host server. For example: smtp.gmail.com",
             "type": "STRING",
             "mandatory": true
@@ -154,7 +153,6 @@
         {
             "name": "smtp_port",
             "label" : "SMTP port (required)",
-            "defaultValue" : 25,
             "type": "INT"
         },
         {
