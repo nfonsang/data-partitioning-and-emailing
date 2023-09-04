@@ -55,7 +55,7 @@ clear_folder = get_recipe_config().get('clear_folder', False)
 
 # clear folder before partitioning the datasets into CSV files)
 if clear_folder:
-    logging.info("clearing folder")
+    #logging.info("clearing folder")
     output_folder.clear()
 
 # get dataframe from dataset
@@ -81,9 +81,8 @@ def pretty_table(df_partition):
     return html_table
 
 # email data partition 
-logging.info("Running Send Email Function")
+#logging.info("Running Send Email Function")
 def send_email(partition_df):
-    logging.info("Creating Email Header")
     msg = MIMEMultipart()
     msg["From"] = sender_name
     msg["To"] = recipient_emails # string
@@ -122,7 +121,7 @@ def send_email(partition_df):
                                  to_addrs=recipient_emails.split(",") + cc.split(",") + bc.split(","),
                                  msg=msg.as_string())
             # log success message
-            logging.info(f"Email was successfully sent to {recipient_emails} ")
+            #logging.info(f"Email was successfully sent to {recipient_emails} ")
 
     except Exception as e:
         logging.exception("Email sending failed")
@@ -147,7 +146,7 @@ def write_partitions(input_data_df):
         #file name
         file_name = f"{partition}.csv"
         # write to non-local folder with .upload_stream
-        logging.info(f"writing {file_name} to the folder")
+        #logging.info(f"writing {file_name} to the folder")
         output_folder.upload_stream(file_name, data)
 
 # get partitions and write partitions to folder with time stamps included
@@ -164,7 +163,7 @@ def write_partitions_timestamp(input_data_df):
         # create file name
         file_name = f"{partition}_{current_time}.csv"
         # write to non-local folder with .upload_stream
-        logging.info(f"writing {file_name} to the folder")
+        #logging.info(f"writing {file_name} to the folder")
         output_folder.upload_stream(file_name, data)
 
 # partition the dataset and write partitions to the managed folder
@@ -174,7 +173,7 @@ if write_data_to_folder:
     else:
         write_partitions(input_data_df)
 
-    logging.info("Finished writing CSV files to the folder")
+    #logging.info("Finished writing CSV files to the folder")
 
 
 
