@@ -49,7 +49,7 @@ smtp_port = get_recipe_config().get("smtp_port", 25)
 smtp_use_tls = get_recipe_config().get('smtp_use_tls', False)
 smtp_use_ssl = get_recipe_config().get('smtp_use_ssl', False)
 smtp_use_auth = get_recipe_config().get('smtp_use_auth', False)
-smtp_user = get_recipe_config().get('smtp_use', None)
+smtp_user = get_recipe_config().get('smtp_user', None)
 smtp_password = get_recipe_config().get('smtp_password', "")
 
 # get data management parameter values  
