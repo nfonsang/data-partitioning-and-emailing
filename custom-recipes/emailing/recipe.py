@@ -97,23 +97,29 @@ def send_email(partition_df):
     msg["CC"] = cc
     
     file_name = f"{partition_value}.csv"
-
+    
+    # get data to be emailed 
+    data = get_csv_partition(partition_df)
+    part1 = MIMEApplication(data)
+    part1['Content-Disposition'] = f'attachment; filename="{file_name}"'
+    
+    # create html table to be embedded
+    html_table = pretty_table(partition_df)
+    
     # create email body
     if file_format=="CSV attachment":
-        data = get_csv_partition(partition_df)
-        part1 = MIMEApplication(data)
-        msg.attach(part1)
-    
-    if file_format=="Embedded HTML table":
-        html_table = pretty_table(partition_df)
-        part2 = MIMEText(email_body_text + '\n\n' + html_table, _subtype='html', _charset= "UTF-8")
-        part2['Content-Disposition'] = f'attachment; filename="{file_name}"'
-        msg.attach(part2)
-    else:
         part2 = MIMEText(email_body_text + '\n\n', _subtype='html', _charset= "UTF-8")
-        part2['Content-Disposition'] = f'attachment; filename="{file_name}"'
-        msg.attach(part2)
-            
+        msg.attach(part1)
+        msg.attach(part2)  
+
+    elif file_format=="Embedded HTML table":
+        part2 = MIMEText(email_body_text + '\n\n' + html_table, _subtype='html', _charset= "UTF-8")
+        msg.attach(part2) 
+    else:
+        part2 = MIMEText(email_body_text + '\n\n' + html_table, _subtype='html', _charset= "UTF-8")
+        msg.attach(part1) 
+        msg.attach(part2) 
+  
     try:
         logging.info(f"Sending email to {recipient_emails}")
         # connect to smtp server and switch connection to tls encryption
