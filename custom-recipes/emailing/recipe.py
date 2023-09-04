@@ -42,6 +42,7 @@ recipient_name_column = get_recipe_config().get("recipient_name_column", None)
 
 
 
+
 # get smtp authentication server parameters
 smtp_host = "smtp.gmail.com"
 smtp_port = 578
