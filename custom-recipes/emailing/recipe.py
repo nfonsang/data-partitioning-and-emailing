@@ -130,7 +130,7 @@ def send_email(partition_df):
 
     except Exception as e:
         logging.exception("Email sending failed")
-        logging.execption(e)
+        logging.exception(e)
 
 # send emails
 partition_values = input_data_df[partitioning_column].unique()
