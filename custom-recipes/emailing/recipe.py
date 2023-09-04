@@ -117,16 +117,16 @@ def send_email(partition_df):
     try:
         logging.info(f"Sending email to {recipient_emails}")
         # connect to smtp server and switch connection to tls encryption
-        with smtplib.SMTP(smtp_host, port=smtp_port) as smtp_client:
-            smtp_client.starttls()
-            # authenticate into the smtp server
-            smtp_client.login(smtp_user, smtp_password)
-            # send email message/attachment
-            smtp_client.sendmail(from_addr=sender_email,
+        smtp_client = smtplib.SMTP(smtp_host, port=smtp_port)
+        smtp_client.starttls()
+        # authenticate into the smtp server
+        smtp_client.login(smtp_user, smtp_password)
+        # send email message/attachment
+        smtp_client.sendmail(from_addr=sender_email,
                                  to_addrs=recipient_emails.split(",") + cc.split(",") + bc.split(","),
                                  msg=msg.as_string())
-            # log success message
-            logging.info(f"Email was successfully sent to {recipient_emails} ")
+        # log success message
+        logging.info(f"Email was successfully sent to {recipient_emails} ")
 
     except Exception as e:
         logging.exception("Email sending failed")
@@ -138,6 +138,7 @@ i=0
 for partition_df in partition_dfs:
     partition_value = partition_values[i]
     send_email(partition_df)
+    smtp_client.quit()
     i = i+1
 
 
