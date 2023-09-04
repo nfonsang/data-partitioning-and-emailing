@@ -36,9 +36,9 @@ use_email_body_text = get_recipe_config().get('use_email_body_text', False)
 use_email_body_text = get_recipe_config().get("use_email_body_text", "")
 recipient_name_column = get_recipe_config().get("recipient_name_column", None)
 
-# get SMTP Server related information 
-smtp_host = get_recipe_config().get("smtp_host", None)
-smtp_port = get_recipe_config().get("smtp_port", None)
+# get SMTP authentication server parameter values
+smtp_host = get_recipe_config()["smtp_host"]
+smtp_port = get_recipe_config()["smtp_host"]
 
 
 
