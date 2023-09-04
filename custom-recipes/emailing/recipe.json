@@ -72,9 +72,9 @@
             "mandatory":false 
         },
         {
-            "name": "bcc",
-            "label": "BCC",
-            "description": "Email addres(es) in the BCC field. Separate email addresses with commas",
+            "name": "bc",
+            "label": "BC",
+            "description": "Email addres(es) in the BC field. Separate email addresses with commas",
             "type": "STRING",
             "mandatory":false 
         },
