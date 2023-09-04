@@ -115,7 +115,7 @@ def send_email(partition_df):
                 smtp_client.starttls()
                 # authenticate into the smtp server
             if (smtp_use_auth):
-                smtp_client.login(smtp_user, smtp_password)
+                smtp_client.login(smtp_user, smtp_password.decode("utf-8"))
             # send email message/attachment
             smtp_client.sendmail(from_addr=sender_email,
                                  to_addrs=recipient_emails.split(",") + cc.split(",") + bc.split(","),
