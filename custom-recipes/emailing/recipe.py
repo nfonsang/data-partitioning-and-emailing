@@ -41,6 +41,7 @@ file_format = get_recipe_config().get('attachment_type', "CSV attachement")
 # get email body
 use_email_body = get_recipe_config().get('use_email_body', False)
 email_body_text = get_recipe_config().get("email_body_text", "")
+email_body_text = f"""{email_body_text}"""
 recipient_name_column = get_recipe_config().get("recipient_name_column", None)
 
 # get SMTP authentication server parameter values
