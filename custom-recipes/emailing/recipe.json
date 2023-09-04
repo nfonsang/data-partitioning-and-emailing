@@ -114,7 +114,7 @@
         },  
         {
             "name": "use_email_body",
-            "label" : "Use email body text",
+            "label" : "Use email body",
             "type": "BOOLEAN",
             "description": "Checking this box allows you to write the email body text if needed"
         },
