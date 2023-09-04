@@ -186,7 +186,7 @@
         {
             "name": "smtp_password",
             "label" : "SMTP Sever Password",
-            "type": "STRING",
+            "type": "PASSWORD",
             "visibilityCondition" : "model.smtp_use_auth"
         },
         
