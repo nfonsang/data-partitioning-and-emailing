@@ -32,7 +32,7 @@ sender_name = get_recipe_config()["sender_name"]
 sender_email = get_recipe_config()["sender_email"]
 recipient_emails = get_recipe_config()["recipient_emails"]
 cc = get_recipe_config().get("cc", None)
-bcc = get_recipe_config().get("bcc", None)
+bc = get_recipe_config().get("bc", None)
 email_subject = get_recipe_config().get("email_subject", "")
 
 # get file format
