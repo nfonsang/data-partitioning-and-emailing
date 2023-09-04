@@ -108,7 +108,7 @@ def send_email(partition_df):
         msg.attach(part2)
             
     try:
-        logging.info(f"Sending email to {recipient_emails}")
+        #logging.info(f"Sending email to {recipient_emails}")
         # connect to smtp server and switch connection to tls encryption
         with smtplib.SMTP(host=smtp_host, port=smtp_port) as smtp_client:
             if smtp_use_tls:
