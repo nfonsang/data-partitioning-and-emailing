@@ -123,10 +123,10 @@ def send_email(partition_df):
             smtp_client.login(smtp_user, smtp_password)
             # send email message/attachment
             smtp_client.sendmail(from_addr=sender_email,
-                                 to_addrs=recipient_email_list.split(",") + cc_list.split(",") + bc_list.split(","),
+                                 to_addrs=recipient_emails.split(",") + cc.split(",") + bc.split(","),
                                  msg=msg.as_string())
             # log success message
-            logging.info(f"Email was successfully sent to {recipient_email_list} ")
+            logging.info(f"Email was successfully sent to {recipient_emails} ")
 
     except Exception as e:
         logging.exception("Email sending failed")
