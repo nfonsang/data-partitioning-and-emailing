@@ -32,9 +32,10 @@ email_subject = get_recipe_config().get("email_subject", "")
 file_format = get_recipe_config().get('attachment_type', "CSV attachement")
 
 # get email body
+use_email_body_text = get_recipe_config().get('use_email_body_text', False)
 use_email_body_text = get_recipe_config().get("use_email_body_text", "")
 recipient_name_column = get_recipe_config().get("recipient_name_column", None)
-
+smtp_host
 
 
 
