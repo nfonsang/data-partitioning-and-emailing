@@ -61,6 +61,87 @@ if clear_folder:
 # get dataframe from dataset
 input_data_df = input_dataset.get_dataframe()
 
+# get dataframe partitions
+partition_dfs = []
+partition_values = input_data_df[partitioning_column].unique()
+for partition in partition_values:
+    partition_df = input_data_df[input_data_df[partitioning_column]==partition]
+    partition_dfs.append(partition_df)
+
+# convert dataframe to csv
+def get_csv_partition(partition_df):
+    # convert dataframe to csv file
+    data = partition_df.to_csv(index=False)
+    return data
+
+# convert dataframe to html
+def pretty_table(df_partition):
+    html_table = build_table(df_partition, "blue_light")
+    return html_table
+
+# email data partition 
+
+
+# get email header parametrs 
+def send_email_tls(partition_df):
+    msg = MIMEMultipart()
+    msg["From"] = sender_name
+    msg["To"] = recipient_emails # string
+    msg["Subject"] = email_subject
+    msg["CC"] = cc
+
+    email_text = 
+    file_name = f"{partition_value}.csv"
+
+    # get data partition
+    data = get_csv_partition(partition_df)
+    html_table = pretty_table(partition_df)
+
+    # Leave some space for proper displaying of the attachment
+    part1 = MIMEText(email_text + '\n\n' + html_table, _subtype='html', _charset= "UTF-8")
+    part2 = MIMEApplication(data)
+    part2['Content-Disposition'] = f'attachment; filename="{file_name}"'
+
+    # Attach parts into message container.
+    # According to RFC 2046, the last part of a multipart message, in this case, the HTML message, is best and preferred.
+    msg.attach(part1)
+    msg.attach(part2)
+
+    try:
+        logging.info(f"Sending email to {recipient_email_list}")
+        # connect to smtp server and switch connection to tls encryption
+        with smtplib.SMTP(smtp_host, port=smtp_port) as smtp_client:
+            smtp_client.starttls()
+            # authenticate into the smtp server
+            smtp_client.login(smtp_user, smtp_password)
+            # send email message/attachment
+            smtp_client.sendmail(from_addr=sender_email,
+                                 to_addrs=recipient_email_list.split(",") + cc_list.split(",") + bc_list.split(","),
+                                 msg=msg.as_string())
+            # log success message
+            logging.info(f"Email was successfully sent to {recipient_email_list} ")
+
+    except Exception as e:
+        logging.exception("Email sending failed")
+        #logging.execption(e)
+
+# send emails
+partition_values = input_data_df[partitioning_column].unique()
+i=0
+for partition_df in partition_dfs:
+    partition_value = partition_values[i]
+    send_email_tls(partition_df)
+    i = i+1
+
+
+
+
+
+
+
+
+
+
 # get partitions and write partitions to folder
 def write_partitions(input_data_df):
     # get partition values
