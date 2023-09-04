@@ -159,13 +159,13 @@
         },
         {
             "name": "smtp_use_tls",
-            "label" : "Use TLS",
+            "label" : "Use TLS encryption",
             "type": "BOOLEAN",
             "description": "TLS encryption may be required depending on the SMTP Host Server used"
         },
         {
             "name": "smtp_use_ssl",
-            "label" : "Use SSL",
+            "label" : "Use SSL encryption",
             "type": "BOOLEAN",
             "description": "SSL encryption may be required depending on the SMTP Host Server used"
         },
@@ -173,7 +173,7 @@
         {
             "name": "smtp_use_auth",
             "label" : "Use authentication",
-            "description": "Check this button if SMTP server requires authentication. For example: smtp.gmail.com requires SSL or TLS authentication.",               
+            "description": "Check this button if SMTP server requires authentication. For example: smtp.gmail.com requires authentication with TLS or SSL encryption.",               
             "type": "BOOLEAN"
         },  
         
