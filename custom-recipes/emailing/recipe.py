@@ -53,40 +53,6 @@ include_timestamp = get_recipe_config().get('include_timestamp', False)
 clear_folder = get_recipe_config().get('clear_folder', False)
 
 
-
-
-
-
-
-
-
-
-
-
-# get smtp authentication server parameters
-smtp_host = "smtp.gmail.com"
-smtp_port = 578
-smtp_user = "neba.nfonsang@dataiku.com"
-smtp_password = ""
-use_ssl = ""
-use_tls = ""
-
-
-# get email header paramenters
-sender_name = "Neb Nfon Afanwi"
-sender_email = "neba.nfonsang@dataiku.com"
-recipient_email_list = "neba.nfonsang@dataiku.com"
-cc_list = "neba.nfonsang@du.edu"
-bc_list = "neba.nfonsang@gmail.com"
-email_subject = "This is the heading of the email"
-
-
-# Get parameter values from the UI
-
-partitioning_column = get_recipe_config()["partitioning_column"]
-include_timestamp = get_recipe_config()["include_timestamp"]
-clear_folder = get_recipe_config()["clear_folder"]
-
 # clear folder before partitioning the datasets into CSV files)
 if clear_folder:
     logging.info("clearing folder")
@@ -127,12 +93,13 @@ def write_partitions_timestamp(input_data_df):
         output_folder.upload_stream(file_name, data)
 
 # partition the dataset and write partitions to the managed folder
-if include_timestamp:
-    write_partitions_timestamp(input_data_df)
-else:
-    write_partitions(input_data_df)
+if write_data_to_folder:
+    if include_timestamp:
+        write_partitions_timestamp(input_data_df)
+    else:
+        write_partitions(input_data_df)
 
-logging.info("Finished writing CSV files to the folder")
+    logging.info("Finished writing CSV files to the folder")
 
 
 
