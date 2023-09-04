@@ -33,7 +33,7 @@ file_format = get_recipe_config().get('attachment_type', "CSV attachement")
 
 # get email body
 use_email_body = get_recipe_config().get('use_email_body', False)
-use_email_body_text = get_recipe_config().get("use_email_body_text", "")
+email_body_text = get_recipe_config().get("email_body_text", "")
 recipient_name_column = get_recipe_config().get("recipient_name_column", None)
 
 # get SMTP authentication server parameter values
@@ -87,7 +87,7 @@ def send_email(partition_df):
     msg["Subject"] = email_subject
     msg["CC"] = cc
 
-    email_text = 
+    email_body_text = email_body_text
     file_name = f"{partition_value}.csv"
 
     # create email body
@@ -98,11 +98,11 @@ def send_email(partition_df):
     
     if attachment_type=="Embedded HTML table":
         html_table = pretty_table(partition_df)
-        part2 = MIMEText(email_text + '\n\n' + html_table, _subtype='html', _charset= "UTF-8")
+        part2 = MIMEText(email_body_text + '\n\n' + html_table, _subtype='html', _charset= "UTF-8")
         part2['Content-Disposition'] = f'attachment; filename="{file_name}"'
         msg.attach(part2)
     else:
-        part2 = MIMEText(email_text + '\n\n', _subtype='html', _charset= "UTF-8")
+        part2 = MIMEText(email_body_text + '\n\n', _subtype='html', _charset= "UTF-8")
         part2['Content-Disposition'] = f'attachment; filename="{file_name}"'
         msg.attach(part2)
             
