@@ -20,6 +20,8 @@ input_dataset = dataiku.Dataset(input_dataset_name)
 output_folder_name = get_output_names_for_role('output_folder')[0]
 output_folder = dataiku.Folder(output_folder_name)
 
+
+
 # get smtp authentication server parameters
 smtp_host = "smtp.gmail.com"
 smtp_port = 578
