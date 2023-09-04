@@ -16,8 +16,8 @@ from dataiku.customrecipe import get_output_names_for_role
 from dataiku.customrecipe import get_recipe_config
 
 # set logging configurations 
-#logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
-#logging.info("Start executing the recipe code")
+logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
+logging.info("Start executing the recipe code")
 
 # Get the input of the recipe
 input_dataset_name = get_input_names_for_role('input_dataset')[0]
@@ -62,7 +62,7 @@ clear_folder = get_recipe_config().get('clear_folder', False)
 
 # clear folder before partitioning the datasets into CSV files)
 if clear_folder:
-    #logging.info("clearing folder")
+    logging.info("clearing folder")
     output_folder.clear()
 
 # get dataframe from dataset
@@ -88,7 +88,7 @@ def pretty_table(df_partition):
     return html_table
 
 # email data partition 
-#logging.info("Running Send Email Function")
+logging.info("Running Send Email Function")
 def send_email(partition_df):
     msg = MIMEMultipart()
     msg["From"] = sender_name
@@ -115,7 +115,7 @@ def send_email(partition_df):
         msg.attach(part2)
             
     try:
-        #logging.info(f"Sending email to {recipient_emails}")
+        logging.info(f"Sending email to {recipient_emails}")
         # connect to smtp server and switch connection to tls encryption
         with smtplib.SMTP(host=smtp_host, port=smtp_port) as smtp_client:
             if smtp_use_tls:
@@ -128,7 +128,7 @@ def send_email(partition_df):
                                  to_addrs=recipient_emails.split(",") + cc.split(",") + bc.split(","),
                                  msg=msg.as_string())
             # log success message
-            #logging.info(f"Email was successfully sent to {recipient_emails} ")
+            logging.info(f"Email was successfully sent to {recipient_emails} ")
 
     except Exception as e:
         logging.exception("Email sending failed")
@@ -170,7 +170,7 @@ def write_partitions_timestamp(input_data_df):
         # create file name
         file_name = f"{partition}_{current_time}.csv"
         # write to non-local folder with .upload_stream
-        #logging.info(f"writing {file_name} to the folder")
+        logging.info(f"writing {file_name} to the folder")
         output_folder.upload_stream(file_name, data)
 
 # partition the dataset and write partitions to the managed folder
@@ -180,7 +180,7 @@ if write_data_to_folder:
     else:
         write_partitions(input_data_df)
 
-    #logging.info("Finished writing CSV files to the folder")
+    logging.info("Finished writing CSV files to the folder")
 
 
 
