@@ -125,7 +125,7 @@
             "type": "TEXTAREA",
             "description" : "Provide the text of the email body. You can use recipient's name in email by using the variable {recipient}. You can also use the value used to partition the data as {partition}. For example: Hi {name}, this is the {partion} data",
             "mandatory": false,
-            "visibilityCondition" : "model.use_email_body_text"        
+            "visibilityCondition" : "model.use_email_body"        
         },
         {
             "name": "recipient_name_column",
