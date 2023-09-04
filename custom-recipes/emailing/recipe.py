@@ -9,8 +9,8 @@ from dataiku.customrecipe import get_output_names_for_role
 from dataiku.customrecipe import get_recipe_config
 
 # set logging configurations 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
-logging.info("Start executing the recipe code")
+#logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
+#logging.info("Start executing the recipe code")
 
 # Get the input of the recipe
 input_dataset_name = get_input_names_for_role('input_dataset')[0]
@@ -67,7 +67,7 @@ partition_values = input_data_df[partitioning_column].unique()
 for partition in partition_values:
     partition_df = input_data_df[input_data_df[partitioning_column]==partition]
     partition_dfs.append(partition_df)
-    print(partition_df)
+ 
 
 # convert dataframe to csv
 def get_csv_partition(partition_df):
