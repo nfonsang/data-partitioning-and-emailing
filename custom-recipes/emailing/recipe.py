@@ -45,7 +45,17 @@ smtp_use_auth = get_recipe_config().get('smtp_use_auth', False)
 smtp_user = get_recipe_config().get('smtp_use', None)
 smtp_password = get_recipe_config().get('smtp_password', None)
 
-# 
+# get data management parameter values  
+partitioning_column = get_recipe_config().get('smtp_password', "")
+columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
+write_data_to_folder = get_recipe_config().get('write_data_to_folder', "")
+include_timestamp = get_recipe_config().get('include_timestamp', "")
+
+
+
+
+
+
 
 
 
