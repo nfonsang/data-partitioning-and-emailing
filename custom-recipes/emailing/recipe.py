@@ -43,7 +43,7 @@ smtp_use_tls = get_recipe_config().get('smtp_use_tls', False)
 smtp_use_ssl = get_recipe_config().get('smtp_use_ssl', False)
 smtp_use_auth = get_recipe_config().get('smtp_use_auth', False)
 smtp_user = get_recipe_config().get('smtp_use', None)
-smtp_password = get_recipe_config().get('smtp_password', None)
+smtp_password = get_recipe_config().get('smtp_password', "")
 
 # get data management parameter values  
 partitioning_column = get_recipe_config().get('smtp_password', "")
