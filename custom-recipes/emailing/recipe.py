@@ -42,8 +42,8 @@ smtp_port = get_recipe_config()["smtp_port"]
 smtp_use_tls = get_recipe_config().get('smtp_use_tls', False)
 smtp_use_ssl = get_recipe_config().get('smtp_use_ssl', False)
 smtp_use_auth = get_recipe_config().get('smtp_use_auth', False)
-
-
+smtp_user = get_recipe_config().get('smtp_use', None)
+smtp_password = get_recipe_config().get('smtp_password', None)
 
 
 
