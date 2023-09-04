@@ -20,7 +20,7 @@ input_dataset = dataiku.Dataset(input_dataset_name)
 output_folder_name = get_output_names_for_role('output_folder')[0]
 output_folder = dataiku.Folder(output_folder_name)
 
-# get email header parametrs 
+# get email header parameter values
 sender_name = get_recipe_config()["sender_name"]
 sender_email = get_recipe_config()["sender_email"]
 recipient_emails = get_recipe_config()["recipient_emails"]
@@ -80,9 +80,6 @@ def pretty_table(df_partition):
     return html_table
 
 # email data partition 
-
-
-# get email header parametrs 
 def send_email_tls(partition_df):
     msg = MIMEMultipart()
     msg["From"] = sender_name
