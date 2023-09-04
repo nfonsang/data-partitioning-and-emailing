@@ -67,6 +67,7 @@ partition_values = input_data_df[partitioning_column].unique()
 for partition in partition_values:
     partition_df = input_data_df[input_data_df[partitioning_column]==partition]
     partition_dfs.append(partition_df)
+    print(partition_df)
 
 # convert dataframe to csv
 def get_csv_partition(partition_df):
