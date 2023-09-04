@@ -105,11 +105,9 @@ def send_email(partition_df):
         part2 = MIMEText(email_text + '\n\n', _subtype='html', _charset= "UTF-8")
         part2['Content-Disposition'] = f'attachment; filename="{file_name}"'
         msg.attach(part2)
-        
-    # Attach parts into message container.
-    
+            
     try:
-        logging.info(f"Sending email to {recipient_email_list}")
+        logging.info(f"Sending email to {recipient_emails}")
         # connect to smtp server and switch connection to tls encryption
         with smtplib.SMTP(smtp_host, port=smtp_port) as smtp_client:
             if smtp_use_tls:
@@ -119,7 +117,7 @@ def send_email(partition_df):
                 smtp_client.login(smtp_user, smtp_password)
             # send email message/attachment
             smtp_client.sendmail(from_addr=sender_email,
-                                 to_addrs=recipient_email_list.split(",") + cc_list.split(",") + bc_list.split(","),
+                                 to_addrs=recipient_emails.split(",") + cc.split(",") + bc.split(","),
                                  msg=msg.as_string())
             # log success message
             logging.info(f"Email was successfully sent to {recipient_emails} ")
@@ -132,11 +130,8 @@ partition_values = input_data_df[partitioning_column].unique()
 i=0
 for partition_df in partition_dfs:
     partition_value = partition_values[i]
-    send_email_tls(partition_df)
+    send_email(partition_df)
     i = i+1
-
-
-
 
 
 # get partitions and write partitions to folder
