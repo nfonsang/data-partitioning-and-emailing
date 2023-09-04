@@ -80,6 +80,7 @@ def pretty_table(df_partition):
     return html_table
 
 # email data partition 
+logging.info("Running Send Email Function")
 def send_email(partition_df):
     msg = MIMEMultipart()
     msg["From"] = sender_name
