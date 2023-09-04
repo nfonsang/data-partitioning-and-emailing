@@ -231,8 +231,7 @@
             "name": "clear_folder",
             "label": "Clear folder",
             "description": "Check this button to clear the folder before writing new CSV files",
-            "type": "BOOLEAN",
-            "visibilityCondition" : "model.write_data_to_folder"
+            "type": "BOOLEAN"
         }
         
     ],
