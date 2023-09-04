@@ -89,6 +89,8 @@ def pretty_table(df_partition):
 
 # email data partition 
 logging.info("Running Send Email Function")
+partition = ""
+name = ""
 def send_email(partition_df):
     msg = MIMEMultipart()
     msg["From"] = sender_name
@@ -96,7 +98,7 @@ def send_email(partition_df):
     msg["Subject"] = email_subject
     msg["CC"] = cc
     name=""
-    email_body_text = email_body_text.format(name=name, partition=partition_value)
+    email_body_text = email_body_text.format(name=name, partition=partition)
     file_name = f"{partition_value}.csv"
     
     # get data to be emailed 
