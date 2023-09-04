@@ -98,7 +98,7 @@ def send_email(partition_df):
     msg["Subject"] = email_subject
     msg["CC"] = cc
     name=""
-    email_body_text = email_body_text.format(name=name, partition=partition)
+    email_body_text = email_body_text.format(partition=partition)
     file_name = f"{partition_value}.csv"
     
     # get data to be emailed 
