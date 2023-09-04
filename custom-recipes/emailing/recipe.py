@@ -4,6 +4,13 @@ import pandas as pd
 import datetime
 import logging
 
+# import packages for emailing
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
+from pretty_html_table import build_table
+
 from dataiku.customrecipe import get_input_names_for_role
 from dataiku.customrecipe import get_output_names_for_role
 from dataiku.customrecipe import get_recipe_config
