@@ -49,7 +49,10 @@ smtp_password = get_recipe_config().get('smtp_password', None)
 partitioning_column = get_recipe_config().get('smtp_password', "")
 columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
 write_data_to_folder = get_recipe_config().get('write_data_to_folder', "")
-include_timestamp = get_recipe_config().get('include_timestamp', "")
+include_timestamp = get_recipe_config().get('include_timestamp', False)
+include_timestamp = get_recipe_config().get('clear_folder', False)
+
+
 
 
 
