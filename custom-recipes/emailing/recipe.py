@@ -86,8 +86,7 @@ def send_email(partition_df):
     msg["To"] = recipient_emails # string
     msg["Subject"] = email_subject
     msg["CC"] = cc
-
-    email_body_text = email_body_text
+    
     file_name = f"{partition_value}.csv"
 
     # create email body
