@@ -115,24 +115,22 @@ def send_email(partition_df):
         msg.attach(part2)
             
     try:
-        logging.info(f"Sending email to {recipient_emails}")
+        logging.info(f"Sending email to {recipient_email_list}")
         # connect to smtp server and switch connection to tls encryption
-        with smtplib.SMTP(host=smtp_host, port=smtp_port) as smtp_client:
-            if smtp_use_tls:
-                smtp_client.starttls()
-                # authenticate into the smtp server
-            if (smtp_use_auth):
-                smtp_client.login(str(smtp_user), str(smtp_password))
+        with smtplib.SMTP(smtp_host, port=smtp_port) as smtp_client:
+            smtp_client.starttls()
+            # authenticate into the smtp server
+            smtp_client.login(smtp_user, smtp_password)
             # send email message/attachment
             smtp_client.sendmail(from_addr=sender_email,
-                                 to_addrs=recipient_emails.split(",") + cc.split(",") + bc.split(","),
+                                 to_addrs=recipient_email_list.split(",") + cc_list.split(",") + bc_list.split(","),
                                  msg=msg.as_string())
             # log success message
-            logging.info(f"Email was successfully sent to {recipient_emails} ")
+            logging.info(f"Email was successfully sent to {recipient_email_list} ")
 
     except Exception as e:
         logging.exception("Email sending failed")
-        logging.exception("ERROR", e)
+        logging.execption(e)
 
 # send emails
 partition_values = input_data_df[partitioning_column].unique()
