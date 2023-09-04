@@ -90,21 +90,24 @@ def send_email(partition_df):
     email_text = 
     file_name = f"{partition_value}.csv"
 
-    # get data partition
-    data = get_csv_partition(partition_df)
-    html_table = pretty_table(partition_df)
-
-    # Leave some space for proper displaying of the attachment
-    if attachment_type==
-    part1 = MIMEText(email_text + '\n\n' + html_table, _subtype='html', _charset= "UTF-8")
-    part2 = MIMEApplication(data)
-    part2['Content-Disposition'] = f'attachment; filename="{file_name}"'
-
+    # create email body
+    if attachment_type=="CSV attachment":
+        data = get_csv_partition(partition_df)
+        part1 = MIMEApplication(data)
+        msg.attach(part1)
+    
+    if attachment_type=="Embedded HTML table":
+        html_table = pretty_table(partition_df)
+        part2 = MIMEText(email_text + '\n\n' + html_table, _subtype='html', _charset= "UTF-8")
+        part2['Content-Disposition'] = f'attachment; filename="{file_name}"'
+        msg.attach(part2)
+    else:
+        part2 = MIMEText(email_text + '\n\n', _subtype='html', _charset= "UTF-8")
+        part2['Content-Disposition'] = f'attachment; filename="{file_name}"'
+        msg.attach(part2)
+        
     # Attach parts into message container.
-    # According to RFC 2046, the last part of a multipart message, in this case, the HTML message, is best and preferred.
-    msg.attach(part1)
-    msg.attach(part2)
-
+    
     try:
         logging.info(f"Sending email to {recipient_email_list}")
         # connect to smtp server and switch connection to tls encryption
