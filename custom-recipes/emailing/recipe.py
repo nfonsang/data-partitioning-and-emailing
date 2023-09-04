@@ -99,12 +99,12 @@ def send_email(partition_df):
     file_name = f"{partition_value}.csv"
 
     # create email body
-    if attachment_type=="CSV attachment":
+    if file_format=="CSV attachment":
         data = get_csv_partition(partition_df)
         part1 = MIMEApplication(data)
         msg.attach(part1)
     
-    if attachment_type=="Embedded HTML table":
+    if file_format=="Embedded HTML table":
         html_table = pretty_table(partition_df)
         part2 = MIMEText(email_body_text + '\n\n' + html_table, _subtype='html', _charset= "UTF-8")
         part2['Content-Disposition'] = f'attachment; filename="{file_name}"'
