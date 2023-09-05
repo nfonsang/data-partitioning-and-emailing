@@ -74,16 +74,23 @@ input_data_df = input_dataset.get_dataframe()
 input_data_df = input_dataset.get_dataframe()
 if partitioning_column:
     partition_values = input_data_df[partitioning_column].unique()
+    recipient_emails_for_partitions = []
     partition_dfs = []
     for partition in partition_values:
         partition_df = input_data_df[input_data_df[partitioning_column]==partition]
+        # get recipient email address(es)
+        if use_recipient_email_column:
+            rec_emails_in_partition = partition_df[recipient_email_column].unque().tolist()
+            recipient_emails_for_partitions.append(rec_emails_in_partition)
+            
+            
         if columns_to_exclude:
             columns = [item.strip() for item in columns_to_exclude.split(",")]
             partition_df = partition_df.drop(columns, axis=1)
         partition_dfs.append(partition_df)
-        # get recipient email address(es)
-        if use_recipient_email_column:
-            rec_emails = input_data_df[recipient_email_column]
+        
+
+            
 else:
     if columns_to_exclude:
         columns = [item.strip() for item in columns_to_exclude.split(",")]
