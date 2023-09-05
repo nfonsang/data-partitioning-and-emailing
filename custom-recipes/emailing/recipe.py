@@ -161,8 +161,10 @@ def send_email(partition_df):
     smtp_client.quit()
 
 
+
 # send emails   
-    i=0
+ i=0
+if partitioning_column:
     for partition_df in partition_dfs:
         partition = partition_values[i]
         send_email(partition_df)
