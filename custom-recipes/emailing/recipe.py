@@ -162,6 +162,8 @@ if partitioning_column:
         send_email(partition_df)
         i = i+1
 else:
+    partition_value = input_dataset_name
+    partition = partition_value
     send_email(input_data_df)
 
 
