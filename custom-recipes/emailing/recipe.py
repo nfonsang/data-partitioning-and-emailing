@@ -74,13 +74,14 @@ partition_values = input_data_df[partitioning_column].unique()
 
 
 # get dataframe partitions
-partition_dfs = []
-for partition in partition_values:
-    partition_df = input_data_df[input_data_df[partitioning_column]==partition]
-    if columns_to_exclude:
-        columns = [item.strip() for item in columns_to_exclude.split(",")]
-        partition_df = partition_df.drop(columns, axis=1)
-    partition_dfs.append(partition_df)
+if partitioning_column:
+    partition_dfs = []
+    for partition in partition_values:
+        partition_df = input_data_df[input_data_df[partitioning_column]==partition]
+        if columns_to_exclude:
+            columns = [item.strip() for item in columns_to_exclude.split(",")]
+            partition_df = partition_df.drop(columns, axis=1)
+        partition_dfs.append(partition_df)
 
 
 # convert dataframe to csv
