@@ -65,6 +65,10 @@ if clear_folder:
     logging.info("clearing folder")
     output_folder.clear()
 
+if columns_to_exclude:
+
+else:
+
 # get dataframe from dataset
 input_data_df = input_dataset.get_dataframe()
 
