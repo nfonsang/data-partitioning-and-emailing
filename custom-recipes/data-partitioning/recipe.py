@@ -33,8 +33,25 @@ if clear_folder:
     logging.info("clearing folder")
     output_folder.clear()
 
-# get dataframe from dataset
+
+# clear folder before partitioning the datasets into CSV files)
+if clear_folder:
+    logging.info("clearing folder")
+    output_folder.clear()
+
+
+# get dataframe and partition values from dataset
 input_data_df = input_dataset.get_dataframe()
+partition_values = input_data_df[partitioning_column].unique()
+
+# get dataframe partitions
+partition_dfs = []
+for partition in partition_values:
+    partition_df = input_data_df[input_data_df[partitioning_column]==partition]
+    if columns_to_exclude:
+        columns = [item.strip() for item in columns_to_exclude.split(",")]
+        partition_df = partition_df.drop(columns, axis=1)
+    partition_dfs.append(partition_df)
 
 
 
