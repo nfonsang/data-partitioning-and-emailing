@@ -37,20 +37,17 @@ if clear_folder:
 # get dataframe from dataset
 input_data_df = input_dataset.get_dataframe()
 
-# get dataframe and partition values from dataset
+# get partition dataframe and partition values from dataset
 input_data_df = input_dataset.get_dataframe()
 if partitioning_column:
     partition_values = input_data_df[partitioning_column].unique()
-
-
-# get dataframe partitions
-partition_dfs = []
-for partition in partition_values:
-    partition_df = input_data_df[input_data_df[partitioning_column]==partition]
-    if columns_to_exclude:
-        columns = [item.strip() for item in columns_to_exclude.split(",")]
-        partition_df = partition_df.drop(columns, axis=1)
-    partition_dfs.append(partition_df)
+    partition_dfs = []
+    for partition in partition_values:
+        partition_df = input_data_df[input_data_df[partitioning_column]==partition]
+        if columns_to_exclude:
+            columns = [item.strip() for item in columns_to_exclude.split(",")]
+            partition_df = partition_df.drop(columns, axis=1)
+        partition_dfs.append(partition_df)
 
 
 
