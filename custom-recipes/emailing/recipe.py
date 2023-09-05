@@ -98,6 +98,12 @@ def pretty_table(df_partition):
     return html_table
 
 
+# get recipient emails 
+if use_recipient_email_column:
+    rec_emails
+
+
+
 # email data partition 
 logging.info("Running Send Email Function")
 
