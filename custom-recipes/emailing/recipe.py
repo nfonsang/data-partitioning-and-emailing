@@ -73,11 +73,15 @@ partition_values = input_data_df[partitioning_column].unique()
 # get emails of recipients for each partition
 
 
-# get dataframe if columns are excluded
-print("HELLLLLLLLLOOOOOOOOOOO......", input_data_df.columns)
-if columns_to_exclude:
-    input_data_df = input_dataset.get_dataframe()
-    input_data_df = input_data_df.drop(columns_to_exclude.split(","), axis=1)
+# get a dataframe partitions 
+if partitioning_column:
+    # get dataframe partitions
+    partition_dfs = []
+    for partition in partition_values:
+        partition_df = input_data_df[input_data_df[partitioning_column]==partition]
+        if columns_to_exclude:
+            partition_df = partition_df.drop(columns_to_exclude.split(","), axis=1)
+        partition_dfs.append(partition_df)
 
 
 # convert dataframe to csv
@@ -157,14 +161,7 @@ def send_email(partition_df):
     smtp_client.quit()
 
 
-# send emails
-if partitioning_column:
-    # get dataframe partitions
-    partition_dfs = []
-    for partition in partition_values:
-        partition_df = input_data_df[input_data_df[partitioning_column]==partition]
-        partition_dfs.append(partition_df)
-    # email data partitions     
+# send emails   
     i=0
     for partition_df in partition_dfs:
         partition = partition_values[i]
