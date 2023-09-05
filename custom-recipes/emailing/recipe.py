@@ -81,7 +81,6 @@ def pretty_table(df_partition):
     return html_table
 
 
-print("HEEELLLLLLOOOOOOOOOOOOO.....", input_dataset_name)
 # email data partition 
 logging.info("Running Send Email Function")
 partition = ""
@@ -162,7 +161,7 @@ if partitioning_column:
         send_email(partition_df)
         i = i+1
 else:
-    partition = input_dataset_name
+    partition = input_dataset_name.split(".")[-1]
     send_email(input_data_df)
 
 
