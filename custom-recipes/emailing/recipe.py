@@ -174,8 +174,7 @@ else:
 
 
 # write data partitions or entire data to folder
-# partition = "" # reset partition
-def write_partitions(input_data_df):
+def write_partitions(input_data_df, partition):
     if partitioning_column:
         data = df.to_csv(index=False)
         file_name = f"{partition}.csv"
@@ -192,7 +191,7 @@ def write_partitions(input_data_df):
 
 # write partitions or entire data to folder with time stamps included
 
-def write_partitions_timestamp(df):
+def write_partitions_timestamp(df, partition):
     # get current timestamp
     current_time = datetime.datetime.now()
     current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
@@ -216,11 +215,10 @@ if write_data_to_folder:
     i=0
     for partition_df in partition_dfs:
         partition = partition_values[i]
-        print("HELLLLLLOOOOOOOOOOO.......", partition)
         if include_timestamp:
-            write_partitions_timestamp(partition_df)
+            write_partitions_timestamp(partition_df, partition)
         else:
-            write_partitions(partition_df)
+            write_partitions(partition_df, partition)
         i=i+1
         logging.info("Finished writing CSV files to the folder")
 
