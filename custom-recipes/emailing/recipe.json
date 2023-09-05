@@ -57,12 +57,19 @@
             "type": "STRING",
             "mandatory":true 
         },
+        
         {
             "name": "recipient_emails",
             "label": "Recipient email(s) (required)",
             "description": "Email address(es) of recipient(s). Separate email addresses with commas",
             "type": "STRING",
             "mandatory":true 
+        },
+        {
+            "name": "use_recipient_email_column",
+            "label" : "Use recipient email column",
+            "type": "BOOLEAN",
+            "description": "Checking this box allows you to write the email body text if needed"
         },
         {
             "name": "recipient_email_column",
