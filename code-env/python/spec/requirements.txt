@@ -1,1 +1,2 @@
 pretty_html_table
+pandas
