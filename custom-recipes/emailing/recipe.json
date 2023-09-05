@@ -46,7 +46,7 @@
         {
             "name": "sender_name",
             "label": "Sender name (required)",
-            "description": "Name of email sender. You could also use, 'On the Behalf of <Your Name>', if the sender email is not a personal email",
+            "description": "Name of email sender. You could also use, 'On the Behalf of (put your name here)', if the sender email is not a personal email",
             "type": "STRING",
             "mandatory":true 
         },
