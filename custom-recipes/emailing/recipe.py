@@ -106,7 +106,7 @@ def send_email(partition_df):
     html_table = pretty_table(partition_df)
     
     # create email body
-    if file_format=="CSV attachment":
+    if file_format=="csv":
         email_text = email_body_text.format(partition=partition)
         part2 = MIMEText("<pre>" + "<div style='font-family: Cambria'>" + email_text + "</div>" + "</pre>", _subtype='html', _charset= "UTF-8")
         part1 = MIMEApplication(data)
@@ -114,11 +114,11 @@ def send_email(partition_df):
         msg.attach(part1)
         msg.attach(part2)  
 
-    if file_format=="Embedded HTML table":
+    if file_format=="html":
         email_text = email_body_text.format(partition=partition, table=html_table)
         part2 = MIMEText("<pre>" + "<div style='font-family: Cambria'>" + email_text + "</div>" + "</pre>", _subtype='html', _charset= "UTF-8")
         msg.attach(part2) 
-    if file_format=="CSV attachement and Embedded HTML table":
+    if file_format=="csv_html":
         email_text = email_body_text.format(partition=partition, table=html_table)
         part1 = MIMEApplication(data)
         part1['Content-Disposition'] = f'attachment; filename="{file_name}"'
