@@ -100,7 +100,6 @@ def send_email(partition_df):
     data = get_csv_partition(partition_df)
     
     # create html table to be embedded
-     
     html_table = pretty_table(partition_df)
     
     # create email body
