@@ -175,16 +175,20 @@ def send_email(partition_df, partition):
 # send emails   
 i=0
 if partitioning_column:
+    # email data partitions
     for partition_df in partition_dfs:
         partition = partition_values[i]
-        rec_emails = recipient_emails_for_partitions[i]
-        rec_emails = ",".join(rec_emails)
+        if use_recipient_email_column:
+            rec_emails = recipient_emails_for_partitions[i]
+            rec_emails = ",".join(rec_emails)
         send_email(partition_df, partition)
         i = i+1
 else:
+    # email entire data
     partition = input_dataset_name.split(".")[-1]
-    rec_emails = recipient_emails_for_partitions
-    rec_emails = ",".join(rec_emails)
+    if use_recipient_email_column:
+        rec_emails = recipient_emails_for_partitions # all emails
+        rec_emails = ",".join(rec_emails)
     send_email(input_data_df, partition)
 
 
