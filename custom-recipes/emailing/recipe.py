@@ -101,8 +101,6 @@ def send_email(partition_df):
     
     # get data to be emailed 
     data = get_csv_partition(partition_df)
-    part1 = MIMEApplication(data)
-    part1['Content-Disposition'] = f'attachment; filename="{file_name}"'
     
     # create html table to be embedded
     html_table = pretty_table(partition_df)
@@ -111,6 +109,8 @@ def send_email(partition_df):
     if file_format=="CSV attachment":
         email_text = email_body_text.format(partition=partition)
         part2 = MIMEText("<pre>" + "<div style='font-family: Cambria'>" + email_text + "</div>" + "</pre>", _subtype='html', _charset= "UTF-8")
+        part1 = MIMEApplication(data)
+        part1['Content-Disposition'] = f'attachment; filename="{file_name}"'
         msg.attach(part1)
         msg.attach(part2)  
 
@@ -121,6 +121,8 @@ def send_email(partition_df):
     else:
         email_text = email_body_text.format(partition=partition, table=html_table)
         part2 = MIMEText("<pre>" + "<div style='font-family: Cambria'>" + email_text + "</div>" + "</pre>", _subtype='html', _charset= "UTF-8")
+        part1 = MIMEApplication(data)
+        part1['Content-Disposition'] = f'attachment; filename="{file_name}"'
         msg.attach(part1)
         msg.attach(part2)
   
