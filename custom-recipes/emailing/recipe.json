@@ -57,29 +57,30 @@
             "type": "STRING",
             "mandatory":true 
         },
-        
-        {
-            "name": "recipient_emails",
-            "label": "Recipient email(s)",
-            "description": "Email address(es) of recipient(s). Separate email addresses with commas",
-            "type": "STRING",
-            "mandatory":false,
-            "visibilityCondition" : "!model.use_recipient_email_column" 
-        },
         {
             "name": "use_recipient_email_column",
             "label" : "Use recipient email column",
             "type": "BOOLEAN",
-            "description": "Checking this box allows you to write the email body text if needed"
+            "description": "Check this box if the recipient emails are in a column in the input dataset"
         },
         {
             "name": "recipient_email_column",
             "label" : "Column with recipient email",
             "type": "STRING",
-            "description": "To use the recipient's name in the email body dynamically, provide column in the input dataset containing the recipient's name. This is optional.",
+            "description": "Enter the column name that contains the emails of the recipients. This column name should be on the input dataset",
             "mandatory": true,
             "visibilityCondition" : "model.use_recipient_email_column" 
         }, 
+        
+        {
+            "name": "recipient_emails",
+            "label": "Recipient email(s)",
+            "description": "Enter recipent email address(es) inline: all data partitions will be sent to each of these emails. Separate email addresses with commas",
+            "type": "STRING",
+            "mandatory":false,
+            "visibilityCondition" : "!model.use_recipient_email_column" 
+        },
+        
         {
             "name": "cc",
             "label": "CC",
