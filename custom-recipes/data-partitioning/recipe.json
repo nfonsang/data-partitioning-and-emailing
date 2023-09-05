@@ -41,7 +41,7 @@
             "name": "partitioning_column",
             "label": "Partitioning column",
             "type": "STRING",
-            "description": "Name of column in the input dataset whose unique values will be used to filter partitions",
+            "description": "This is the name of column in the input dataset whose unique values will be used to filter partitions. If this field is empty, the whole data will be written to the folder",
             "mandatory": true
         },
         {
