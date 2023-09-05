@@ -107,7 +107,7 @@ def send_email(partition_df):
     
     # create email body
     if file_format=="csv":
-        email_text = email_body_text.format(partition=partition)
+        email_text = email_body_text.format(partition=partition, table="")
         part2 = MIMEText("<pre>" + "<div style='font-family: Cambria'>" + email_text + "</div>" + "</pre>", _subtype='html', _charset= "UTF-8")
         part1 = MIMEApplication(data)
         part1['Content-Disposition'] = f'attachment; filename="{file_name}"'
