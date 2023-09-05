@@ -174,9 +174,8 @@ else:
     partition = input_dataset_name.split(".")[-1]
     send_email(input_data_df, partition)
 
-
 # write data partitions or entire data to folder
-def write_partitions(input_data_df, partition):
+def write_partitions(df, partition):
     if partitioning_column:
         data = df.to_csv(index=False)
         file_name = f"{partition}.csv"
@@ -184,7 +183,7 @@ def write_partitions(input_data_df, partition):
         output_folder.upload_stream(file_name, data)
     else:
         # write entire dataframe
-        data = input_data_df.to_csv(index=False)
+        data = df.to_csv(index=False)
         partition = input_dataset_name.split(".")[-1]
         file_name = f"{partition}.csv"
         logging.info(f"writing {file_name} to the folder")
@@ -212,8 +211,7 @@ def write_partitions_timestamp(df, partition):
         output_folder.upload_stream(file_name, data)
 
 # partition the dataset and write partitions to the managed folder
-
-if write_data_to_folder:
+if partitioning_column:
     i=0
     for partition_df in partition_dfs:
         partition = partition_values[i]
@@ -223,6 +221,10 @@ if write_data_to_folder:
             write_partitions(partition_df, partition)
         i=i+1
         logging.info("Finished writing CSV files to the folder")
-
-
-
+else:
+    partition = input_dataset_name.split(".")[-1]
+    if include_timestamp:
+        write_partitions_timestamp(input_data_df, partition)
+    else:
+        write_partitions(input_data_df, partition)
+    logging.info("Finished writing CSV files to the folder")
