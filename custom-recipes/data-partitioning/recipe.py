@@ -100,12 +100,11 @@ if partitioning_column:
         i=i+1
         logging.info("Finished writing CSV files to the folder")
 else:
-    partition = partition_values[i]
-        if include_timestamp:
-            write_partitions_timestamp(partition_df, partition)
-        else:
-            write_partitions(partition_df, partition)
-        i=i+1
-        logging.info("Finished writing CSV files to the folder")
+    partition = input_dataset_name.split(".")[-1]
+    if include_timestamp:
+        write_partitions_timestamp(input_data_df, partition)
+    else:
+        write_partitions(input_data_df, partition)
+    logging.info("Finished writing CSV files to the folder")
 
     
