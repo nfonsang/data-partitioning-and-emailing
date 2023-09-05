@@ -119,7 +119,7 @@ def send_email(partition_df):
         part2 = MIMEText(email_text + '\n\n', _subtype='html', _charset= "UTF-8")
         msg.attach(part2) 
     else:
-        email_text = email_body_text.format(name=name, partition=partition, table=html_table)
+        email_text = email_body_text.format(partition=partition, table=html_table)
         part2 = MIMEText(email_text + '\n\n', _subtype='html', _charset= "UTF-8")
         msg.attach(part1) 
         msg.attach(part2) 
