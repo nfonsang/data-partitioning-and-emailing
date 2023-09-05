@@ -28,21 +28,19 @@ columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
 include_timestamp = get_recipe_config().get("include_timestamp", None)
 clear_folder = get_recipe_config().get("clear_folder", None)
 
-# clear folder before partitioning the datasets into CSV files)
-if clear_folder:
-    logging.info("clearing folder")
-    output_folder.clear()
-
 
 # clear folder before partitioning the datasets into CSV files)
 if clear_folder:
     logging.info("clearing folder")
     output_folder.clear()
 
+# get dataframe from dataset
+input_data_df = input_dataset.get_dataframe()
 
 # get dataframe and partition values from dataset
 input_data_df = input_dataset.get_dataframe()
 partition_values = input_data_df[partitioning_column].unique()
+
 
 # get dataframe partitions
 partition_dfs = []
@@ -52,7 +50,6 @@ for partition in partition_values:
         columns = [item.strip() for item in columns_to_exclude.split(",")]
         partition_df = partition_df.drop(columns, axis=1)
     partition_dfs.append(partition_df)
-
 
 
 
