@@ -77,9 +77,9 @@ partition_values = input_data_df[partitioning_column].unique()
 partition_dfs = []
 for partition in partition_values:
     partition_df = input_data_df[input_data_df[partitioning_column]==partition]
-    print("HEEEEEEEEEEEEELLOOOOOOOO.............", partition_df.columns)
     if columns_to_exclude:
-        partition_df = partition_df.drop(columns_to_exclude.split(","), axis=1)
+        columns = [item.strip() for item in columns_to_exclude.split(",")]
+        partition_df = partition_df.drop(columns, axis=1)
     partition_dfs.append(partition_df)
 
 
