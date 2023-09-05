@@ -95,7 +95,7 @@ def send_email(partition_df):
     msg = MIMEMultipart()
     msg["From"] = sender_name
     msg["To"] = recipient_emails # string
-    msg["Subject"] = email_subject
+    msg["Subject"] = email_subject.format(partition=partition)
     msg["CC"] = cc
     name=""
     email_text = email_body_text.format(name=name, partition=partition)
