@@ -52,9 +52,6 @@ else:
     if columns_to_exclude:
         columns = [item.strip() for item in columns_to_exclude.split(",")]
         input_data_df = input_data_df.drop(columns, axis=1)
-    
-
-
 
 # write data partitions or entire data to folder
 def write_partitions(df, partition):
