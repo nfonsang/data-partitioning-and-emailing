@@ -70,13 +70,6 @@ input_data_df = input_dataset.get_dataframe()
 
 if columns_to_exclude:
     input_data_df = input_data_df.drop([columns_to_exclude], axis=1)
-    
-    
-
-
-
-
-
 
 # convert dataframe to csv
 def get_csv_partition(partition_df):
