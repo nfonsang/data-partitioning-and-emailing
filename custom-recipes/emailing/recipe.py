@@ -65,11 +65,12 @@ if clear_folder:
     logging.info("clearing folder")
     output_folder.clear()
 
-# get dataframe from dataset
-input_data_df = input_dataset.get_dataframe()
 
+# get dataframe from dataset
 if columns_to_exclude:
     input_data_df = input_data_df.drop([columns_to_exclude], axis=1)
+else:
+    input_data_df = input_dataset.get_dataframe()
 
 # convert dataframe to csv
 def get_csv_partition(partition_df):
@@ -98,6 +99,7 @@ def send_email(partition_df):
     data = get_csv_partition(partition_df)
     
     # create html table to be embedded
+     
     html_table = pretty_table(partition_df)
     
     # create email body
