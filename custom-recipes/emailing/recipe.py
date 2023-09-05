@@ -73,7 +73,7 @@ partition_values = input_data_df[partitioning_column].unique()
 # get emails of recipients for each partition
 
 
-# get a dataframe partitions 
+# get the dataframe partitions 
 if partitioning_column:
     # get dataframe partitions
     partition_dfs = []
