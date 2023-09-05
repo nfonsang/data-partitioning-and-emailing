@@ -174,6 +174,7 @@ else:
 
 
 # write data partitions or entire data to folder
+# partition = "" # reset partition
 def write_partitions(input_data_df):
     if partitioning_column:
         data = df.to_csv(index=False)
@@ -190,7 +191,6 @@ def write_partitions(input_data_df):
     
 
 # write partitions or entire data to folder with time stamps included
-partition="" # reset partition
 def write_partitions_timestamp(df):
     # get current timestamp
     current_time = datetime.datetime.now()
