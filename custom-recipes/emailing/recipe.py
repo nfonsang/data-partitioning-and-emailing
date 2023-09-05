@@ -41,7 +41,8 @@ file_format = get_recipe_config().get('file_format', "csv")
 # get email body
 use_email_body = get_recipe_config().get('use_email_body', False)
 email_body_text = get_recipe_config().get("email_body_text", "")
-recipient_name_column = get_recipe_config().get("recipient_name_column", None)
+recipient_email_column = get_recipe_config().get("recipient_email_column", None)
+use_recipient_email_column = get_recipe_config().get("use_recipient_email_column", None)
 
 # get SMTP authentication server parameter values
 smtp_host = get_recipe_config().get("smtp_host", None)
