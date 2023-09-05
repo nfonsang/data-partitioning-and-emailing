@@ -87,11 +87,11 @@ if partitioning_column:
             partition_df = partition_df.drop(columns, axis=1)
         partition_dfs.append(partition_df)
         
-
-            
+          
 else:
     if columns_to_exclude:
         columns = [item.strip() for item in columns_to_exclude.split(",")]
+        recipient_emails_for_partitions = input_data_df[recipient_email_column].unque().tolist()
         input_data_df = input_data_df.drop(columns, axis=1)
 
 
