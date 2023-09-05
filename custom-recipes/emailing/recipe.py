@@ -112,7 +112,7 @@ def send_email(partition_df):
         part1 = MIMEApplication(data)
         part1['Content-Disposition'] = f'attachment; filename="{file_name}"'
         msg.attach(part1)
-        msg.attach(part2)  
+        msg.attach(part2)
 
     if file_format=="html":
         email_text = email_body_text.format(partition=partition, table=html_table)
