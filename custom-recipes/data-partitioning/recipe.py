@@ -39,7 +39,8 @@ input_data_df = input_dataset.get_dataframe()
 
 # get dataframe and partition values from dataset
 input_data_df = input_dataset.get_dataframe()
-partition_values = input_data_df[partitioning_column].unique()
+if partitioning_column:
+    partition_values = input_data_df[partitioning_column].unique()
 
 
 # get dataframe partitions
