@@ -30,7 +30,7 @@ output_folder = dataiku.Folder(output_folder_name)
 # get email header parameter values
 sender_name = get_recipe_config()["sender_name"]
 sender_email = get_recipe_config()["sender_email"]
-recipient_emails = get_recipe_config()["recipient_emails"]
+recipient_emails = get_recipe_config().get("recipient_emails", "")
 recipient_email_column = get_recipe_config().get("recipient_email_column", None)
 use_recipient_email_column = get_recipe_config().get("use_recipient_email_column", None)
 cc = get_recipe_config().get("cc", "")
