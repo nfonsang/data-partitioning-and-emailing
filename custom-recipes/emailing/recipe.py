@@ -65,12 +65,17 @@ if clear_folder:
     logging.info("clearing folder")
     output_folder.clear()
 
-if columns_to_exclude:
-
-else:
-
 # get dataframe from dataset
 input_data_df = input_dataset.get_dataframe()
+
+if columns_to_exclude:
+    input_data_df = input_data_df.drop([columns_to_exclude], axis=1)
+    
+    
+
+
+
+
 
 
 # convert dataframe to csv
