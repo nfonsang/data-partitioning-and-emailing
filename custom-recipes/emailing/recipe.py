@@ -73,15 +73,14 @@ partition_values = input_data_df[partitioning_column].unique()
 # get emails of recipients for each partition
 
 
-# get the dataframe partitions 
-if partitioning_column:
-    # get dataframe partitions
-    partition_dfs = []
-    for partition in partition_values:
-        partition_df = input_data_df[input_data_df[partitioning_column]==partition]
-        if columns_to_exclude:
-            partition_df = partition_df.drop(columns_to_exclude.split(","), axis=1)
-        partition_dfs.append(partition_df)
+# get dataframe partitions
+partition_dfs = []
+for partition in partition_values:
+    partition_df = input_data_df[input_data_df[partitioning_column]==partition]
+    print("HEEEEEEEEEEEEELLOOOOOOOO.............", partition_df.columns)
+    if columns_to_exclude:
+        partition_df = partition_df.drop(columns_to_exclude.split(","), axis=1)
+    partition_dfs.append(partition_df)
 
 
 # convert dataframe to csv
