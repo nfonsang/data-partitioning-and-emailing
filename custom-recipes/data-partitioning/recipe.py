@@ -25,8 +25,8 @@ output_folder = dataiku.Folder(output_folder_name)
 
 partitioning_column = get_recipe_config()["partitioning_column"]
 columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
-include_timestamp = get_recipe_config()["include_timestamp"]
-clear_folder = get_recipe_config()["clear_folder"]
+include_timestamp = get_recipe_config().get("include_timestamp", None)
+clear_folder = get_recipe_config().get("clear_folder", None)
 
 # clear folder before partitioning the datasets into CSV files)
 if clear_folder:
