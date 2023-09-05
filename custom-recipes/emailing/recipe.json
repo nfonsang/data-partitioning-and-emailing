@@ -60,7 +60,7 @@
         
         {
             "name": "recipient_emails",
-            "label": "Recipient email(s) (required)",
+            "label": "Recipient email(s)",
             "description": "Email address(es) of recipient(s). Separate email addresses with commas",
             "type": "STRING",
             "mandatory":false,
