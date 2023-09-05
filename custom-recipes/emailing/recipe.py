@@ -117,6 +117,7 @@ if partitioning_column:
 else:
     partition = input_dataset_name.split(".")[-1]
     rec_emails = recipient_emails_for_partitions
+    rec_emails = ",".join(rec_emails)
     send_email(input_data_df, partition)
 
 # define email data partition function 
