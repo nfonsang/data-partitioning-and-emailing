@@ -180,6 +180,7 @@ def write_partitions(input_data_df):
             #logging.info(f"writing {file_name} to the folder")
             output_folder.upload_stream(file_name, data)
     else:
+        # write entire dataframe
         data = input_data_df.to_csv(index=False)
         partition = input_dataset_name.split(".")[-1]
         file_name = f"{partition}.csv"
@@ -193,8 +194,8 @@ def write_partitions_timestamp(input_data_df):
     # get current timestamp
     current_time = datetime.datetime.now()
     current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
-    # get partition values 
     if partitioning_column:
+    # write partitions
         partition_values = input_data_df[partitioning_column].unique()
         for partition in partition_values:
             df_2 = input_data_df[input_data_df[partitioning_column]==partition]
