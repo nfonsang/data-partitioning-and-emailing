@@ -75,7 +75,7 @@
         {
             "name": "recipient_emails",
             "label": "Recipient email(s)",
-            "description": "Enter recipent email address(es) inline: all data partitions will be sent to each of these emails. Separate email addresses with commas",
+            "description": "Use this field if recipient emails are not in the input dataset. Enter recipent email address(es) inline: all data partitions will be sent to each of these emails. Separate email addresses with commas",
             "type": "STRING",
             "mandatory":false,
             "visibilityCondition" : "!model.use_recipient_email_column" 
