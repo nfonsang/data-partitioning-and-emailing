@@ -80,6 +80,8 @@ def pretty_table(df_partition):
     html_table = build_table(df_partition, "blue_light")
     return html_table
 
+
+print("HEEELLLLLLOOOOOOOOOOOOO....., inputdataset_name)
 # email data partition 
 logging.info("Running Send Email Function")
 partition = ""
