@@ -65,7 +65,6 @@
             "type": "STRING",
             "mandatory":true,
             "visibilityCondition" : "!model.use_recipient_email_column" 
-
         },
         {
             "name": "use_recipient_email_column",
