@@ -90,7 +90,7 @@ if partitioning_column:
 else:
     # for the entire dataset
     if use_recipient_email_column:
-        recipient_emails_for_partitions = input_data_df[recipient_email_column].unque().tolist()
+        recipient_emails_for_partitions = input_data_df[recipient_email_column].unique().tolist()
     if columns_to_exclude:
         columns = [item.strip() for item in columns_to_exclude.split(",")]
         input_data_df = input_data_df.drop(columns, axis=1)
