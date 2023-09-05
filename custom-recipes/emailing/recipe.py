@@ -130,10 +130,12 @@ def send_email(partition_df):
             smtp_client = smtplib.SMTP(smtp_host, port=smtp_port)
             smtp_client.starttls()
             smtp_client.login(smtp_user, str(smtp_password))
-        if smtp_use_tls:
+        elif smtp_use_tls:
             # connect to smtp server and switch connection to ssl encryption
             smtp_client = smtplib.SMTP_SSL(smtp_host, port=smtp_port)
             smtp_client.login(smtp_user, str(smtp_password))
+        else:
+            smtp_client = smtplib.SMTP_SSL(smtp_host, port=smtp_port)
             
         # send email message/attachment
         smtp_client.sendmail(from_addr=sender_email,
