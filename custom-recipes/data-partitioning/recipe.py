@@ -24,6 +24,7 @@ output_folder = dataiku.Folder(output_folder_name)
 # Get parameter values from the UI
 
 partitioning_column = get_recipe_config()["partitioning_column"]
+columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
 include_timestamp = get_recipe_config()["include_timestamp"]
 clear_folder = get_recipe_config()["clear_folder"]
 
