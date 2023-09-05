@@ -128,8 +128,8 @@
             "visibilityCondition" : "model.use_email_body"        
         },
         {
-            "name": "recipient_name_column",
-            "label" : "Column with recipient names",
+            "name": "recipient_email_column",
+            "label" : "Column with recipient email",
             "type": "STRING",
             "description": "To use the recipient's name in the email body dynamically, provide column in the input dataset containing the recipient's name. This is optional.",
             "mandatory": true,
