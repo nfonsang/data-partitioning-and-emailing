@@ -81,7 +81,7 @@ def pretty_table(df_partition):
     return html_table
 
 
-print("HEEELLLLLLOOOOOOOOOOOOO.....", inputdataset_name)
+print("HEEELLLLLLOOOOOOOOOOOOO.....", input_dataset_name)
 # email data partition 
 logging.info("Running Send Email Function")
 partition = ""
