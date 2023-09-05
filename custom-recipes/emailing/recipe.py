@@ -68,6 +68,7 @@ if clear_folder:
 
 # get dataframe from dataset
 if columns_to_exclude:
+    input_data_df = input_dataset.get_dataframe()
     input_data_df = input_data_df.drop([columns_to_exclude], axis=1)
 else:
     input_data_df = input_dataset.get_dataframe()
