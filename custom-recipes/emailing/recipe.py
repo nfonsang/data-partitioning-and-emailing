@@ -114,11 +114,11 @@ def send_email(partition_df):
         msg.attach(part1)
         msg.attach(part2)  
 
-    elif file_format=="Embedded HTML table":
+    if file_format=="Embedded HTML table":
         email_text = email_body_text.format(partition=partition, table=html_table)
         part2 = MIMEText("<pre>" + "<div style='font-family: Cambria'>" + email_text + "</div>" + "</pre>", _subtype='html', _charset= "UTF-8")
         msg.attach(part2) 
-    else:
+    if file_format=="CSV attachement and Embedded HTML table":
         email_text = email_body_text.format(partition=partition, table=html_table)
         part2 = MIMEText("<pre>" + "<div style='font-family: Cambria'>" + email_text + "</div>" + "</pre>", _subtype='html', _charset= "UTF-8")
         part1 = MIMEApplication(data)
