@@ -206,7 +206,7 @@ def write_partitions_timestamp(input_data_df):
             logging.info(f"writing {file_name} to the folder")
             output_folder.upload_stream(file_name, data)
     else:
-        # create file name
+        # write entire dataframe
         data = input_data_df.to_csv(index=False)
         partition = input_dataset_name.split(".")[-1]
         file_name = f"{partition}_{current_time}.csv"
