@@ -173,7 +173,7 @@ else:
     send_email(input_data_df)
 
 
-# get partitions and write partitions to folder
+# write data partitions or entire data to folder
 def write_partitions(input_data_df):
     if partitioning_column:
         data = df.to_csv(index=False)
@@ -189,8 +189,8 @@ def write_partitions(input_data_df):
         output_folder.upload_stream(file_name, data)
     
 
-# get partitions and write partitions to folder with time stamps included
-partition=""
+# write partitions or entire data to folder with time stamps included
+partition="" # reset partition
 def write_partitions_timestamp(df):
     # get current timestamp
     current_time = datetime.datetime.now()
