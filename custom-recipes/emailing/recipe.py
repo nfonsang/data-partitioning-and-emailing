@@ -191,6 +191,7 @@ def write_partitions(input_data_df):
     
 
 # write partitions or entire data to folder with time stamps included
+# partition = "" # reset partition
 def write_partitions_timestamp(df):
     # get current timestamp
     current_time = datetime.datetime.now()
