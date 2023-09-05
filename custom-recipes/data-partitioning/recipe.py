@@ -57,7 +57,7 @@ for partition in partition_values:
 # write data partitions or entire data to folder
 def write_partitions(input_data_df, partition):
     if partitioning_column:
-        data = df.to_csv(index=False)
+        data = input_df.to_csv(index=False)
         file_name = f"{partition}.csv"
         logging.info(f"writing {file_name} to the folder")
         output_folder.upload_stream(file_name, data)
