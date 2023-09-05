@@ -210,6 +210,7 @@ def write_partitions_timestamp(df):
         output_folder.upload_stream(file_name, data)
 
 # partition the dataset and write partitions to the managed folder
+
 if write_data_to_folder:
     i=0
     for partition_df in partition_dfs:
