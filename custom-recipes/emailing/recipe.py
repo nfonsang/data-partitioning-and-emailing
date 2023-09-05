@@ -97,8 +97,6 @@ def send_email(partition_df):
     msg["To"] = recipient_emails # string
     msg["Subject"] = email_subject.format(partition=partition)
     msg["CC"] = cc
-    name=""
-    email_text = email_body_text.format(name=name, partition=partition)
     file_name = f"{partition_value}.csv"
     
     # get data to be emailed 
@@ -111,15 +109,18 @@ def send_email(partition_df):
     
     # create email body
     if file_format=="CSV attachment":
+        email_text = email_body_text.format(name=name, partition=partition)
         part2 = MIMEText(email_text + '\n\n', _subtype='html', _charset= "UTF-8")
         msg.attach(part1)
         msg.attach(part2)  
 
     elif file_format=="Embedded HTML table":
-        part2 = MIMEText(email_text + '\n\n' + html_table, _subtype='html', _charset= "UTF-8")
+        email_text = email_body_text.format(name=name, partition=partition, table=html_table)
+        part2 = MIMEText(email_text + '\n\n', _subtype='html', _charset= "UTF-8")
         msg.attach(part2) 
     else:
-        part2 = MIMEText(email_text + '\n\n' + html_table, _subtype='html', _charset= "UTF-8")
+        email_text = email_body_text.format(name=name, partition=partition, table=html_table)
+        part2 = MIMEText(email_text + '\n\n', _subtype='html', _charset= "UTF-8")
         msg.attach(part1) 
         msg.attach(part2) 
   
