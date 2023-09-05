@@ -81,6 +81,7 @@ if partitioning_column:
         # get recipient email address(es) before dropping columns
         if use_recipient_email_column:
             print("HELLLOOOOOOO.......", partition_df.columns)
+            print(recipient_email_column)
             rec_emails_in_partition = partition_df[recipient_email_column].unque().tolist()
             recipient_emails_for_partitions.append(rec_emails_in_partition)            
         if columns_to_exclude:
