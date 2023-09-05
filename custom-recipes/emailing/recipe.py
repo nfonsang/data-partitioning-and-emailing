@@ -36,7 +36,7 @@ bc = get_recipe_config().get("bc", "")
 email_subject = get_recipe_config().get("email_subject", "")
 
 # get file format
-file_format = get_recipe_config().get('attachment_type', "csv")
+file_format = get_recipe_config().get('file_format', "csv")
 
 # get email body
 use_email_body = get_recipe_config().get('use_email_body', False)
