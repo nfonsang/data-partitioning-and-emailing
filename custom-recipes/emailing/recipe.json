@@ -65,6 +65,14 @@
             "mandatory":true 
         },
         {
+            "name": "recipient_email_column",
+            "label" : "Column with recipient email",
+            "type": "STRING",
+            "description": "To use the recipient's name in the email body dynamically, provide column in the input dataset containing the recipient's name. This is optional.",
+            "mandatory": true,
+            "visibilityCondition" : "model.use_email_body_text" 
+        }, 
+        {
             "name": "cc",
             "label": "CC",
             "description": "Email addres(es) in the CC field. Separate email addresses with commas",
@@ -126,15 +134,7 @@
             "description" : "Provide the text of the email body. You can use recipient's name in email by using the variable {recipient}. You can also use the value used to partition the data as {partition}. For example: Hi {name}, this is the {partion} data",
             "mandatory": false,
             "visibilityCondition" : "model.use_email_body"        
-        },
-        {
-            "name": "recipient_email_column",
-            "label" : "Column with recipient email",
-            "type": "STRING",
-            "description": "To use the recipient's name in the email body dynamically, provide column in the input dataset containing the recipient's name. This is optional.",
-            "mandatory": true,
-            "visibilityCondition" : "model.use_email_body_text" 
-        },             
+        },            
         
         {
             "name": "separator_4",
