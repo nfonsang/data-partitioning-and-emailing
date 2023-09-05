@@ -126,8 +126,10 @@ else:
 def send_email(partition_df):
     msg = MIMEMultipart()
     msg["From"] = sender_name
-    if 
-    msg["To"] = rec_emails # string
+    if use_recipient_email_column:
+        msg["To"] = rec_emails # string
+    else:
+        msg["To"] = recipient_emails
     msg["Subject"] = email_subject.format(partition=partition)
     msg["CC"] = cc
     file_name = f"{partition}.csv"
