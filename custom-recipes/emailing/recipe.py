@@ -161,8 +161,6 @@ def send_email(partition_df, partition):
         logging.exception(e)
     smtp_client.quit()
 
-
-
 # send emails   
 i=0
 if partitioning_column:
