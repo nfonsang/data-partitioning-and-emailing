@@ -36,14 +36,6 @@
     
     // parameters
     "params": [
-                        
-        {
-            "name": "separator_1",
-            "label":"Data paritioning parameters",
-            "type":"SEPARATOR"
-             
-        },
-        
                 
         {
             "name": "partitioning_column",
@@ -51,6 +43,13 @@
             "type": "STRING",
             "description": "Name of column in the input dataset whose unique values will be used to filter partitions",
             "mandatory": true
+        },
+        {
+            "name": "columns_to_exclude",
+            "label": "Columns to exclude",
+            "type": "STRING",
+            "description": "These are the columns to exclude in the dataset or data partitions to email. For example, you may want to exclude email columns in the final data partition to be sent through email. Use commas to separate columns",
+            "mandatory": false
         },
         
         {
