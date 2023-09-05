@@ -78,7 +78,7 @@ if partitioning_column:
     partition_dfs = []
     for partition in partition_values:
         partition_df = input_data_df[input_data_df[partitioning_column]==partition]
-        # get recipient email address(es)
+        # get recipient email address(es) before dropping columns
         if use_recipient_email_column:
             rec_emails_in_partition = partition_df[recipient_email_column].unque().tolist()
             recipient_emails_for_partitions.append(rec_emails_in_partition)            
@@ -88,9 +88,11 @@ if partitioning_column:
         partition_dfs.append(partition_df)
                  
 else:
+    # for the entire dataset
+    if use_recipient_email_column:
+        recipient_emails_for_partitions = input_data_df[recipient_email_column].unque().tolist()
     if columns_to_exclude:
         columns = [item.strip() for item in columns_to_exclude.split(",")]
-        recipient_emails_for_partitions = input_data_df[recipient_email_column].unque().tolist()
         input_data_df = input_data_df.drop(columns, axis=1)
 
 # convert dataframe to csv
@@ -124,6 +126,7 @@ else:
 def send_email(partition_df):
     msg = MIMEMultipart()
     msg["From"] = sender_name
+    if 
     msg["To"] = rec_emails # string
     msg["Subject"] = email_subject.format(partition=partition)
     msg["CC"] = cc
