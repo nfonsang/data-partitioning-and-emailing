@@ -48,7 +48,11 @@ if partitioning_column:
             columns = [item.strip() for item in columns_to_exclude.split(",")]
             partition_df = partition_df.drop(columns, axis=1)
         partition_dfs.append(partition_df)
-
+else:
+    if columns_to_exclude:
+        columns = [item.strip() for item in columns_to_exclude.split(",")]
+        input_data_df = input_data_df.drop(columns, axis=1)
+    
 
 
 
