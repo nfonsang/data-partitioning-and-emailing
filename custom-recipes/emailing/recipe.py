@@ -174,6 +174,8 @@ else:
     partition = input_dataset_name.split(".")[-1]
     send_email(input_data_df, partition)
 
+
+
 # write data partitions or entire data to folder
 def write_partitions(df, partition):
     if partitioning_column:
@@ -189,9 +191,8 @@ def write_partitions(df, partition):
         logging.info(f"writing {file_name} to the folder")
         output_folder.upload_stream(file_name, data)
     
-
+    
 # write partitions or entire data to folder with time stamps included
-
 def write_partitions_timestamp(df, partition):
     # get current timestamp
     current_time = datetime.datetime.now()
@@ -210,8 +211,9 @@ def write_partitions_timestamp(df, partition):
         logging.info(f"writing {file_name} to the folder")
         output_folder.upload_stream(file_name, data)
 
-# partition the dataset and write partitions to the managed folder
+
 if partitioning_column:
+    # partition the dataset and write partitions to the managed folder
     i=0
     for partition_df in partition_dfs:
         partition = partition_values[i]
@@ -222,6 +224,7 @@ if partitioning_column:
         i=i+1
         logging.info("Finished writing CSV files to the folder")
 else:
+    # write write partitions to the managed folder
     partition = input_dataset_name.split(".")[-1]
     if include_timestamp:
         write_partitions_timestamp(input_data_df, partition)
