@@ -167,17 +167,26 @@ else:
 
 # get partitions and write partitions to folder
 def write_partitions(input_data_df):
-    # get partition values
-    partition_values = input_data_df[partitioning_column].unique()
-    for partition in partition_values:
-        df_1 = input_data_df[input_data_df[partitioning_column]==partition]
-        # convert dataframe to csv file
-        data = df_1.to_csv(index=False)
-        #file name
+    if partitioning_column:
+        # get partition values
+        partition_values = input_data_df[partitioning_column].unique()
+        for partition in partition_values:
+            df_1 = input_data_df[input_data_df[partitioning_column]==partition]
+            # convert dataframe to csv file
+            data = df_1.to_csv(index=False)
+            #file name
+            file_name = f"{partition}.csv"
+            # write to non-local folder with .upload_stream
+            #logging.info(f"writing {file_name} to the folder")
+            output_folder.upload_stream(file_name, data)
+    else:
+        data = input_data_df.to_csv(index=False)
+        partition = input_dataset_name.split(".")[-1]
         file_name = f"{partition}.csv"
         # write to non-local folder with .upload_stream
-        #logging.info(f"writing {file_name} to the folder")
+        logging.info(f"writing {file_name} to the folder")
         output_folder.upload_stream(file_name, data)
+    
 
 # get partitions and write partitions to folder with time stamps included
 def write_partitions_timestamp(input_data_df):
