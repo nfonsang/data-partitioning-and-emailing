@@ -69,6 +69,7 @@ if clear_folder:
 # get dataframe from dataset
 input_data_df = input_dataset.get_dataframe()
 
+
 # get partition dataframe and partition values from dataset
 input_data_df = input_dataset.get_dataframe()
 if partitioning_column:
@@ -80,6 +81,9 @@ if partitioning_column:
             columns = [item.strip() for item in columns_to_exclude.split(",")]
             partition_df = partition_df.drop(columns, axis=1)
         partition_dfs.append(partition_df)
+        # get recipient email address(es)
+        if use_recipient_email_column:
+            rec_emails = input_data_df[recipient_email_column]
 else:
     if columns_to_exclude:
         columns = [item.strip() for item in columns_to_exclude.split(",")]
@@ -98,9 +102,6 @@ def pretty_table(df_partition):
     return html_table
 
 
-# get recipient emails 
-if use_recipient_email_column:
-    rec_emails
 
 
 
