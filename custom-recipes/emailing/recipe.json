@@ -159,13 +159,15 @@
             "name": "smtp_use_tls",
             "label" : "Use TLS encryption",
             "type": "BOOLEAN",
-            "description": "TLS encryption may be required depending on the SMTP Host Server used"
+            "description": "TLS encryption may be required depending on the SMTP Host Server used",
+            "visibilityCondition" : "!model.smtp_use_ssl"
         },
         {
             "name": "smtp_use_ssl",
             "label" : "Use SSL encryption",
             "type": "BOOLEAN",
-            "description": "SSL encryption may be required depending on the SMTP Host Server used"
+            "description": "SSL encryption may be required depending on the SMTP Host Server used",
+            "visibilityCondition" : "!model.smtp_use_tls"
         },
         
         {
