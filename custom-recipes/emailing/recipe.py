@@ -121,8 +121,8 @@ def send_email(partition_df):
     else:
         email_text = email_body_text.format(partition=partition, table=html_table)
         part2 = MIMEText(email_text + '\n\n', _subtype='html', _charset= "UTF-8")
-        msg.attach(part1) 
-        msg.attach(part2) 
+        msg.attach(part1)
+        msg.attach(part2)
   
     try:
         logging.info(f"Sending email to {recipient_emails}")
