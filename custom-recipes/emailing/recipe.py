@@ -31,6 +31,8 @@ output_folder = dataiku.Folder(output_folder_name)
 sender_name = get_recipe_config()["sender_name"]
 sender_email = get_recipe_config()["sender_email"]
 recipient_emails = get_recipe_config()["recipient_emails"]
+recipient_email_column = get_recipe_config().get("recipient_email_column", None)
+use_recipient_email_column = get_recipe_config().get("use_recipient_email_column", None)
 cc = get_recipe_config().get("cc", "")
 bc = get_recipe_config().get("bc", "")
 email_subject = get_recipe_config().get("email_subject", "")
@@ -41,8 +43,6 @@ file_format = get_recipe_config().get('file_format', "csv")
 # get email body
 use_email_body = get_recipe_config().get('use_email_body', False)
 email_body_text = get_recipe_config().get("email_body_text", "")
-recipient_email_column = get_recipe_config().get("recipient_email_column", None)
-use_recipient_email_column = get_recipe_config().get("use_recipient_email_column", None)
 
 # get SMTP authentication server parameter values
 smtp_host = get_recipe_config().get("smtp_host", None)
