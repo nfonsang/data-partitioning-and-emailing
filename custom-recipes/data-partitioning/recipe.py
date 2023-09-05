@@ -91,14 +91,12 @@ def write_partitions_timestamp(df, partition):
         output_folder.upload_stream(file_name, data)
 
 # partition the dataset and write partitions to the managed folder
-
-if write_data_to_folder:
-    i=0
-    for partition_df in partition_dfs:
-        partition = partition_values[i]
-        if include_timestamp:
-            write_partitions_timestamp(partition_df, partition)
-        else:
-            write_partitions(partition_df, partition)
-        i=i+1
-        logging.info("Finished writing CSV files to the folder")
+i=0
+for partition_df in partition_dfs:
+    partition = partition_values[i]
+    if include_timestamp:
+        write_partitions_timestamp(partition_df, partition)
+    else:
+        write_partitions(partition_df, partition)
+    i=i+1
+    logging.info("Finished writing CSV files to the folder")
