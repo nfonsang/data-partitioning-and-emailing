@@ -66,12 +66,17 @@ if clear_folder:
     output_folder.clear()
 
 
-# get dataframe from dataset
+# get dataframe and partition values from dataset
+input_data_df = input_dataset.get_dataframe()
+partition_values = input_data_df[partitioning_column].unique()
+
+# get emails of recipients for each partition
+
+
 if columns_to_exclude:
     input_data_df = input_dataset.get_dataframe()
     input_data_df = input_data_df.drop([columns_to_exclude], axis=1)
-else:
-    input_data_df = input_dataset.get_dataframe()
+
 
 # convert dataframe to csv
 def get_csv_partition(partition_df):
@@ -154,7 +159,6 @@ def send_email(partition_df):
 if partitioning_column:
     # get dataframe partitions
     partition_dfs = []
-    partition_values = input_data_df[partitioning_column].unique()
     for partition in partition_values:
         partition_df = input_data_df[input_data_df[partitioning_column]==partition]
         partition_dfs.append(partition_df)
@@ -173,7 +177,6 @@ else:
 def write_partitions(input_data_df):
     if partitioning_column:
         # get partition values
-        partition_values = input_data_df[partitioning_column].unique()
         for partition in partition_values:
             df_1 = input_data_df[input_data_df[partitioning_column]==partition]
             # convert dataframe to csv file
@@ -200,7 +203,6 @@ def write_partitions_timestamp(input_data_df):
     current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
     if partitioning_column:
     # write partitions
-        partition_values = input_data_df[partitioning_column].unique()
         for partition in partition_values:
             df_2 = input_data_df[input_data_df[partitioning_column]==partition]
             # convert dataframe to csv file
