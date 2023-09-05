@@ -76,7 +76,7 @@ partition_values = input_data_df[partitioning_column].unique()
 # get dataframe if columns are excluded
 if columns_to_exclude:
     input_data_df = input_dataset.get_dataframe()
-    input_data_df = input_data_df.drop(columns_to_exclude.split(), axis=1)
+    input_data_df = input_data_df.drop(columns_to_exclude.split(","), axis=1)
 
 
 # convert dataframe to csv
