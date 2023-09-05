@@ -172,7 +172,6 @@ else:
     partition = input_dataset_name.split(".")[-1]
     send_email(input_data_df, partition)
 
-
 # write data partitions or entire data to folder
 def write_partitions(df, partition):
     if partitioning_column:
