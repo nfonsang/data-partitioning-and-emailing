@@ -68,15 +68,6 @@ if clear_folder:
 # get dataframe from dataset
 input_data_df = input_dataset.get_dataframe()
 
-# get dataframe partitions
-if partitioning_column:
-    partition_dfs = []
-    partition_values = input_data_df[partitioning_column].unique()
-    for partition in partition_values:
-        partition_df = input_data_df[input_data_df[partitioning_column]==partition]
-        partition_dfs.append(partition_df)
-else:  
-    partition_dfs = [input_data_df]
 
 # convert dataframe to csv
 def get_csv_partition(partition_df):
@@ -156,13 +147,22 @@ def send_email(partition_df):
 
 
 # send emails
-partition_values = input_data_df[partitioning_column].unique()
-i=0
-for partition_df in partition_dfs:
-    partition_value = partition_values[i]
-    partition = partition_value
-    send_email(partition_df)
-    i = i+1
+if partitioning_column:
+    # get dataframe partitions
+    partition_dfs = []
+    partition_values = input_data_df[partitioning_column].unique()
+    for partition in partition_values:
+        partition_df = input_data_df[input_data_df[partitioning_column]==partition]
+        partition_dfs.append(partition_df)
+    # email data partitions     
+    i=0
+    for partition_df in partition_dfs:
+        partition_value = partition_values[i]
+        partition = partition_value
+        send_email(partition_df)
+        i = i+1
+else:
+    send_email(input_data_df)
 
 
 # get partitions and write partitions to folder
