@@ -105,13 +105,22 @@ def pretty_table(df_partition):
     return html_table
 
 
+# send emails   
+i=0
+if partitioning_column:
+    for partition_df in partition_dfs:
+        partition = partition_values[i]
+        rec_emails = recipient_emails_for_partitions[i]
+        rec_emails = ",".join(rec_emails)
+        send_email(partition_df, partition)
+        i = i+1
+else:
+    partition = input_dataset_name.split(".")[-1]
+    rec_emails = recipient_emails_for_partitions
+    send_email(input_data_df, partition)
 
-
-
-# email data partition 
-logging.info("Running Send Email Function")
-
-def send_email(partition_df, partition):
+# define email data partition function 
+def send_email(partition_df):
     msg = MIMEMultipart()
     msg["From"] = sender_name
     msg["To"] = recipient_emails # string
@@ -172,16 +181,7 @@ def send_email(partition_df, partition):
         logging.exception(e)
     smtp_client.quit()
 
-# send emails   
-i=0
-if partitioning_column:
-    for partition_df in partition_dfs:
-        partition = partition_values[i]
-        send_email(partition_df, partition)
-        i = i+1
-else:
-    partition = input_dataset_name.split(".")[-1]
-    send_email(input_data_df, partition)
+
 
 # write data partitions or entire data to folder
 def write_partitions(df, partition):
