@@ -120,25 +120,6 @@ def write_partitions(df, partition):
     
 
 # write partitions or entire data to folder with time stamps included
-
-
-# write data partitions or entire data to folder
-def write_partitions(df, partition):
-    if partitioning_columns:
-        data = df.to_csv(index=False)
-        file_name = f"{partition}.csv"
-        logging.info(f"writing {file_name} to the folder")
-        output_folder.upload_stream(file_name, data)
-    else:
-        # write entire dataframe
-        data = df.to_csv(index=False)
-        partition = input_dataset_name.split(".")[-1]
-        file_name = f"{partition}.csv"
-        logging.info(f"writing {file_name} to the folder")
-        output_folder.upload_stream(file_name, data)
-    
-    
-# write partitions or entire data to folder with time stamps included
 def write_partitions_timestamp(df, partition):
     # get current timestamp
     current_time = datetime.datetime.now()
