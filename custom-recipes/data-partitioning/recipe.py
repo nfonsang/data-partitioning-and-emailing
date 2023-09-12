@@ -117,7 +117,7 @@ def write_partitions(df, partition):
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
             data = df.to_csv(index=False)
-            file_name = f"{partition}.csv"
+            file_name = f"{partition}.csv" 
             logging.info(f"writing {file_name} to the folder")
             output_folder.upload_stream(file_name, data)
 
@@ -126,7 +126,7 @@ def write_partitions(df, partition):
     else:
         if file_format=="excel":
             partition = input_dataset_name.split(".")[-1]
-            file_name = f"{partition}.xlsx"
+            file_name = f"{partition}_{add_prefix}.xlsx"
             df=df.applymap(str)
             with io.BytesIO() as buf:
                 df.to_excel(buf, sheet_name=sheet_name, encoding='utf-8', index = None, header = True)
@@ -135,7 +135,7 @@ def write_partitions(df, partition):
     
             data = df.to_csv(index=False)
             partition = input_dataset_name.split(".")[-1]
-            file_name = f"{partition}.csv"
+            file_name = f"{partition}_{add_prefix}.csv"
             logging.info(f"writing {file_name} to the folder")
             output_folder.upload_stream(file_name, data)
     
@@ -164,7 +164,7 @@ def write_partitions_timestamp(df, partition):
     else:
         if file_format=="excel":
             partition = input_dataset_name.split(".")[-1]
-            file_name = f"{partition}_{current_time}.xlsx"
+            file_name = f"{partition}_{add_prefix}_{current_time}.xlsx"
             df=df.applymap(str)
             with io.BytesIO() as buf:
                 df.to_excel(buf, sheet_name=shee_tname, encoding='utf-8', index = None, header = True)
@@ -173,7 +173,7 @@ def write_partitions_timestamp(df, partition):
     
             data = df.to_csv(index=False)
             partition = input_dataset_name.split(".")[-1]
-            file_name = f"{partition}_{current_time}.csv"
+            file_name = f"{partition}_{add_prefix}_{current_time}.csv"
             logging.info(f"writing {file_name} to the folder")
             output_folder.upload_stream(file_name, data)
 
