@@ -46,7 +46,7 @@ if partitioning_columns:
     # get unique values of columns into a nested list
     unique_values_nested = []
     for col in partitioning_columns:
-        unique_values = df[col].unique().tolist()
+        unique_values = input_data_df[col].unique().tolist()
         unique_values_nested.append(unique_values)
         
     # get unique combinations of unique values 
