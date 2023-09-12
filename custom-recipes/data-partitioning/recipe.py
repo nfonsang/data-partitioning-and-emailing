@@ -43,6 +43,32 @@ input_data_df = input_dataset.get_dataframe()
 partitioning_columns=partitioning_columns.split(",")
 
 if partitioning_column:
+    unique_values_nested = []
+    for col in partitioning_column:
+        unique_values = df[col].unique().tolist()
+        unique_values_nested.append(unique_values)
+    clean_unique_values = list(itertools.product(*unique_values_nested))
+    clean_unique_values_2 = []
+    for item in clean_unique_values:
+        vs=[]
+        for i in item:
+            if isinstance(i, str):
+                vs.append(f'"{i}"')
+            else:
+                vs.append(i)
+        clean_unique_values_2.append(vs)
+        
+        # get a dictionary of key and values for various combinations
+        key_values = [dict(zip(partitioning_column, item)) for item in clean_unique_values_2]
+        # get the queries
+        queries = []
+        for key_value in key_values:
+            query = ' and '.join('{}=={}'.format(x,y) for x,y in key_value.items())
+            queries.append(query)
+
+
+
+
     partition_values = input_data_df[partitioning_column].unique()
     partition_dfs = []
     for partition in partition_values:
