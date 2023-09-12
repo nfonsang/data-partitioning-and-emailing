@@ -77,8 +77,12 @@ if partitioning_columns:
         file_names = []
         for item in clean_unique_values:
             item=list(item)
-            string_name = '_'.join(f'{c} {add_prefix}' for c in item)
-            file_names.append(string_name)
+            if add_prefix:
+                string_name = '_'.join(f'{c} {add_prefix}' for c in item)
+                file_names.append(string_name)
+            else:
+                string_name = '_'.join(f'{c}' for c in item)
+                file_names.append(string_name)
 
         clean_file_names = [item.split() for item in file_names]
         clean_file_names = ['_'.join(f'{c}' for c in item) for item in clean_file_names]
