@@ -43,10 +43,11 @@ input_data_df = input_dataset.get_dataframe()
 # get partition dataframe and partition values from dataset
 input_data_df = input_dataset.get_dataframe()
 
-partitioning_columns = partitioning_columns.split(",")
-partitioning_columns =[item.strip() for item in partitioning_columns]
-print(partitioning_columns)
+
+
 if partitioning_columns:
+    partitioning_columns = partitioning_columns.split(",")
+    partitioning_columns =[item.strip() for item in partitioning_columns]
     # get unique values of columns into a nested list
     unique_values_nested = []
     for col in partitioning_columns:
