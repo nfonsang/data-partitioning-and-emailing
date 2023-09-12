@@ -42,7 +42,7 @@ input_data_df = input_dataset.get_dataframe()
 input_data_df = input_dataset.get_dataframe()
 
 partitioning_columns=partitioning_columns.split(",")
-
+print(partitioning_columns)
 if partitioning_columns:
     # get unique values of columns into a nested list
     unique_values_nested = []
