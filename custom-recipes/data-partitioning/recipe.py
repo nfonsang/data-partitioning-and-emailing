@@ -45,7 +45,7 @@ partitioning_columns=partitioning_columns.split(",")
 if partitioning_columns:
     # get unique values of columns into a nested list
     unique_values_nested = []
-    for col in partitioning_column:
+    for col in partitioning_columns:
         unique_values = df[col].unique().tolist()
         unique_values_nested.append(unique_values)
         
