@@ -4,7 +4,7 @@ import pandas as pd
 import itertools
 import datetime
 import logging
-
+import io
 
 from dataiku.customrecipe import get_input_names_for_role
 from dataiku.customrecipe import get_output_names_for_role
@@ -106,17 +106,33 @@ if partitioning_columns:
 # write data partitions or entire data to folder
 def write_partitions(df, partition):
     if partitioning_columns:
-        file_name = f"{partition}.xlsx"
-        data = df.to_excel(file_name, index=False, engine='xlsxwriter')
-        logging.info(f"writing {file_name} to the folder")
-        output_folder.upload_stream(file_name, data)
+        if file_format=="excel":
+            file_name = f"{partition}.xlsx"
+            with io.BytesIO() as buf
+                df.to_excel(buf, sheet_name=sheetname, encoding='utf-8', index = None, header = True)
+                output_folder.upload_stream(file_name, buf.getvalue())
+        else:
+            data = df.to_csv(index=False)
+            file_name = f"{partition}.csv"
+            logging.info(f"writing {file_name} to the folder")
+            output_folder.upload_stream(file_name, data)
+
+    
+    # write entire dataframe
     else:
-        # write entire dataframe
-        data = df.to_csv(index=False)
-        partition = input_dataset_name.split(".")[-1]
-        file_name = f"{partition}.csv"
-        logging.info(f"writing {file_name} to the folder")
-        output_folder.upload_stream(file_name, data)
+        if file_format=="excel":
+            partition = input_dataset_name.split(".")[-1]
+            file_name = f"{partition}.xlsx"
+            with io.BytesIO() as buf
+                df.to_excel(buf, sheet_name=sheetname, encoding='utf-8', index = None, header = True)
+                output_folder.upload_stream(file_name, buf.getvalue())
+        else:
+    
+            data = df.to_csv(index=False)
+            partition = input_dataset_name.split(".")[-1]
+            file_name = f"{partition}.csv"
+            logging.info(f"writing {file_name} to the folder")
+            output_folder.upload_stream(file_name, data)
     
 
 # write partitions or entire data to folder with time stamps included
@@ -124,22 +140,35 @@ def write_partitions_timestamp(df, partition):
     # get current timestamp
     current_time = datetime.datetime.now()
     current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
- 
-    if partitioning_columns:
-        data = df.to_csv(index=False)
-        file_name = f"{partition}_{current_time}.csv"
-        logging.info(f"writing {file_name} to the folder")
-        output_folder.upload_stream(file_name, data)
+     
+     if partitioning_columns:
+        if file_format=="excel":
+            file_name = f"{partition}_{current_time}.xlsx"
+            with io.BytesIO() as buf
+                df.to_excel(buf, sheet_name=sheetname, encoding='utf-8', index = None, header = True)
+                output_folder.upload_stream(file_name, buf.getvalue())
+        else:
+            data = df.to_csv(index=False)
+            file_name = f"{partition}_{current_time}.csv
+            logging.info(f"writing {file_name} to the folder")
+            output_folder.upload_stream(file_name, data)
+
+    
+    # write entire dataframe
     else:
-        # write entire data to managed folder
-        data = input_data_df.to_csv(index=False)
-        partition = input_dataset_name.split(".")[-1]
-        file_name = f"{partition}_{current_time}.csv"
-        logging.info(f"writing {file_name} to the folder")
-        output_folder.upload_stream(file_name, data)
-
-
-
+        if file_format=="excel":
+            partition = input_dataset_name.split(".")[-1]
+            file_name = f"{partition}_{current_time}.xlsx"
+            with io.BytesIO() as buf
+                df.to_excel(buf, sheet_name=sheetname, encoding='utf-8', index = None, header = True)
+                output_folder.upload_stream(file_name, buf.getvalue())
+        else:
+    
+            data = df.to_csv(index=False)
+            partition = input_dataset_name.split(".")[-1]
+            file_name = f"{partition}_{current_time}.csv
+            logging.info(f"writing {file_name} to the folder")
+            output_folder.upload_stream(file_name, data)
 
 if partitioning_columns:
     # partition the dataset and write partitions to the managed folder
