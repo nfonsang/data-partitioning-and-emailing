@@ -1,6 +1,8 @@
 import dataiku
 from dataiku import pandasutils as pdu
 import pandas as pd
+import itertools
+
 import datetime
 import logging
 
