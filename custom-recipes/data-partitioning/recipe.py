@@ -23,7 +23,7 @@ output_folder = dataiku.Folder(output_folder_name)
 
 # Get parameter values from the UI
 
-partitioning_columns = get_recipe_config().get("partitioning_column", "")
+partitioning_column = get_recipe_config().get("partitioning_column", "")
 columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
 include_timestamp = get_recipe_config().get("include_timestamp", None)
 clear_folder = get_recipe_config().get("clear_folder", None)
@@ -39,7 +39,10 @@ input_data_df = input_dataset.get_dataframe()
 
 # get partition dataframe and partition values from dataset
 input_data_df = input_dataset.get_dataframe()
-if partitioning_columns:
+
+partitioning_columns=partitioning_columns.split(",")
+
+if partitioning_column:
     partition_values = input_data_df[partitioning_column].unique()
     partition_dfs = []
     for partition in partition_values:
