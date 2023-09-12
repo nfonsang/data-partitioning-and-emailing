@@ -1,2 +1,2 @@
 pretty_html_table
-pandas
+XlsxWriter>=0.7.7
