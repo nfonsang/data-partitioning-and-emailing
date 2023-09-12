@@ -106,8 +106,8 @@ if partitioning_columns:
 # write data partitions or entire data to folder
 def write_partitions(df, partition):
     if partitioning_columns:
-        data = df.to_csv(index=False)
-        file_name = f"{partition}.csv"
+        data = df.to_excel(index=False)
+        file_name = f"{partition}.xlsx"
         logging.info(f"writing {file_name} to the folder")
         output_folder.upload_stream(file_name, data)
     else:
