@@ -190,7 +190,7 @@ if partitioning_columns:
         i=i+1
         logging.info("Finished writing CSV files to the folder")
 else:
-    # write write the entire data to the managed folder
+    # write the entire data to the managed folder
     partition = input_dataset_name.split(".")[-1]
     if include_timestamp:
         write_partitions_timestamp(input_data_df, partition)
