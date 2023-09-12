@@ -46,7 +46,7 @@
         },
         {
             "name": "add_prefix",
-            "label": "Add prefix to file name (optional)",
+            "label": "Add prefix to file name(s) - [optional]",
             "type": "STRING",
             "description": "Add prefix to file name. The default file name is the unique combination of partitioning column values",
             "mandatory": false
