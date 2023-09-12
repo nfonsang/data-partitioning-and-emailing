@@ -58,6 +58,17 @@
             "description": "These is(are) the column(s) to exclude in the data partitions written to the folder.",
             "mandatory": false
         },
+        {
+            "name": "file_format",
+            "label" : "File format",
+            "type": "SELECT",
+            "defaultValue" : "csv",
+            "description" : "Select the file format of the data to be written",
+            "selectChoices" : [
+                {"value":  "csv" , "label":"CSV"},
+                {"value":  "excel" , "label":"EXCEL"}
+            ]
+        }, 
         
         {
             "name": "include_timestamp",
