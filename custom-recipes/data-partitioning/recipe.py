@@ -100,7 +100,7 @@ else:
 
 # write data partitions or entire data to folder
 def write_partitions(df, partition):
-    if partitioning_column:
+    if partitioning_columns:
         data = df.to_csv(index=False)
         file_name = f"{partition}.csv"
         logging.info(f"writing {file_name} to the folder")
@@ -119,7 +119,7 @@ def write_partitions(df, partition):
 
 # write data partitions or entire data to folder
 def write_partitions(df, partition):
-    if partitioning_column:
+    if partitioning_columns:
         data = df.to_csv(index=False)
         file_name = f"{partition}.csv"
         logging.info(f"writing {file_name} to the folder")
@@ -139,7 +139,7 @@ def write_partitions_timestamp(df, partition):
     current_time = datetime.datetime.now()
     current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
  
-    if partitioning_column:
+    if partitioning_columns:
         data = df.to_csv(index=False)
         file_name = f"{partition}_{current_time}.csv"
         logging.info(f"writing {file_name} to the folder")
