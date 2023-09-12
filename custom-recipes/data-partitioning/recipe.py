@@ -86,7 +86,7 @@ if partitioning_columns:
         dfs =[]
         final_file_names = []
         for i in range(len(queries)):
-            df_part = df.query(queries[i])
+            df_part = input_data_df.query(queries[i])
             if len(df_part)>0:
                 dfs.append(df_part)
                 file_name = clean_file_names[i]
