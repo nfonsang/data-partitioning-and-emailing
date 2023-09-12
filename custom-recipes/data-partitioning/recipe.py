@@ -42,7 +42,7 @@ input_data_df = input_dataset.get_dataframe()
 
 partitioning_columns=partitioning_columns.split(",")
 
-if partitioning_column:
+if partitioning_columns:
     # get unique values of columns into a nested list
     unique_values_nested = []
     for col in partitioning_column:
@@ -152,7 +152,7 @@ def write_partitions_timestamp(df, partition):
         output_folder.upload_stream(file_name, data)
 
 
-if partitioning_column:
+if partitioning_columns:
     # partition the dataset and write partitions to the managed folder
     i=0
     for partition_df in dfs:
