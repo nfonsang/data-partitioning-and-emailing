@@ -1,7 +1,7 @@
 {
     "meta": {
         "label": "Data partitioning",
-        "description": "This recipe partitions data and saves the partitions as CSV files in managed folder",
+        "description": "This recipe partitions data and saves the partitions as CSV or EXCEL files in managed folder",
         "icon": "icon-file-text"
     },
     
