@@ -65,7 +65,7 @@ if partitioning_columns:
         clean_unique_values_2.append(vs)
         
         # get a dictionary of key and values for various combinations
-        key_values = [dict(zip(partitioning_column, item)) for item in clean_unique_values_2]
+        key_values = [dict(zip(partitioning_columns, item)) for item in clean_unique_values_2]
         # get the queries
         queries = []
         for key_value in key_values:
