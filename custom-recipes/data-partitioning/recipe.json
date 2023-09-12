@@ -45,6 +45,13 @@
             "mandatory": false
         },
         {
+            "name": "add_prefix",
+            "label": "Add prefix to file name (optional)",
+            "type": "STRING",
+            "description": "Add prefix to file name. The default file name is the unique combination of partitioning column values",
+            "mandatory": false
+        },
+        {
             "name": "columns_to_exclude",
             "label": "Column(s) to exclude",
             "type": "STRING",
