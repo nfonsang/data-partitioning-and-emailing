@@ -151,7 +151,7 @@ def write_partitions_timestamp(df, partition):
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
             data = df.to_csv(index=False)
-            file_name = f"{partition}_{current_time}.csv
+            file_name = f"{partition}_{current_time}.csv"
             logging.info(f"writing {file_name} to the folder")
             output_folder.upload_stream(file_name, data)
 
@@ -168,7 +168,7 @@ def write_partitions_timestamp(df, partition):
     
             data = df.to_csv(index=False)
             partition = input_dataset_name.split(".")[-1]
-            file_name = f"{partition}_{current_time}.csv
+            file_name = f"{partition}_{current_time}.csv"
             logging.info(f"writing {file_name} to the folder")
             output_folder.upload_stream(file_name, data)
 
