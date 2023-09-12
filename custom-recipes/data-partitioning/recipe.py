@@ -43,11 +43,16 @@ input_data_df = input_dataset.get_dataframe()
 partitioning_columns=partitioning_columns.split(",")
 
 if partitioning_column:
+    # get unique values of columns into a nested list
     unique_values_nested = []
     for col in partitioning_column:
         unique_values = df[col].unique().tolist()
         unique_values_nested.append(unique_values)
+        
+    # get unique combinations of unique values 
     clean_unique_values = list(itertools.product(*unique_values_nested))
+    
+    # prepare strings in unique combination for the query
     clean_unique_values_2 = []
     for item in clean_unique_values:
         vs=[]
@@ -66,17 +71,27 @@ if partitioning_column:
             query = ' and '.join('{}=={}'.format(x,y) for x,y in key_value.items())
             queries.append(query)
 
+        # get file names 
+        file_names = []
+        for item in clean_unique_values:
+            item=list(item)
+            string_name = '_'.join(f'{c}' for c in item)
+            file_names.append(string_name)
+
+        clean_file_names = [item.split() for item in file_names]
+        clean_file_names = ['_'.join(f'{c}' for c in item) for item in clean_file_names]
+       
+        # get dataframe partitions and file names 
+        dfs =[]
+        final_file_names = []
+        for i in range(len(queries)):
+            df_part = df.query(queries[i])
+            if len(df_part)>0:
+                dfs.append(df_part)
+                file_name = clean_file_names[i]
+                final_file_names.append(file_name)
 
 
-
-    partition_values = input_data_df[partitioning_column].unique()
-    partition_dfs = []
-    for partition in partition_values:
-        partition_df = input_data_df[input_data_df[partitioning_column]==partition]
-        if columns_to_exclude:
-            columns = [item.strip() for item in columns_to_exclude.split(",")]
-            partition_df = partition_df.drop(columns, axis=1)
-        partition_dfs.append(partition_df)
 else:
     if columns_to_exclude:
         columns = [item.strip() for item in columns_to_exclude.split(",")]
@@ -140,8 +155,8 @@ def write_partitions_timestamp(df, partition):
 if partitioning_column:
     # partition the dataset and write partitions to the managed folder
     i=0
-    for partition_df in partition_dfs:
-        partition = partition_values[i]
+    for partition_df in dfs:
+        partition = final_file_names[i]
         if include_timestamp:
             write_partitions_timestamp(partition_df, partition)
         else:
