@@ -143,7 +143,7 @@ def write_partitions_timestamp(df, partition):
     current_time = datetime.datetime.now()
     current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
      
-     if partitioning_columns:
+    if partitioning_columns:
         if file_format=="excel":
             file_name = f"{partition}_{current_time}.xlsx"
             with io.BytesIO() as buf:
