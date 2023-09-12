@@ -71,7 +71,7 @@
         }, 
         {
             "name": "sheet_name",
-            "label": "Sheet Name",
+            "label": "Sheet Name [Optional]",
             "type": "STRING",
             "description": "Enter sheet name. The default name, sheet1, will be used if the field is left empty",
             "mandatory": false
