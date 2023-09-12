@@ -126,6 +126,7 @@ def write_partitions(df, partition):
         if file_format=="excel":
             partition = input_dataset_name.split(".")[-1]
             file_name = f"{partition}.xlsx"
+            df=df.applymap(str)
             with io.BytesIO() as buf:
                 df.to_excel(buf, sheet_name=sheet_name, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
@@ -147,6 +148,7 @@ def write_partitions_timestamp(df, partition):
     if partitioning_columns:
         if file_format=="excel":
             file_name = f"{partition}_{current_time}.xlsx"
+            df=df.applymap(str)
             with io.BytesIO() as buf:
                 df.to_excel(buf, sheet_name=sheet_name, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
@@ -162,6 +164,7 @@ def write_partitions_timestamp(df, partition):
         if file_format=="excel":
             partition = input_dataset_name.split(".")[-1]
             file_name = f"{partition}_{current_time}.xlsx"
+            df=df.applymap(str)
             with io.BytesIO() as buf:
                 df.to_excel(buf, sheet_name=shee_tname, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
