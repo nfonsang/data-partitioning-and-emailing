@@ -86,18 +86,18 @@ if partitioning_columns:
         # get dataframe partitions and file names 
         dfs =[]
         final_file_names = []
+            
         for i in range(len(queries)):
             df_part = input_data_df.query(queries[i])
+            if columns_to_exclude:
+                columns = [item.strip() for item in columns_to_exclude.split(",")]
+                df_part = df_part.drop(columns, axis=1) 
             if len(df_part)>0:
                 dfs.append(df_part)
                 file_name = clean_file_names[i]
                 final_file_names.append(file_name)
 
 
-else:
-    if columns_to_exclude:
-        columns = [item.strip() for item in columns_to_exclude.split(",")]
-        input_data_df = input_data_df.drop(columns, axis=1)
 
 # write data partitions or entire data to folder
 def write_partitions(df, partition):
@@ -154,9 +154,12 @@ def write_partitions_timestamp(df, partition):
         output_folder.upload_stream(file_name, data)
 
 
+
+
 if partitioning_columns:
     # partition the dataset and write partitions to the managed folder
     i=0
+        
     for partition_df in dfs:
         partition = final_file_names[i]
         if include_timestamp:
