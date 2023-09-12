@@ -46,9 +46,9 @@
         },
         {
             "name": "columns_to_exclude",
-            "label": "Columns to exclude",
+            "label": "Column(s) to exclude",
             "type": "STRING",
-            "description": "These are the columns to exclude in the data partitions written to the folder.",
+            "description": "These is(are) the column(s) to exclude in the data partitions written to the folder.",
             "mandatory": false
         },
         
