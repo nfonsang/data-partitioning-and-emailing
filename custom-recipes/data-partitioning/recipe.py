@@ -111,7 +111,7 @@ def write_partitions(df, partition):
         if file_format=="excel":
             file_name = f"{partition}.xlsx"
             with io.BytesIO() as buf:
-                df.to_excel(buf, sheet_name=sheetname, encoding='utf-8', index = None, header = True)
+                df.to_excel(buf, sheet_name=sheet_name, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
             data = df.to_csv(index=False)
@@ -126,7 +126,7 @@ def write_partitions(df, partition):
             partition = input_dataset_name.split(".")[-1]
             file_name = f"{partition}.xlsx"
             with io.BytesIO() as buf:
-                df.to_excel(buf, sheet_name=sheetname, encoding='utf-8', index = None, header = True)
+                df.to_excel(buf, sheet_name=sheet_name, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
     
