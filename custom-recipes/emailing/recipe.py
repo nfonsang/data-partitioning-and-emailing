@@ -58,11 +58,15 @@ smtp_password = get_recipe_config().get('smtp_password', "")
 # Get parameter values from the UI
 if authentication_type=="personal_preset":
     personal_preset = get_recipe_config().get("smtp_personal_connection", {})
-    username = credential_parameters['tableau_personal_auth_basic']["user"]
-    password = credential_parameters['tableau_personal_auth_basic']["password"]
-# if credentials are shared, get shared credential parameters 
-if authentication_type=="shared_preset":
+    smtp_host = personal_preset['smtp_host']
+    print("Helllo ooooooo ...............................", smtp_host)
+    
+    smtp_user = personal_preset['smtp_personal_basic']["user"]
+    smtp_password = personal_preset['smtp_personal_basic']["password"]
 
+# if credentials are shared, get shared credential parameters 
+#if authentication_type=="shared_preset":
+    
 # ----------------------------------------------------------------------------
 
 
