@@ -36,8 +36,29 @@
     
     // parameters
     "params": [
-                        
+                                
         {
+            "name": "separator_0",
+            "label":"SMTP Host Server Parameters",
+            "type":"SEPARATOR"
+             
+        },
+        {
+            "name": "authentication_type",
+            "label": "SMTP Server Athentication",
+            "type": "SELECT",
+            "defaultValue" : "shared-preset",
+            "selectChoices" : [
+                {"value":  "shared_preset" , "label":"SMTP Server Shared Preset"},
+                {"value":  "personal_preset" , "label":"SMTP Server Personal Preset"}
+            ]
+        }, 
+        
+        {
+        
+        
+        
+                        
             "name": "separator_1",
             "label":"Email header parameters",
             "type":"SEPARATOR"
