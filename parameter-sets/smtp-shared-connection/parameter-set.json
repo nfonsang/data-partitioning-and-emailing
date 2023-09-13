@@ -67,9 +67,9 @@
         
         
         {
-            "name": "tableau_personal_basic",
+            "name": "smtp_personal_basic",
             "type": "CREDENTIAL_REQUEST",
-            "label": "Tableau basic login",
+            "label": "SMTP basic authentication",
             "credentialRequestSettings": {
                 "type": "BASIC"
             }
