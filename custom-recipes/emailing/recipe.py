@@ -60,8 +60,10 @@ authentication_type = get_recipe_config().get("authentication_type", "shared-pre
 if authentication_type=="personal_preset":
     personal_preset = get_recipe_config().get("smtp_personal_connection", {})
     smtp_host = personal_preset['smtp_host']
-    print("Helllo ooooooo ...............................", smtp_host)
-    
+    smtp_port = personal_preset['smtp_port']
+    smtp_use_tls = personal_preset['smtp_use_tls']
+    smtp_use_ssl = personal_preset['smtp_use_ssl']
+    smtp_use_auth = personal_preset['smtp_use_auth'] 
     smtp_user = personal_preset['smtp_personal_basic']["user"]
     smtp_password = personal_preset['smtp_personal_basic']["password"]
 
