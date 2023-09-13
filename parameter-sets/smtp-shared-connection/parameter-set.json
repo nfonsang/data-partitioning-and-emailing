@@ -62,16 +62,6 @@
             "label" : "SMTP Sever Password",
             "type": "PASSWORD",
             "visibilityCondition" : "model.smtp_use_auth"
-        },
-        
-        
-        {
-            "name": "smtp_personal_basic",
-            "type": "CREDENTIAL_REQUEST",
-            "label": "SMTP basic authentication",
-            "credentialRequestSettings": {
-                "type": "BASIC"
-            }
         }
     ]
 }
