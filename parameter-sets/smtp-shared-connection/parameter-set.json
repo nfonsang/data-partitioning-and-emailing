@@ -65,7 +65,6 @@
         },
         
         
-        
         {
             "name": "smtp_personal_basic",
             "type": "CREDENTIAL_REQUEST",
