@@ -54,15 +54,22 @@
             ]
         }, 
         
-                {
+        {
             "name": "smtp_personal_connection",
             "label": "SMTP HOST Server Personal Preset",
             "type": "PRESET",
             "parameterSetId": "smtp-personal-connection",
             "visibilityCondition": "model.authentication_type == 'personal_preset'"
+        },   
+            
+        {
+            "name": "smtp_shared_connection",
+            "label": "SMTP HOST Server Personal Preset",
+            "type": "PRESET",
+            "parameterSetId": "smtp-personal-connection",
+            "visibilityCondition": "model.authentication_type == 'shared_preset'"
         },
-        
-        
+            
         {
             
             "name": "separator_1",
