@@ -133,7 +133,8 @@ def send_email(partition_df, partition):
     if use_recipient_email_column:
         msg["To"] = rec_emails # string
     else:
-        msg["To"] = recipient_emails
+        rec_emails = recipient_emails
+        msg["To"] = rec_emails
     msg["Subject"] = email_subject.format(partition=partition)
     msg["CC"] = cc
     file_name = f"{partition}.csv"
