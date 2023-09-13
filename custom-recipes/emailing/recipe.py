@@ -133,8 +133,7 @@ def send_email(partition_df, partition):
     if use_recipient_email_column:
         msg["To"] = rec_emails # string
     else:
-        rec_emails = recipient_emails
-        msg["To"] = rec_emails
+        msg["To"] = recipient_emails
     msg["Subject"] = email_subject.format(partition=partition)
     msg["CC"] = cc
     file_name = f"{partition}.csv"
@@ -185,7 +184,10 @@ def send_email(partition_df, partition):
                                  to_addrs=recipient_emails.split(",") + cc.split(",") + bc.split(","),
                                  msg=msg.as_string())
         # log success message
-        logging.info(f"Email was successfully sent to {recipient_emails} ")
+        if use_recipient_email_column:
+            logging.info(f"Email was successfully sent to {rec_emails} ")     
+        else:
+            logging.info(f"Email was successfully sent to {recipient_emails} ")
 
     except Exception as e:
         logging.exception("Email sending failed")
