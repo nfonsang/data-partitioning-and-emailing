@@ -44,6 +44,7 @@ file_format = get_recipe_config().get('file_format', "csv")
 use_email_body = get_recipe_config().get('use_email_body', False)
 email_body_text = get_recipe_config().get("email_body_text", "")
 
+#--------------------------------------------------------
 # get SMTP authentication server parameter values
 smtp_host = get_recipe_config().get("smtp_host", None)
 smtp_port = get_recipe_config().get("smtp_port", 25)
@@ -52,6 +53,18 @@ smtp_use_ssl = get_recipe_config().get('smtp_use_ssl', False)
 smtp_use_auth = get_recipe_config().get('smtp_use_auth', False)
 smtp_user = get_recipe_config().get('smtp_user', None)
 smtp_password = get_recipe_config().get('smtp_password', "")
+#---------------------------------------------------------------
+
+# Get parameter values from the UI
+if authentication_type=="personal_preset":
+    personal_preset = get_recipe_config().get("smtp_personal_connection", {})
+    username = credential_parameters['tableau_personal_auth_basic']["user"]
+    password = credential_parameters['tableau_personal_auth_basic']["password"]
+# if credentials are shared, get shared credential parameters 
+if authentication_type=="shared_preset":
+
+# ----------------------------------------------------------------------------
+
 
 # get data management parameter values  
 partitioning_column = get_recipe_config().get('partitioning_column', "")
