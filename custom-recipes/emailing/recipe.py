@@ -126,7 +126,6 @@ def pretty_table(df_partition):
     html_table = build_table(df_partition, "blue_light")
     return html_table
 
-
 # define email data partition function 
 def send_email(partition_df, partition):
     msg = MIMEMultipart()
