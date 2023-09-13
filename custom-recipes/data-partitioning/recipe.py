@@ -30,7 +30,7 @@ include_timestamp = get_recipe_config().get("include_timestamp", None)
 clear_folder = get_recipe_config().get("clear_folder", None)
 add_prefix = get_recipe_config().get("add_prefix", "")
 file_format = get_recipe_config().get('file_format', "csv")
-sheet_name = get_recipe_config().get('sheet_name', "sheet1")
+sheet_name = get_recipe_config().get('sheet_name', "Sheet1")
 
 # clear folder before partitioning the datasets into CSV files)
 if clear_folder:
