@@ -50,18 +50,14 @@
             "description": "Check this button if SMTP server requires authentication. For example: smtp.gmail.com requires authentication with TLS or SSL encryption.",               
             "type": "BOOLEAN"
         },  
-        
+               
         {
-            "name": "smtp_user",
-            "label" : "SMTP Server Username",
-            "type": "STRING",
-            "visibilityCondition" : "model.smtp_use_auth"
-        },
-        {
-            "name": "smtp_password",
-            "label" : "SMTP Sever Password",
-            "type": "PASSWORD",
-            "visibilityCondition" : "model.smtp_use_auth"
+            "name": "smtp_personal_basic",
+            "type": "CREDENTIAL_REQUEST",
+            "label": "SMTP basic authentication",
+            "credentialRequestSettings": {
+                "type": "BASIC"
+            }
         }
 
     ]
