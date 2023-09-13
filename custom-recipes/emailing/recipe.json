@@ -145,60 +145,7 @@
             "visibilityCondition" : "model.use_email_body"        
         },            
         
-        {
-            "name": "separator_4",
-            "label":"SMTP authentication server parameters",
-            "type":"SEPARATOR"
-             
-        },    
-        
-        {
-            "name": "smtp_host",
-            "label" : "SMTP Host (required)",
-            "description": "Domain of the sender's SMTP Host server. For example: smtp.gmail.com",
-            "type": "STRING",
-            "mandatory": true
-        },          
-        {
-            "name": "smtp_port",
-            "label" : "SMTP port (required)",
-            "type": "INT"
-        },
-        {
-            "name": "smtp_use_tls",
-            "label" : "Use TLS encryption",
-            "type": "BOOLEAN",
-            "description": "TLS encryption may be required depending on the SMTP Host Server used",
-            "visibilityCondition" : "!model.smtp_use_ssl"
-        },
-        {
-            "name": "smtp_use_ssl",
-            "label" : "Use SSL encryption",
-            "type": "BOOLEAN",
-            "description": "SSL encryption may be required depending on the SMTP Host Server used",
-            "visibilityCondition" : "!model.smtp_use_tls"
-        },
-        
-        {
-            "name": "smtp_use_auth",
-            "label" : "Use authentication",
-            "description": "Check this button if SMTP server requires authentication. For example: smtp.gmail.com requires authentication with TLS or SSL encryption.",               
-            "type": "BOOLEAN"
-        },  
-        
-        {
-            "name": "smtp_user",
-            "label" : "SMTP Server Username",
-            "type": "STRING",
-            "visibilityCondition" : "model.smtp_use_auth"
-        },
-        {
-            "name": "smtp_password",
-            "label" : "SMTP Sever Password",
-            "type": "PASSWORD",
-            "visibilityCondition" : "model.smtp_use_auth"
-        },
-        
+    
         {
             "name": "separator_5",
             "label":"Data management parameters",
