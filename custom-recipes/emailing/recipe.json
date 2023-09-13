@@ -64,9 +64,9 @@
             
         {
             "name": "smtp_shared_connection",
-            "label": "SMTP HOST Server Personal Preset",
+            "label": "SMTP HOST Server Shared Preset",
             "type": "PRESET",
-            "parameterSetId": "smtp-personal-connection",
+            "parameterSetId": "smtp-shared-connection",
             "visibilityCondition": "model.authentication_type == 'shared_preset'"
         },
             
