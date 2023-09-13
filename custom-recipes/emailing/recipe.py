@@ -56,7 +56,7 @@ smtp_password = get_recipe_config().get('smtp_password', "")
 #---------------------------------------------------------------
 
 # Get parameter values from the UI
-authentication_type = get_recipe_config().get("authentication_type", "")
+authentication_type = get_recipe_config().get("authentication_type", "shared-preset")
 if authentication_type=="personal_preset":
     personal_preset = get_recipe_config().get("smtp_personal_connection", {})
     smtp_host = personal_preset['smtp_host']
