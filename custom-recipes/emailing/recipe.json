@@ -140,7 +140,7 @@
             "name": "email_body_text",
             "label" : "Email body text",
             "type": "TEXTAREA",
-            "description" : "Provide the text of the email body. You can use recipient's name in email by using the variable {recipient}. You can also use the value used to partition the data as {partition}. For example: Hi {name}, this is the {partion} data",
+            "description" : "Provide the text of the email body. You can use the partitioning column value in the text by using the variable {partition}. For example: Hi, this is the {partition} data",
             "mandatory": false,
             "visibilityCondition" : "model.use_email_body"        
         },            
@@ -217,7 +217,7 @@
             "name": "columns_to_exclude",
             "label": "Columns to exclude",
             "type": "STRING",
-            "description": "These are the columns to exclude in the dataset or data partitions to email. For example, you may want to exclude email columns in the final data partition to be sent through email. Use commas to separate columns",
+            "description": "These are the columns to exclude in the dataset or data partitions to email. For example, you may want to exclude the email column in the final data partition to be sent through email. Use commas to separate columns",
             "mandatory": false
         },
         
