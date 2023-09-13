@@ -1,7 +1,7 @@
 {
     "meta": {
         "label": "Emailing data partitions",
-        "description": "This recipe partitions data emails data partitions as CSV files to email recipients. Emailed data partitions can be optionally saved in folder",
+        "description": "This recipe partitions data, then emails data partitions as CSV files or embedded HTML tables to recipients. Emailed data partitions can be optionally saved in a folder",
         "icon": "icon-envelope-alt"
     },
     
