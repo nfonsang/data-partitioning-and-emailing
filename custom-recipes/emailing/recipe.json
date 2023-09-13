@@ -67,7 +67,7 @@
             "name": "recipient_email_column",
             "label" : "Column with recipient email",
             "type": "STRING",
-            "description": "Enter the column name that contains the emails of the recipients. This column name should be on the input dataset",
+            "description": "Enter the column name that contains the emails of the recipients. This column name should be in the input dataset",
             "mandatory": true,
             "visibilityCondition" : "model.use_recipient_email_column" 
         }, 
@@ -75,7 +75,7 @@
         {
             "name": "recipient_emails",
             "label": "Recipient email(s)",
-            "description": "Use this field if recipient emails are not in the input dataset. Enter recipent email address(es) inline: all data partitions will be sent to each of these emails. Separate email addresses with commas",
+            "description": "Use this field to enter recipent email address(es) inline if recipient emails are not in the input dataset: all data partitions will be sent to each of these recipient emails. Separate email addresses with commas",
             "type": "STRING",
             "mandatory":false,
             "visibilityCondition" : "!model.use_recipient_email_column" 
