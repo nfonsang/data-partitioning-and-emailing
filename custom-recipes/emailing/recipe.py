@@ -185,9 +185,9 @@ def send_email(partition_df, partition):
                                  msg=msg.as_string())
         # log success message
         if use_recipient_email_column:
-            logging.info(f"Email was successfully sent to {rec_emails} ")     
+            logging.info(f"Email with {partition} data was successfully sent to {rec_emails}")     
         else:
-            logging.info(f"Email was successfully sent to {recipient_emails} ")
+            logging.info(f"Email with {partition} data was successfully sent to {recipient_emails}")
 
     except Exception as e:
         logging.exception("Email sending failed")
