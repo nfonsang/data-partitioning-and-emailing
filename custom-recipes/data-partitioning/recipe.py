@@ -152,7 +152,7 @@ def write_partitions_timestamp(df, partition):
             file_name = f"{partition}_{current_time}.xlsx"
             df=df.applymap(str)
             with io.BytesIO() as buf:
-                df.to_excel(buf, sheet_name=sheet_name, encoding='utf-8', index = None, header = True)
+                df.to_excel(buf, sheet_name=sheet_name, start_col=start_col, start_row=start_row, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
             data = df.to_csv(index=False)
