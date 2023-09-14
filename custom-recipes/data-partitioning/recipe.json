@@ -79,14 +79,14 @@
         {
             "name": "start_col",
             "label": "Start Column [Optional]",
-            "type": "STRING",
+            "type": "INT",
             "description": "This is the upper left cell column to dump data. The default value is 0, and will be used if this field is left empty",
             "mandatory": false
         },
         {
             "name": "start_row",
             "label": "Start row [Optional]",
-            "type": "STRING",
+            "type": "INT",
             "description": "This is the upper left cell row to dump data. The default value is 0, and will be used if this field is left empty",
             "mandatory": false
         },
