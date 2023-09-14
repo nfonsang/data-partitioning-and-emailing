@@ -129,7 +129,7 @@ def write_partitions(df, partition):
             file_name = f"{partition}_{add_prefix}.xlsx"
             df=df.applymap(str)
             with io.BytesIO() as buf:
-                df.to_excel(buf, sheet_name=sheet_name, encoding='utf-8', index = None, header = True)
+                df.to_excel(buf, sheet_name=sheet_name, sheet_name=sheet_name, start_col=start_col, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
     
