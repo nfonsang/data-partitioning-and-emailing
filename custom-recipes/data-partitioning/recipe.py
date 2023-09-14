@@ -106,7 +106,6 @@ if partitioning_columns:
                 final_file_names.append(file_name)
 
 
-
 # write data partitions or entire data to folder
 def write_partitions(df, partition):
     if partitioning_columns:
