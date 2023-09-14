@@ -41,7 +41,7 @@
             "name": "partitioning_column",
             "label": "Partitioning column(s)",
             "type": "STRING",
-            "description": "Enter the column or columns in the input dataset whose unique values will be used to filter the data partitions. Separate several columns with commas. If this field is empty, the whole data will be written to the folder",
+            "description": "Enter the column or columns in the input dataset whose unique values will be used to filter the data partitions. Separate several columns with commas. If this field is empty, the whole data will be written to the folder. The default file name is the partitioning column value or combination of partitioning column values used to create the file(s)",
             "mandatory": false
         },
         {
@@ -104,7 +104,7 @@
         {
             "name": "include_timestamp",
             "label": "Include timestamp to CSV or EXCEL file names",
-            "description": "Check this button to include timestamps to CSV or EXCEL file names. The default file name is the partitioning column value or combination of partitioning column values used to create the file(s)",
+            "description": "Check this button to include timestamps to CSV or EXCEL file names.",
             "type": "BOOLEAN"
         },
         {
