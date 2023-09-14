@@ -168,7 +168,7 @@ def write_partitions_timestamp(df, partition):
             file_name = f"{partition}_{add_prefix}_{current_time}.xlsx"
             df=df.applymap(str)
             with io.BytesIO() as buf:
-                df.to_excel(buf, sheet_name=shee_tname, encoding='utf-8', index = None, header = True)
+                df.to_excel(buf, sheet_name=shee_tname,start_col=start_col, start_row=start_row, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
     
@@ -189,7 +189,7 @@ if partitioning_columns:
         else:
             write_partitions(partition_df, partition)
         i=i+1
-        logging.info("Finished writing CSV files to the folder")
+        logging.info("Finished writing files to the folder")
 else:
     # write the entire data to the managed folder
     partition = input_dataset_name.split(".")[-1]
@@ -197,4 +197,4 @@ else:
         write_partitions_timestamp(input_data_df, partition)
     else:
         write_partitions(input_data_df, partition)
-    logging.info("Finished writing CSV files to the folder")
+    logging.info("Finished writing files to the folder")
