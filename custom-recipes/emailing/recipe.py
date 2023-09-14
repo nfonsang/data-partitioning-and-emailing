@@ -45,7 +45,7 @@ use_email_body = get_recipe_config().get('use_email_body', False)
 email_body_text = get_recipe_config().get("email_body_text", "")
 
 
-# Get SMTP Server authentication parameter values
+# Get SMTP Server authentication type
 authentication_type = get_recipe_config().get("authentication_type", "shared-preset")
 
 # if credentials are per user, get personal credentials and parameters 
@@ -69,8 +69,6 @@ if authentication_type=="shared_preset":
     smtp_use_auth = shared_preset['smtp_use_auth'] 
     smtp_user = shared_preset['smtp_user']
     smtp_password = shared_preset['smtp_password']
-
-# ----------------------------------------------------------------------------
 
 
 # get data management parameter values  
