@@ -164,18 +164,18 @@ def send_email(partition_df, partition):
         msg.attach(part2)
   
     try:
+        smtp_client = smtplib.SMTP(smtp_host, port=smtp_port)
         if smtp_use_tls:
             # connect to smtp server and switch connection to tls encryption
-            smtp_client = smtplib.SMTP(smtp_host, port=smtp_port)
             smtp_client.starttls()
-        elif smtp_use_ssl:
+        if smtp_use_ssl:
             # connect to smtp server and switch connection to ssl encryption
             smtp_client = smtplib.SMTP_SSL(smtp_host, port=smtp_port)
         if smtp_use_auth:
             smtp_client.login(smtp_user, str(smtp_password))
             
-        if (not smtp_use_tls) and (not smtp_use_tls) and (not smtp_use_auth): 
-            smtp_client = smtplib.SMTP(smtp_host, port=smtp_port)
+        #if (not smtp_use_tls) and (not smtp_use_tls) and (not smtp_use_auth): 
+            #smtp_client = smtplib.SMTP(smtp_host, port=smtp_port)
             
         # send email message/attachment
         smtp_client.sendmail(from_addr=sender_email,
