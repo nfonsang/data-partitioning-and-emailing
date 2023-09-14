@@ -44,18 +44,8 @@ file_format = get_recipe_config().get('file_format', "csv")
 use_email_body = get_recipe_config().get('use_email_body', False)
 email_body_text = get_recipe_config().get("email_body_text", "")
 
-#--------------------------------------------------------
-# get SMTP authentication server parameter values
-smtp_host = get_recipe_config().get("smtp_host", None)
-smtp_port = get_recipe_config().get("smtp_port", 25)
-smtp_use_tls = get_recipe_config().get('smtp_use_tls', False)
-smtp_use_ssl = get_recipe_config().get('smtp_use_ssl', False)
-smtp_use_auth = get_recipe_config().get('smtp_use_auth', False)
-smtp_user = get_recipe_config().get('smtp_user', None)
-smtp_password = get_recipe_config().get('smtp_password', "")
-#---------------------------------------------------------------
 
-# Get parameter values from the UI
+# Get SMTP Server authentication parameter values
 authentication_type = get_recipe_config().get("authentication_type", "shared-preset")
 
 # if credentials are per user, get personal credentials and parameters 
