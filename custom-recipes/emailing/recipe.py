@@ -162,9 +162,9 @@ def send_email(partition_df, partition):
         part2 = MIMEText("<pre>" + "<div style='font-family: Cambria'>" + email_text + "</div>" + "</pre>", _subtype='html', _charset= "UTF-8")
         msg.attach(part1)
         msg.attach(part2)
-  
+    
+    smtp_client = smtplib.SMTP(smtp_host, port=smtp_port)
     try:
-        smtp_client = smtplib.SMTP(smtp_host, port=smtp_port)
         if smtp_use_tls:
             # connect to smtp server and switch connection to tls encryption
             smtp_client.starttls()
