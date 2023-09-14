@@ -87,7 +87,7 @@
         },
         {
             "name": "start_col",
-            "label": "Start Column [Optional]",
+            "label": "Start column [Optional]",
             "type": "INT",
             "description": "This is the upper left cell column to dump data. The default value is 0, and will be used if this field is left empty.",
             "mandatory": false,
