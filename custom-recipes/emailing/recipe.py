@@ -166,6 +166,7 @@ def send_email(partition_df, partition):
     
     try:
         if smtp_use_tls:
+            smtp_client = smtplib.SMTP(smtp_host, port=smtp_port)
             # connect to smtp server and switch connection to tls encryption
             smtp_client.starttls()
         if smtp_use_ssl:
