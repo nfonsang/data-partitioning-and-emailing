@@ -57,6 +57,8 @@ smtp_password = get_recipe_config().get('smtp_password', "")
 
 # Get parameter values from the UI
 authentication_type = get_recipe_config().get("authentication_type", "shared-preset")
+
+# if credentials are per user, get personal credentials and parameters 
 if authentication_type=="personal_preset":
     personal_preset = get_recipe_config().get("smtp_personal_connection", {})
     smtp_host = personal_preset['smtp_host']
@@ -67,8 +69,16 @@ if authentication_type=="personal_preset":
     smtp_user = personal_preset['smtp_personal_basic']["user"]
     smtp_password = personal_preset['smtp_personal_basic']["password"]
 
-# if credentials are shared, get shared credential parameters 
-#if authentication_type=="shared_preset":
+# if credentials are shared, get shared credential and parameters 
+if authentication_type=="shared_preset":
+    shared_preset = get_recipe_config().get("smtp_shared_connection", {})
+    smtp_host = shared_preset['smtp_host']
+    smtp_port = shared_preset['smtp_port']
+    smtp_use_tls = shared_preset['smtp_use_tls']
+    smtp_use_ssl = shared_preset['smtp_use_ssl']
+    smtp_use_auth = shared_preset['smtp_use_auth'] 
+    smtp_user = shared_preset['smtp_user']
+    smtp_password = shared_preset['smtp_password']
 
 # ----------------------------------------------------------------------------
 
