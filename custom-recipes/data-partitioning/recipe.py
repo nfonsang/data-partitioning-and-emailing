@@ -116,7 +116,7 @@ def write_partitions(df, partition):
                 df.to_excel(buf, sheet_name=sheet_name, start_row=start_row, start_col=start_col, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
-            data = df.to_csv(index=False)
+            data = df.to_csv(index=False, start_row=start_row, start_col=start_col)
             file_name = f"{partition}.csv" 
             logging.info(f"writing {file_name} to the folder")
             output_folder.upload_stream(file_name, data)
