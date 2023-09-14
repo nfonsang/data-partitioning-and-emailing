@@ -28,7 +28,7 @@ partitioning_columns = get_recipe_config().get("partitioning_column", "")
 columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
 include_timestamp = get_recipe_config().get("include_timestamp", None)
 clear_folder = get_recipe_config().get("clear_folder", None)
-add_prefix = get_recipe_config().get("add_prefix", "")
+add_suffix = get_recipe_config().get("add_suffix", "")
 file_format = get_recipe_config().get('file_format', "csv")
 sheet_name = get_recipe_config().get('sheet_name', "Sheet1")
 

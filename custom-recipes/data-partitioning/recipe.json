@@ -73,7 +73,14 @@
             "name": "sheet_name",
             "label": "Sheet Name [Optional]",
             "type": "STRING",
-            "description": "Enter sheet name. The default name, Sheet1, will be used if the field is left empty",
+            "description": "Enter sheet name. The default name, Sheet1, will be used if this field is left empty",
+            "mandatory": false
+        },
+        {
+            "name": "start_col",
+            "label": "Start Column [Optional]",
+            "type": "STRING",
+            "description": "Enter starting column value. The default value is 0, and will be used if this field is left empty",
             "mandatory": false
         },
         
