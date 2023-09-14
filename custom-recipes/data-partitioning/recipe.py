@@ -31,7 +31,8 @@ clear_folder = get_recipe_config().get("clear_folder", None)
 add_suffix = get_recipe_config().get("add_suffix", "")
 file_format = get_recipe_config().get('file_format', "csv")
 sheet_name = get_recipe_config().get('sheet_name', "Sheet1")
-
+start_col = get_recipe_config().get('start_col', 0)
+start_row = get_recipe_config().get('start_row', 0)
 # clear folder before partitioning the datasets into CSV files)
 if clear_folder:
     logging.info("clearing folder")
