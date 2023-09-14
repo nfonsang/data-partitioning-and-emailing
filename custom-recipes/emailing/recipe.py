@@ -64,6 +64,7 @@ if authentication_type=="shared_preset":
     shared_preset = get_recipe_config().get("smtp_shared_connection", {})
     smtp_host = shared_preset['smtp_host']
     smtp_port = shared_preset['smtp_port']
+    smtp_use_tls = shared_preset['smtp_use_tls']
     smtp_use_ssl = shared_preset['smtp_use_ssl']
     smtp_use_auth = shared_preset['smtp_use_auth'] 
     smtp_user = shared_preset['smtp_user']
