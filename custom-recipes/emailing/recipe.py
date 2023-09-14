@@ -125,6 +125,9 @@ def pretty_table(df_partition):
     return html_table
 
 # define email data partition function 
+
+smtp_client = smtplib.SMTP(smtp_host, port=smtp_port)
+
 def send_email(partition_df, partition):
     msg = MIMEMultipart()
     msg["From"] = sender_name
@@ -165,7 +168,6 @@ def send_email(partition_df, partition):
     
     try:
         if smtp_use_tls:
-            smtp_client = smtplib.SMTP(smtp_host, port=smtp_port)
             # connect to smtp server and switch connection to tls encryption
             smtp_client.starttls()
         if smtp_use_ssl:
