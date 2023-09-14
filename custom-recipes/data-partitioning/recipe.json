@@ -14,7 +14,7 @@
         {
             "name": "input_dataset",
             "label": "Input dataset",
-            "description": "This is the input dataset that will be partitioned",
+            "description": "This is the input dataset that will be partitioned.",
             "arity": "UNARY",
             "required": true,
             "acceptsDataset": true
@@ -26,7 +26,7 @@
         {
             "name": "output_folder",
             "label": "Output Folder",
-            "description": "This is the folder where the data partitions will saved",
+            "description": "This is the folder where the data partitions will saved.",
             "arity": "UNARY",
             "required": true,
             "acceptsDataset": false,
@@ -41,7 +41,7 @@
             "name": "partitioning_column",
             "label": "Partitioning column(s)",
             "type": "STRING",
-            "description": "Enter the column or columns in the input dataset whose unique values will be used to filter the data partitions. Separate several columns with commas. If this field is empty, the whole data will be written to the folder. The partitioning column value or combination of partitioning column values will be used as default file names",
+            "description": "Enter the column or columns in the input dataset whose unique values will be used to filter the data partitions. Separate several columns with commas. If this field is empty, the whole data will be written to the folder. The partitioning column value or combination of partitioning column values will be used as default file names.",
             "mandatory": false
         },
         {
@@ -71,7 +71,7 @@
             "label" : "File format",
             "type": "SELECT",
             "defaultValue" : "csv",
-            "description" : "Select the file format of the data to be written",
+            "description" : "Select the file format of the data to be written.",
             "selectChoices" : [
                 {"value":  "csv" , "label":"CSV"},
                 {"value":  "excel" , "label":"EXCEL"}
@@ -81,7 +81,7 @@
             "name": "sheet_name",
             "label": "Sheet Name [Optional]",
             "type": "STRING",
-            "description": "Enter sheet name. The default name, Sheet1, will be used if this field is left empty",
+            "description": "Enter sheet name. The default name, Sheet1, will be used if this field is left empty.",
             "mandatory": false,
             "visibilityCondition": "model.file_format == 'excel'"
         },
@@ -89,7 +89,7 @@
             "name": "start_col",
             "label": "Start Column [Optional]",
             "type": "INT",
-            "description": "This is the upper left cell column to dump data. The default value is 0, and will be used if this field is left empty",
+            "description": "This is the upper left cell column to dump data. The default value is 0, and will be used if this field is left empty.",
             "mandatory": false,
             "visibilityCondition": "model.file_format == 'excel'"
         },
@@ -97,7 +97,7 @@
             "name": "start_row",
             "label": "Start row [Optional]",
             "type": "INT",
-            "description": "This is the upper left cell row to dump data. The default value is 0, and will be used if this field is left empty",
+            "description": "This is the upper left cell row to dump data. The default value is 0, and will be used if this field is left empty.",
             "mandatory": false,
             "visibilityCondition": "model.file_format == 'excel'"
         },
@@ -110,7 +110,7 @@
         {
             "name": "clear_folder",
             "label": "Clear folder",
-            "description": "Check this button to clear the folder before writing new CSV or EXCEL files",
+            "description": "Check this button to clear the folder before writing new CSV or EXCEL files.",
             "type": "BOOLEAN"
         }
 
