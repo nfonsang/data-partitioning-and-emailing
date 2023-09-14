@@ -87,7 +87,11 @@ if partitioning_columns:
                 string_name = f'{add_suffix}_' + '_'.join(f'{c}' for c in item) + f'_{add_suffix}'
                 file_names.append(string_name)
 
-            if add_suffix and not add_prefix:
+            elif (add_suffix and not add_prefix):
+                string_name = f'{add_suffix}_' + '_'.join(f'{c}' for c in item) 
+                file_names.append(string_name)
+                
+            elif (add_suffix and not add_prefix):
                 string_name = f'{add_suffix}_' + '_'.join(f'{c}' for c in item) 
                 file_names.append(string_name)
             else:
