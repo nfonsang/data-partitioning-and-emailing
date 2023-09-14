@@ -113,7 +113,7 @@ def write_partitions(df, partition):
             file_name = f"{partition}.xlsx"
             df=df.applymap(str)
             with io.BytesIO() as buf:
-                df.to_excel(buf, sheet_name=sheet_name, start_row=start_row, start_col=start_col, encoding='utf-8', index = None, header = True)
+                df.to_excel(buf, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
             data = df.to_csv(index=False)
@@ -129,7 +129,7 @@ def write_partitions(df, partition):
             file_name = f"{partition}_{add_prefix}.xlsx"
             df=df.applymap(str)
             with io.BytesIO() as buf:
-                df.to_excel(buf, sheet_name=sheet_name, start_row=start_row, start_col=start_col, encoding='utf-8', index = None, header = True)
+                df.to_excel(buf, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
     
@@ -151,7 +151,7 @@ def write_partitions_timestamp(df, partition):
             file_name = f"{partition}_{current_time}.xlsx"
             df=df.applymap(str)
             with io.BytesIO() as buf:
-                df.to_excel(buf, sheet_name=sheet_name, start_col=start_col, start_row=start_row, encoding='utf-8', index = None, header = True)
+                df.to_excel(buf, sheet_name=sheet_name, startcol=start_col, startrow=start_row, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
             data = df.to_csv(index=False)
@@ -166,7 +166,7 @@ def write_partitions_timestamp(df, partition):
             file_name = f"{partition}_{add_suffix}_{current_time}.xlsx"
             df=df.applymap(str)
             with io.BytesIO() as buf:
-                df.to_excel(buf, sheet_name=shee_tname,start_col=start_col, start_row=start_row, encoding='utf-8', index = None, header = True)
+                df.to_excel(buf, sheet_name=sheet_name,startcol=start_col, startrow=start_row, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
     
