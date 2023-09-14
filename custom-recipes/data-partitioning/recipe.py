@@ -98,7 +98,6 @@ if partitioning_columns:
                 string_name = '_'.join(f'{c}' for c in item)
                 file_names.append(string_name)
              
-
         clean_file_names = [item.split() for item in file_names]
         clean_file_names = ['_'.join(f'{c}' for c in item) for item in clean_file_names]
        
