@@ -57,7 +57,7 @@ if partitioning_columns:
         
     # get unique combinations of unique values 
     clean_unique_values = list(itertools.product(*unique_values_nested))
-    
+   
     # prepare strings in unique combination for the query
     clean_unique_values_2 = []
     for item in clean_unique_values:
