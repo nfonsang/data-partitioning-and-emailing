@@ -160,7 +160,6 @@ def write_partitions_timestamp(df, partition):
             logging.info(f"writing {file_name} to the folder")
             output_folder.upload_stream(file_name, data)
 
-    
     # write entire dataframe
     else:
         if file_format=="excel":
