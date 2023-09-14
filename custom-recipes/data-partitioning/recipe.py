@@ -116,7 +116,7 @@ def write_partitions(df, partition):
                 df.to_excel(buf, sheet_name=sheet_name, start_row=start_row, start_col=start_col, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
-            data = df.to_csv(index=False, start_row=start_row, start_col=start_col)
+            data = df.to_csv(index=False)
             file_name = f"{partition}.csv" 
             logging.info(f"writing {file_name} to the folder")
             output_folder.upload_stream(file_name, data)
@@ -133,7 +133,7 @@ def write_partitions(df, partition):
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
     
-            data = df.to_csv(index=False, start_row=start_row, start_col=start_col)
+            data = df.to_csv(index=False)
             partition = input_dataset_name.split(".")[-1]
             file_name = f"{partition}_{add_suffix}.csv"
             logging.info(f"writing {file_name} to the folder")
@@ -154,7 +154,7 @@ def write_partitions_timestamp(df, partition):
                 df.to_excel(buf, sheet_name=sheet_name, start_col=start_col, start_row=start_row, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
-            data = df.to_csv(index=False, start_row=start_row, start_col=start_col)
+            data = df.to_csv(index=False)
             file_name = f"{partition}_{current_time}.csv"
             logging.info(f"writing {file_name} to the folder")
             output_folder.upload_stream(file_name, data)
@@ -170,7 +170,7 @@ def write_partitions_timestamp(df, partition):
                 output_folder.upload_stream(file_name, buf.getvalue())
         else:
     
-            data = df.to_csv(index=False, start_row=start_row, start_col=start_col)
+            data = df.to_csv(index=False)
             partition = input_dataset_name.split(".")[-1]
             file_name = f"{partition}_{add_suffix}_{current_time}.csv"
             logging.info(f"writing {file_name} to the folder")
