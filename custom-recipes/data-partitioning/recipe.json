@@ -46,7 +46,7 @@
         },
         {
             "name": "add_prefix",
-            "label": "Add prefix to file name(s) - [optional]",
+            "label": "Add prefix to file names - [optional]",
             "type": "STRING",
             "description": "Add prefix to file names.",
             "mandatory": false
