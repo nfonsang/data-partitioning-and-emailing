@@ -80,10 +80,16 @@
             "name": "start_col",
             "label": "Start Column [Optional]",
             "type": "STRING",
-            "description": "Enter starting column value. The default value is 0, and will be used if this field is left empty",
+            "description": "This is the upper left cell column to dump data. The default value is 0, and will be used if this field is left empty",
             "mandatory": false
         },
-        
+        {
+            "name": "start_row",
+            "label": "Start row [Optional]",
+            "type": "STRING",
+            "description": "This is the upper left cell row to dump data. The default value is 0, and will be used if this field is left empty",
+            "mandatory": false
+        },
         {
             "name": "include_timestamp",
             "label": "Include timestamp to CSV or EXCEL file names",
