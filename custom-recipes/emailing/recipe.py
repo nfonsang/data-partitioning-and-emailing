@@ -56,9 +56,9 @@ if authentication_type=="personal_preset":
     except: smtp_use_ssl = None
     try: smtp_use_auth = personal_preset['smtp_use_auth']
     except: smtp_use_auth = None
-    try: smtp_user = personal_preset["smtp_personal_basic"][user']
+    try: smtp_user = personal_preset["smtp_personal_basic"]['user']
     except: smtp_user = None
-    try: smtp_password = personal_preset["smtp_personal_basic"][password']
+    try: smtp_password = personal_preset["smtp_personal_basic"]['password']
     except: smtp_password = None
     
 # if credentials are shared, get shared credential and parameters
