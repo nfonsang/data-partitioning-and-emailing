@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "meta": {
         "label": "data partitioning and emailing",
-        "description": "This plugin can be used to partition data into CSV or EXCEL files, save data partitions to a folder or email data partitions.",
+        "description": "This plugin can be used to partition data into CSV or EXCEL files where data partition are then saved to a folder or emailed to recipients.",
         "author": "Dataiku (Neba Nfonsang)",
         "icon": "icon-plane",
         "licenseInfo": "Apache Software License",
