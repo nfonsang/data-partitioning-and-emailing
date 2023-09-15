@@ -172,7 +172,7 @@ def send_email(partition_df, partition):
             smtp_client.login(str(smtp_user), str(smtp_password))
         if smtp_use_auth and (not smtp_use_tls) and (not smtp_use_ssl):
             smtp_client = smtplib.SMTP(smtp_host, port=smtp_port)
-            smtp_client.login(smtp_user, str(smtp_password))
+            smtp_client.login(str(smtp_user), str(smtp_password))
         if (not smtp_use_ssl) and (not smtp_use_tls) and (not smtp_use_auth):
             smtp_client = smtplib.SMTP(smtp_host, port=smtp_port, timeout=120)
         # send email message/attachment
