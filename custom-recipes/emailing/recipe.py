@@ -3,6 +3,7 @@ from dataiku import pandasutils as pdu
 import pandas as pd
 import datetime
 import logging
+
 # import packages for emailing
 import smtplib
 from email.mime.text import MIMEText
@@ -12,15 +13,19 @@ from pretty_html_table import build_table
 from dataiku.customrecipe import get_input_names_for_role
 from dataiku.customrecipe import get_output_names_for_role
 from dataiku.customrecipe import get_recipe_config
+
 # set logging configurations
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 logging.info("Start executing the recipe code")
+
 # Get the input of the recipe
 input_dataset_name = get_input_names_for_role('input_dataset')[0]
 input_dataset = dataiku.Dataset(input_dataset_name)
+
 # Get the output of the recipe
 output_folder_name = get_output_names_for_role('output_folder')[0]
 output_folder = dataiku.Folder(output_folder_name)
+
 # get email header parameter values
 sender_name = get_recipe_config()["sender_name"]
 sender_email = get_recipe_config()["sender_email"]
@@ -30,11 +35,14 @@ use_recipient_email_column = get_recipe_config().get("use_recipient_email_column
 cc = get_recipe_config().get("cc", "")
 bc = get_recipe_config().get("bc", "")
 email_subject = get_recipe_config().get("email_subject", "")
+
 # get file format
 file_format = get_recipe_config().get('file_format', "csv")
+
 # get email body
 use_email_body = get_recipe_config().get('use_email_body', False)
 email_body_text = get_recipe_config().get("email_body_text", "")
+
 # Get SMTP Server authentication type
 authentication_type = get_recipe_config().get("authentication_type", "shared-preset")
 # if credentials are per user, get personal credentials and parameters
@@ -52,6 +60,7 @@ if authentication_type=="personal_preset":
     except: smtp_user = None
     try: smtp_password = personal_preset['smtp_password']
     except: smtp_password = None
+    
 # if credentials are shared, get shared credential and parameters
 if authentication_type=="shared_preset":
     shared_preset = get_recipe_config().get("smtp_shared_connection", {})
@@ -67,18 +76,22 @@ if authentication_type=="shared_preset":
     except: smtp_user = None
     try: smtp_password = shared_preset['smtp_password']
     except: smtp_password = None
+    
 # get data management parameter values
 partitioning_column = get_recipe_config().get('partitioning_column', "")
 columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
 write_data_to_folder = get_recipe_config().get('write_data_to_folder', False)
 include_timestamp = get_recipe_config().get('include_timestamp', False)
 clear_folder = get_recipe_config().get('clear_folder', False)
+
 # clear folder before partitioning the datasets into CSV files)
 if clear_folder:
     logging.info("clearing folder")
     output_folder.clear()
+    
 # get dataframe from dataset
 input_data_df = input_dataset.get_dataframe()
+
 # get partition dataframe and partition values from dataset
 input_data_df = input_dataset.get_dataframe()
 if partitioning_column:
@@ -107,10 +120,12 @@ def get_csv_partition(partition_df):
     # convert dataframe to csv file
     data = partition_df.to_csv(index=False)
     return data
+    
 # convert dataframe to html
 def pretty_table(df_partition):
     html_table = build_table(df_partition, "blue_light")
     return html_table
+    
 # define email data partition function
 def send_email(partition_df, partition):
     msg = MIMEMultipart()
