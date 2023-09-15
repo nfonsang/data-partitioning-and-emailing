@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "meta": {
         "label": "data partitioning and emailing",
-        "description": "This plugin provides two recipe components for  partitioning data based on partitioning columns. The data partions are saved as CSV/EXCEL files into a folders or emailed to recipients.",
+        "description": "This plugin provides two recipe components for  partitioning data based on partitioning columns. The plugin allows you to save the data partions as CSV/EXCEL files into a folder or email the data partitions to recipients.",
         "author": "Dataiku (Neba Nfonsang)",
         "icon": "icon-plane",
         "licenseInfo": "Apache Software License",
