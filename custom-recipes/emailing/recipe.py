@@ -168,9 +168,7 @@ def send_email(partition_df, partition):
         if smtp_use_ssl:
             # connect to smtp server and switch connection to ssl encryption
             smtp_client = smtplib.SMTP_SSL(smtp_host, port=smtp_port)
-        if smtp_use_auth and smtp_use_tls:
-            smtp_client.login(smtp_user, str(smtp_password))
-        if smtp_use_auth and smtp_use_ssl:
+        if smtp_use_auth and (smtp_use_tls or smtp_use_ssl):
             smtp_client.login(smtp_user, str(smtp_password))
         if smtp_use_auth and (not smtp_use_tls) and (not smtp_use_ssl):
             smtp_client = smtplib.SMTP(smtp_host, port=smtp_port)
