@@ -46,11 +46,11 @@
         },
         {
             "name": "sheet_name",
-            "label": "Sheet Name [Optional]",
+            "label": "Sheet Name [Optional]. Use if partitioning column is not specified",
             "type": "STRING",
             "description": "Enter sheet name. The default name, Sheet1, will be used if this field is left empty.",
             "mandatory": false,
-            "visibilityCondition": "model.partitioning_column"
+            "visibilityCondition": "!model.partitioning_column"
         },
 
         {
