@@ -45,6 +45,14 @@
             "mandatory": false
         },
         {
+            "name": "use_partition_value_for_sheetname",
+            "label": "Use unique values of partitioning column as Excel sheet names.",
+            "description": "Check this button to use unique values of partitioning column as EXCEL sheet names. The default names - Sheet1, Sheet2, etc - will be used for sheet names if this field is left empty.",
+            "type": "BOOLEAN",
+            "visibilityCondition": "model.partitioning_column"
+
+        },
+        {
             "name": "sheet_name",
             "label": "Sheet Name [Optional]. Use if no partitioning column is specified",
             "type": "STRING",
@@ -66,14 +74,6 @@
             "type": "STRING",
             "description": "Enter the Excel file name. The dataset name will be used if this field is left empty.",
             "mandatory": false
-        },
-        {
-            "name": "use_partition_value_for_sheetname",
-            "label": "Use unique values of partitioning column as Excel sheet names.",
-            "description": "Check this button to use unique values of partitioning column as EXCEL sheet names. The default names - Sheet1, Sheet2, etc - will be used for sheet names if this field is left empty.",
-            "type": "BOOLEAN",
-            "visibilityCondition": "!model.partitioning_column"
-
         },
         {
             "name": "start_col",
