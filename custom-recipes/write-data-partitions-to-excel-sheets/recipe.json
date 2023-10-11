@@ -53,17 +53,6 @@
             "mandatory": false
         },
         {
-            "name": "file_format",
-            "label" : "File format",
-            "type": "SELECT",
-            "defaultValue" : "csv",
-            "description" : "Select the file format of the data to be written.",
-            "selectChoices" : [
-                {"value":  "csv" , "label":"CSV"},
-                {"value":  "excel" , "label":"EXCEL"}
-            ]
-        }, 
-        {
             "name": "sheet_name",
             "label": "Sheet Name [Optional]",
             "type": "STRING",
