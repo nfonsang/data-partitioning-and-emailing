@@ -53,6 +53,13 @@
             "mandatory": false
         },
         {
+            "name": "file_name",
+            "label": "Excel File Name [Optional]",
+            "type": "STRING",
+            "description": "Enter the Excel file name. The dataset name will be used if this field is left empty.",
+            "mandatory": false
+        },
+        {
             "name": "sheet_name",
             "label": "Sheet Name [Optional]",
             "type": "STRING",
