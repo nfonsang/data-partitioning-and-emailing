@@ -60,6 +60,12 @@
             "mandatory": false
         },
         {
+            "name": "use_partition_value_for_sheetname",
+            "label": "Use unique values of partitioning column as Excel sheet names.",
+            "description": "Check this button to include timestamps to EXCEL file names. The default names - Sheet1, Sheet2, etc - will be used for sheet names if this field is left empty.",
+            "type": "BOOLEAN"
+        },
+        {
             "name": "sheet_name",
             "label": "Sheet Name [Optional]",
             "type": "STRING",
