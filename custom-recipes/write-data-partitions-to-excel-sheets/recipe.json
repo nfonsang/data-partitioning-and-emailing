@@ -71,7 +71,9 @@
             "name": "use_partition_value_for_sheetname",
             "label": "Use unique values of partitioning column as Excel sheet names.",
             "description": "Check this button to use unique values of partitioning column as EXCEL sheet names. The default names - Sheet1, Sheet2, etc - will be used for sheet names if this field is left empty.",
-            "type": "BOOLEAN"
+            "type": "BOOLEAN",
+            "visibilityCondition": "!model.partitioning_column"
+
         },
         {
             "name": "start_col",
