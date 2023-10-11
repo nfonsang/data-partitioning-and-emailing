@@ -44,6 +44,14 @@
             "description": "Enter the column or columns in the input dataset whose unique values will be used to filter the data partitions. Separate several columns with commas. If this field is empty, the whole data will be written to the folder. The partitioning column value or combination of partitioning column values will be used as default file names.",
             "mandatory": false
         },
+        {
+            "name": "sheet_name",
+            "label": "Sheet Name [Optional]",
+            "type": "STRING",
+            "description": "Enter sheet name. The default name, Sheet1, will be used if this field is left empty.",
+            "mandatory": false,
+            "visibilityCondition": "model.partitioning_column"
+        },
 
         {
             "name": "columns_to_exclude",
@@ -64,14 +72,6 @@
             "label": "Use unique values of partitioning column as Excel sheet names.",
             "description": "Check this button to use unique values of partitioning column as EXCEL sheet names. The default names - Sheet1, Sheet2, etc - will be used for sheet names if this field is left empty.",
             "type": "BOOLEAN"
-        },
-        {
-            "name": "sheet_name",
-            "label": "Sheet Name [Optional]",
-            "type": "STRING",
-            "description": "Enter sheet name. The default name, Sheet1, will be used if this field is left empty.",
-            "mandatory": false,
-            "visibilityCondition": "model.partitioning_column"
         },
         {
             "name": "start_col",
