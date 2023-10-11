@@ -46,7 +46,7 @@
         },
         {
             "name": "sheet_name",
-            "label": "Sheet Name [Optional]. Use if partitioning column is not specified",
+            "label": "Sheet Name [Optional]. Use if no partitioning column is specified",
             "type": "STRING",
             "description": "Enter sheet name. The default name, Sheet1, will be used if this field is left empty.",
             "mandatory": false,
