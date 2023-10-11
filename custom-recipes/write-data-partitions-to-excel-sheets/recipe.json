@@ -71,7 +71,7 @@
             "type": "STRING",
             "description": "Enter sheet name. The default name, Sheet1, will be used if this field is left empty.",
             "mandatory": false,
-            "visibilityCondition": "model.partitioning_column==''"
+            "visibilityCondition": "model.partitioning_column"
         },
         {
             "name": "start_col",
