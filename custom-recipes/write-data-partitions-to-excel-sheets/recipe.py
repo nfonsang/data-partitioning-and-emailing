@@ -25,16 +25,15 @@ output_folder = dataiku.Folder(output_folder_name)
 # Get parameter values from the UI
 
 partitioning_columns = get_recipe_config().get("partitioning_column", "")
+sheet_name = get_recipe_config().get("sheet_name", "Sheet1")
 columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
-include_timestamp = get_recipe_config().get("include_timestamp", None)
-clear_folder = get_recipe_config().get("clear_folder", None)
-add_suffix = get_recipe_config().get("add_suffix", "")
-add_prefix =  get_recipe_config().get("add_prefix", "")
-
-file_format = get_recipe_config().get('file_format', "csv")
-sheet_name = get_recipe_config().get('sheet_name', "Sheet1")
+file_name = get_recipe_config().get('file_name', "")
+use_partition_value_for_sheetname = get_recipe_config().get('use_partition_value_for_sheetname', None)
 start_col = get_recipe_config().get('start_col', 0)
 start_row = get_recipe_config().get('start_row', 0)
+include_timestamp = get_recipe_config().get("include_timestamp", None)
+clear_folder = get_recipe_config().get("clear_folder", None)
+
 # clear folder before partitioning the datasets into CSV files)
 if clear_folder:
     logging.info("clearing folder")
