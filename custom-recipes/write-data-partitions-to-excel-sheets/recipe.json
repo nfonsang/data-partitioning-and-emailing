@@ -58,7 +58,7 @@
             "type": "STRING",
             "description": "Enter sheet name. The default name, Sheet1, will be used if this field is left empty.",
             "mandatory": false,
-            "visibilityCondition": "model.file_format == 'excel'"
+            "visibilityCondition": "model.partitioning_column"
         },
         {
             "name": "start_col",
@@ -66,7 +66,6 @@
             "type": "INT",
             "description": "This is the upper left cell column to dump data. The default value is 0, and will be used if this field is left empty.",
             "mandatory": false,
-            "visibilityCondition": "model.file_format == 'excel'"
         },
         {
             "name": "start_row",
@@ -74,12 +73,11 @@
             "type": "INT",
             "description": "This is the upper left cell row to dump data. The default value is 0, and will be used if this field is left empty.",
             "mandatory": false,
-            "visibilityCondition": "model.file_format == 'excel'"
         },
         {
             "name": "include_timestamp",
-            "label": "Include timestamp to CSV or EXCEL file names",
-            "description": "Check this button to include timestamps to CSV or EXCEL file names.",
+            "label": "Include timestamp to EXCEL file names",
+            "description": "Check this button to include timestamps to EXCEL file names.",
             "type": "BOOLEAN"
         },
         {
