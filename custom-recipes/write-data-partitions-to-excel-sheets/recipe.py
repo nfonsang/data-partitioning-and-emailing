@@ -125,7 +125,7 @@ def write_partitions():
             dframe =dframe.applymap(str)
             if use_partition_value_for_sheetname:
                 dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
-                output_folder.upload_stream(excel_name, writer.getvalue())
+                output_folder.upload_stream(excel_name, writer)
                 i=i+1
             
             #dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
