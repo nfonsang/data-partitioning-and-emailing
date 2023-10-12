@@ -171,6 +171,3 @@ else:
 logging.info("Finished writing files to the folder")
 
 
-
-
-    logging.info("Finished writing files to the folder")
