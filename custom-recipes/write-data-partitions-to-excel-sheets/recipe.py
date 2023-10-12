@@ -6,6 +6,7 @@ import datetime
 import logging
 import io
 # remove borders on header 
+
 import pandas.io.formats.excel
 pandas.io.formats.excel.ExcelFormatter.header_style = None
 
