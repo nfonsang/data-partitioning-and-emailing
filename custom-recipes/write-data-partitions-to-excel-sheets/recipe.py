@@ -162,8 +162,9 @@ def write_partitions_timestamp():
             else:
                 sheet_name = sheet_name + str(i)
                 dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
-            writer.save()
             i=i+1
+        writer.save()
+
 
     # write entire dataframe
     else:
