@@ -96,23 +96,30 @@ if partitioning_columns:
                 sheet_name = clean_sheet_names[i]
                 final_sheet_names.append(sheet_name)
 
-
+# get file name
+if file_name:
+    excel_name = f"{file_name}.xlsx"
+else:
+    data_name = input_dataset_name.split(".")[-1]
+    excel_name = f"{data_name}.xlsx"
+    
 # write data partitions or entire data to folder
-def write_partitions(df, partition):
+def write_partitions(dfs):
     if partitioning_columns:
-        if file_name:
-            file_name = f"{file_name}.xlsx"
-        else:
-            file_name =  f"{input_dataset_name}.xlsx"
         df=df.applymap(str)
-        with io.BytesIO() as buf:
-            df.to_excel(buf, sheet_name=partition, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
-            output_folder.upload_stream(file_name, buf.getvalue())
+        folder_info = output_folder.get_info()
+        path = os.path.join(folder_info['path'], excel_name)
+        writer = pd.ExcelWriter(path)
+            for df in dfs:
+                df.to_excel(buf, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
+                i=i+1
+            
+            #output_folder.upload_stream(file_name, buf.getvalue())
  
     # write entire dataframe
     else:
-        partition = input_dataset_name.split(".")[-1]
-        file_name = f"{partition}_{add_prefix}.xlsx"
+        
+
         df=df.applymap(str)
         with io.BytesIO() as buf:
             df.to_excel(buf, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
