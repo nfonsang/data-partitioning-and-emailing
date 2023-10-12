@@ -84,7 +84,6 @@ if partitioning_columns:
              string_name = '_'.join(f'{c}' for c in item)
              sheet_names.append(string_name)
         
-        print("HELLLLLLOOOOOO.......................",  clean_unique_values)
         if use_partition_value_for_sheetname:
             clean_sheet_names = [item.split() for item in sheet_names]
             clean_sheet_names = ['_'.join(f'{c}' for c in item) for item in clean_sheet_names]
