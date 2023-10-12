@@ -29,7 +29,7 @@ if partitioning_columns==None:
     sheet_name = get_recipe_config().get("sheet_name", "Sheet1")
 use_partition_value_for_sheetname = get_recipe_config().get('use_partition_value_for_sheetname', None)
 columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
-file_name = get_recipe_config().get('file_name', "")
+file_name = get_recipe_config().get('file_name', None)
 start_col = get_recipe_config().get('start_col', 0)
 start_row = get_recipe_config().get('start_row', 0)
 include_timestamp = get_recipe_config().get("include_timestamp", None)
@@ -106,7 +106,7 @@ def write_partitions(df, partition):
             file_name =  f"{input_dataset_name}.xlsx"
         df=df.applymap(str)
         with io.BytesIO() as buf:
-            df.to_excel(buf, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
+            df.to_excel(buf, sheet_name=partition, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
             output_folder.upload_stream(file_name, buf.getvalue())
  
     # write entire dataframe
