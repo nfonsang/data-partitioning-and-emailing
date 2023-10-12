@@ -110,16 +110,20 @@ else:
 folder_info = output_folder.get_info()  
 
 # write data partitions or entire data to folder
-def write_partitions(dfs):
+def write_partitions():
     path = os.path.join(folder_info['path'], excel_name)
     writer = pd.ExcelWriter(path)
     if partitioning_columns:   
         i=0
         for dframe in dfs:
             dframe =dframe.applymap(str)
-            dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
-            i=i+1
+            if use_partition_value_for_sheetname:
+                dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
+            else:
+                sheet_name = sheet_name + str(i)
+                dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
             writer.save()
+            i=i+1
 
             # output_folder.upload_stream(file_name, buf.getvalue())
  
@@ -131,20 +135,24 @@ def write_partitions(dfs):
 
 
 # write partitions or entire data to folder with time stamps included
-def write_partitions_timestamp(dfs):
+def write_partitions_timestamp():
     # get current timestamp
     current_time = datetime.datetime.now()
     current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
-    
+    excel_name = f"{excel_name}_{current_time}.xlsx"
+
     path = os.path.join(folder_info['path'], excel_name)
     writer = pd.ExcelWriter(path)
     
     if partitioning_columns:
-        excel_name = f"{excel_name}_{current_time}.xlsx"
         i=0
         for dframe in dfs:
             dframe =dframe.applymap(str)
-            dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
+            if use_partition_value_for_sheetname:
+                dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
+            else:
+                sheet_name = sheet_name + str(i)
+                dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
             writer.save()
             i=i+1
 
@@ -154,23 +162,15 @@ def write_partitions_timestamp(dfs):
         dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
         writer.save()
 
-if partitioning_columns:
-    # partition the dataset and write partitions to the managed folder
-    i=0
-        
-    for partition_df in dfs:
-        partition = final_file_names[i]
-        if include_timestamp:
-            write_partitions_timestamp(partition_df, partition)
-        else:
-            write_partitions(partition_df, partition)
-        i=i+1
-        logging.info("Finished writing files to the folder")
+# function calls to write data
+if include_timestamp:
+    write_partitions_timestamp()
 else:
-    # write the entire data to the managed folder
-    partition = input_dataset_name.split(".")[-1]
-    if include_timestamp:
-        write_partitions_timestamp(input_data_df, partition)
-    else:
-        write_partitions(input_data_df, partition)
+    write_partitions()
+    
+logging.info("Finished writing files to the folder")
+
+
+
+
     logging.info("Finished writing files to the folder")
