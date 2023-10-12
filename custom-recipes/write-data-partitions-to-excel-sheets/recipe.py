@@ -84,7 +84,7 @@ if partitioning_columns:
 
         # get dataframe partitions and file names 
         dfs =[]
-        final_file_names = []
+        final_sheet_names = []
             
         for i in range(len(queries)):
             df_part = input_data_df.query(queries[i])
@@ -93,8 +93,8 @@ if partitioning_columns:
                 df_part = df_part.drop(columns, axis=1) 
             if len(df_part)>0:
                 dfs.append(df_part)
-                file_name = clean_file_names[i]
-                final_file_names.append(file_name)
+                sheet_name = clean_sheet_names[i]
+                final_sheet_names.append(sheet_name)
 
 
 # write data partitions or entire data to folder
