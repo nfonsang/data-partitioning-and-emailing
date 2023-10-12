@@ -27,9 +27,9 @@ output_folder = dataiku.Folder(output_folder_name)
 partitioning_columns = get_recipe_config().get("partitioning_column", None)
 if partitioning_columns==None:
     sheet_name = get_recipe_config().get("sheet_name", "Sheet1")
+use_partition_value_for_sheetname = get_recipe_config().get('use_partition_value_for_sheetname', None)
 columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
 file_name = get_recipe_config().get('file_name', "")
-use_partition_value_for_sheetname = get_recipe_config().get('use_partition_value_for_sheetname', None)
 start_col = get_recipe_config().get('start_col', 0)
 start_row = get_recipe_config().get('start_row', 0)
 include_timestamp = get_recipe_config().get("include_timestamp", None)
@@ -45,8 +45,6 @@ input_data_df = input_dataset.get_dataframe()
 
 # get partition dataframe and partition values from dataset
 input_data_df = input_dataset.get_dataframe()
-
-
 
 if partitioning_columns:
     partitioning_columns = partitioning_columns.split(",")
@@ -79,28 +77,11 @@ if partitioning_columns:
             query = ' and '.join('{}=={}'.format(x,y) for x,y in key_value.items())
             queries.append(query)
 
-        # get file names 
-        file_names = []
-        for item in clean_unique_values:
-            item=list(item)
-            if add_suffix and add_prefix:
-                string_name = f'{add_prefix}_' + '_'.join(f'{c}' for c in item) + f'_{add_suffix}'
-                file_names.append(string_name)
+        # get sheet names if data is partitioned
+        if use_partition_value_for_sheetname:
+            clean_sheet_names = [item.split() for item in clean_unique_values]
+            clean_sheet_names = ['_'.join(f'{c}' for c in item) for item in clean_file_names]
 
-            elif (add_suffix and not add_prefix):
-                string_name = '_'.join(f'{c}' for c in item)  + f'_{add_suffix}'  
-                file_names.append(string_name)
-                
-            elif (add_prefix and not add_suffix):
-                string_name = f'{add_prefix}_' + '_'.join(f'{c}' for c in item) 
-                file_names.append(string_name)
-            else:
-                string_name = '_'.join(f'{c}' for c in item)
-                file_names.append(string_name)
-             
-        clean_file_names = [item.split() for item in file_names]
-        clean_file_names = ['_'.join(f'{c}' for c in item) for item in clean_file_names]
-       
         # get dataframe partitions and file names 
         dfs =[]
         final_file_names = []
