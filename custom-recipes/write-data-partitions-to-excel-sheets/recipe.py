@@ -83,23 +83,22 @@ if partitioning_columns:
             string_name = '_'.join(f'{c}' for c in item)
             sheet_names.append(string_name)
         
-        if use_partition_value_for_sheetname:
-            clean_sheet_names = [item.split() for item in sheet_names]
-            clean_sheet_names = ['_'.join(f'{c}' for c in item) for item in clean_sheet_names]
+        clean_sheet_names = [item.split() for item in sheet_names]
+        clean_sheet_names = ['_'.join(f'{c}' for c in item) for item in clean_sheet_names]
 
-            # get dataframe partitions and file names 
-            dfs =[]
-            final_sheet_names = []
+        # get dataframe partitions and file names 
+        dfs =[]
+        final_sheet_names = []
 
-            for i in range(len(queries)):
-                df_part = input_data_df.query(queries[i])
-                if columns_to_exclude:
-                    columns = [item.strip() for item in columns_to_exclude.split(",")]
-                    df_part = df_part.drop(columns, axis=1) 
-                if len(df_part)>0:
-                    dfs.append(df_part)
-                    sheet_name_1 = clean_sheet_names[i]
-                    final_sheet_names.append(sheet_name_1)
+        for i in range(len(queries)):
+            df_part = input_data_df.query(queries[i])
+            if columns_to_exclude:
+                columns = [item.strip() for item in columns_to_exclude.split(",")]
+                df_part = df_part.drop(columns, axis=1) 
+            if len(df_part)>0:
+                dfs.append(df_part)
+                sheet_name_1 = clean_sheet_names[i]
+                final_sheet_names.append(sheet_name_1)
 
  
 
