@@ -93,8 +93,12 @@ if partitioning_columns:
                 df_part = df_part.drop(columns, axis=1) 
             if len(df_part)>0:
                 dfs.append(df_part)
-                sheet_name = clean_sheet_names[i]
-                final_sheet_names.append(sheet_name)
+                sheet_name_1 = clean_sheet_names[i]
+                final_sheet_names.append(sheet_name_1)
+ 
+
+# if columns are not partitioned
+# sheet_name entered in the UI or default "Sheet1" will be used
 
 # get file name
 if file_name:
@@ -110,9 +114,10 @@ def write_partitions(dfs):
         folder_info = output_folder.get_info()
         path = os.path.join(folder_info['path'], excel_name)
         writer = pd.ExcelWriter(path)
-            for df in dfs:
-                df.to_excel(buf, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
+            for dframe in dfs:
+                dframe.to_excel(buf, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
                 i=i+1
+                writer.save()
             
             #output_folder.upload_stream(file_name, buf.getvalue())
  
