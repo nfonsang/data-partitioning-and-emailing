@@ -25,7 +25,7 @@ output_folder = dataiku.Folder(output_folder_name)
 # Get parameter values from the UI
 
 partitioning_columns = get_recipe_config().get("partitioning_column", None)
-if partitioning_column==None:
+if partitioning_columns==None:
     sheet_name = get_recipe_config().get("sheet_name", "Sheet1")
 use_partition_value_for_sheetname = get_recipe_config().get('use_partition_value_for_sheetname', None)
 columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
