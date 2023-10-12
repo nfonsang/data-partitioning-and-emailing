@@ -133,7 +133,12 @@ def write_partitions():
 
     # write entire dataframe
     else:
-        dframe =input_data_df.applymap(str)
+        if columns_to_exclude:
+            columns = [item.strip() for item in columns_to_exclude.split(",")]
+            df_frame = input_data_df.drop(columns, axis=1) 
+        else:
+           df_frame = input_data_df.copy()
+        dframe =df_frame.applymap(str)
         dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
         writer.save()
 
@@ -163,7 +168,12 @@ def write_partitions_timestamp():
 
     # write entire dataframe
     else:
-        dframe =input_data_df.applymap(str)
+        if columns_to_exclude:
+            columns = [item.strip() for item in columns_to_exclude.split(",")]
+            df_frame = input_data_df.drop(columns, axis=1) 
+        else:
+           df_frame = input_data_df.copy()
+        dframe =df_frame.applymap(str)
         dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
         writer.save()
 
