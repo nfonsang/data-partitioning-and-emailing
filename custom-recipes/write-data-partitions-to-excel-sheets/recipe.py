@@ -103,7 +103,7 @@ def write_partitions(df, partition):
         if file_name:
             file_name = f"{file_name}.xlsx"
         else:
-            file_name =  f"{input_data_name}.xlsx"
+            file_name =  f"{input_dataset_name}.xlsx"
         df=df.applymap(str)
         with io.BytesIO() as buf:
             df.to_excel(buf, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
