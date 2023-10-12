@@ -1,3 +1,4 @@
 pretty_html_table
 XlsxWriter>=0.7.7
 jinja2
+pandas==0.24
