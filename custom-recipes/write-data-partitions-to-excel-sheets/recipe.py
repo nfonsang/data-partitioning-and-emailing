@@ -127,13 +127,14 @@ def write_partitions():
                 with io.BytesIO() as buf:
                     df.to_excel(buf, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
                 output_folder.upload_stream(excel_name, buf.getvalue())
+                i=i+1
             
             #dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
-            else:
-                sheet_name = sheet_name + str(i)
-                dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
-            i=i+1
-        writer.save()
+            #else:
+                #sheet_name = sheet_name + str(i)
+                #dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
+            #i=i+1
+            #writer.save()
 
 
             # output_folder.upload_stream(file_name, buf.getvalue())
