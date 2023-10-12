@@ -145,9 +145,9 @@ def write_partitions_timestamp():
     # get current timestamp
     current_time = datetime.datetime.now()
     current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
-    excel_name = f"{excel_name}_{current_time}.xlsx"
+    excel_name_1 = f"{excel_name}_{current_time}.xlsx"
 
-    path = os.path.join(folder_info['path'], excel_name)
+    path = os.path.join(folder_info['path'], excel_name_1)
     writer = pd.ExcelWriter(path)
     
     if partitioning_columns:
