@@ -157,8 +157,8 @@ def write_partitions_timestamp():
             if use_partition_value_for_sheetname:
                 dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
             else:
-                sheet_name = sheet_name + str(i)
-                dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
+                sheet_name_1 = sheet_name + str(i)
+                dframe.to_excel(writer, sheet_name=sheet_name_1, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
             i=i+1
         writer.save()
 
