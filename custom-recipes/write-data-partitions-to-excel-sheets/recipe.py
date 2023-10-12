@@ -78,6 +78,7 @@ if partitioning_columns:
             queries.append(query)
 
         # get sheet names if data is partitioned
+        print("HELLLLLLOOOOOO.......................",  clean_unique_values  )
         if use_partition_value_for_sheetname:
             clean_sheet_names = [item.split() for item in clean_unique_values]
             clean_sheet_names = ['_'.join(f'{c}' for c in item) for item in clean_sheet_names]
