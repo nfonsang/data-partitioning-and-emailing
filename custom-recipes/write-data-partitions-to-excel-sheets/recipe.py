@@ -124,7 +124,9 @@ def write_partitions():
         for dframe in dfs:
             dframe =dframe.applymap(str)
             if use_partition_value_for_sheetname:
-                dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
+                dframe.to_excel(writer, sheet_name=final_sheet_names[i], 
+                                    startrow=start_row, startcol=start_col, 
+                                        encoding='utf-8', index = None, header = True)
             else:
                 sheet_name = sheet_name + str(i)
                 dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
