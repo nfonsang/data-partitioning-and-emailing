@@ -130,8 +130,6 @@ def write_partitions():
             i=i+1
         writer.save()
 
-
-
     # write entire dataframe
     else:
         dframe =input_data_df.applymap(str)
