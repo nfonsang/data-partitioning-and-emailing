@@ -78,15 +78,15 @@ if partitioning_columns:
             queries.append(query)
 
         # get sheet names if data is partitioned
-        
+         sheet_names = []
          for item in clean_unique_values:
              item=list(item)
              string_name = '_'.join(f'{c}' for c in item)
-             file_names.append(string_name)
+             sheet_names.append(string_name)
         
         print("HELLLLLLOOOOOO.......................",  clean_unique_values)
         if use_partition_value_for_sheetname:
-            clean_sheet_names = [item.split() for item in clean_unique_values]
+            clean_sheet_names = [item.split() for item in sheet_names]
             clean_sheet_names = ['_'.join(f'{c}' for c in item) for item in clean_sheet_names]
 
         # get dataframe partitions and file names 
