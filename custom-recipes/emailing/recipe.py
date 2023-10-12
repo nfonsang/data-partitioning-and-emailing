@@ -3,6 +3,10 @@ from dataiku import pandasutils as pdu
 import pandas as pd
 import datetime
 import logging
+# remove borders on header 
+import pandas.io.formats.excel
+pandas.io.formats.excel.ExcelFormatter.header_style = None
+
 
 # import packages for emailing
 import smtplib
