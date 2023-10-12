@@ -5,6 +5,9 @@ import itertools
 import datetime
 import logging
 import io
+# remove borders on header 
+import pandas.io.formats.style
+pandas.io.formats.excel.ExcelFormatter.header_style= None
 
 from dataiku.customrecipe import get_input_names_for_role
 from dataiku.customrecipe import get_output_names_for_role
