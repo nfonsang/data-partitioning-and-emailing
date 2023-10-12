@@ -119,25 +119,20 @@ folder_info = output_folder.get_info()
 def write_partitions():
     path = os.path.join(folder_info['path'], excel_name)
     writer = pd.ExcelWriter(path)
-    if partitioning_columns:   
+    if partitioning_columns:
         i=0
         for dframe in dfs:
             dframe =dframe.applymap(str)
             if use_partition_value_for_sheetname:
                 dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
-                output_folder.upload_stream(excel_name, writer)
-                i=i+1
-            
-            #dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
-            #else:
-                #sheet_name = sheet_name + str(i)
-                #dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
-            #i=i+1
-            #writer.save()
+            else:
+                sheet_name = sheet_name + str(i)
+                dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
+            i=i+1
+        writer.save()
 
 
-            # output_folder.upload_stream(file_name, buf.getvalue())
- 
+
     # write entire dataframe
     else:
         dframe =input_data_df.applymap(str)
