@@ -119,7 +119,7 @@ def write_partitions(dfs):
                 i=i+1
                 writer.save()
             
-            #output_folder.upload_stream(file_name, buf.getvalue())
+            # output_folder.upload_stream(file_name, buf.getvalue())
  
     # write entire dataframe
     else:
