@@ -128,9 +128,7 @@ def write_partitions():
                     df.to_excel(buf, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
             output_folder.upload_stream(excel_name, buf.getvalue())
             
-                #dframe.to_excel(writer, sheet_name=final_sheet_names[i], 
-                                    #startrow=start_row, startcol=start_col, 
-                                        #encoding='utf-8', index = None, header = True)
+            #dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
             else:
                 sheet_name = sheet_name + str(i)
                 dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
