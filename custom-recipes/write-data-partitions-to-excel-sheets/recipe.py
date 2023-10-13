@@ -137,13 +137,13 @@ def write_partitions():
                 if use_existing_file:
                     dframe.to_excel(writer, sheet_name=final_sheet_names[i], mode='a', engine='xlsxwriter', startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
                 else:
-                    dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
+                    dframe.to_excel(writer, sheet_name=final_sheet_names[i], engine='xlsxwriter', startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
             else:
                 sheet_name_1 = "Sheet" + str(i+1)
                 if use_existing_file:    
                     dframe.to_excel(writer, sheet_name=sheet_name_1, mode='a', engine='xlsxwriter', startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
                 else:  
-                    dframe.to_excel(writer, sheet_name=sheet_name_1, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
+                    dframe.to_excel(writer, sheet_name=sheet_name_1, engine='xlsxwriter', startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
             i=i+1
         writer.save()
 
@@ -158,7 +158,7 @@ def write_partitions():
         if use_existing_file:
             dframe.to_excel(writer, sheet_name=sheet_name, mode='a', engine='xlsxwriter', startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
         else:
-            dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)    
+            dframe.to_excel(writer, sheet_name=sheet_name, engine='xlsxwriter', startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)    
         writer.save()
 
 
@@ -184,13 +184,13 @@ def write_partitions_timestamp():
                 if use_existing_file:
                     dframe.to_excel(writer, sheet_name=final_sheet_names[i], mode='a', engine='xlsxwriter', startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
                 else:
-                    dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
+                    dframe.to_excel(writer, sheet_name=final_sheet_names[i], engine='xlsxwriter', startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
             else:
                 sheet_name_1 = "Sheet" + str(i+1)
                 if use_existing_file:    
                     dframe.to_excel(writer, sheet_name=sheet_name_1, mode='a', engine='xlsxwriter', startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
                 else:  
-                    dframe.to_excel(writer, sheet_name=sheet_name_1, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
+                    dframe.to_excel(writer, sheet_name=sheet_name_1, engine='xlsxwriter', startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
             i=i+1
         writer.save()
 
@@ -206,7 +206,7 @@ def write_partitions_timestamp():
         if use_existing_file:
             dframe.to_excel(writer, sheet_name=sheet_name, mode='a', engine='xlsxwriter', startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
         else:
-            dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
+            dframe.to_excel(writer, sheet_name=sheet_name, engine='xlsxwriter', startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
         writer.save()
 
 # function calls to write data
