@@ -112,11 +112,12 @@ if partitioning_columns:
 # sheet_name entered in the UI or default "Sheet1" will be used
 
 # get file name
-if file_name:
-    excel_name = f"{file_name}.xlsx"
-else:
-    data_name = input_dataset_name.split(".")[-1]
-    excel_name = f"{data_name}.xlsx"
+if use_existing_file==None:
+    if file_name:
+        excel_name = f"{file_name}.xlsx"
+    else:
+        data_name = input_dataset_name.split(".")[-1]
+        excel_name = f"{data_name}.xlsx"
 
 folder_info = output_folder.get_info()  
 
