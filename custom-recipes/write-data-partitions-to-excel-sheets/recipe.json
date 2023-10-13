@@ -110,7 +110,9 @@
             "name": "include_timestamp",
             "label": "Include timestamp to EXCEL file names",
             "description": "Check this button to include timestamps to EXCEL file names.",
-            "type": "BOOLEAN"
+            "type": "BOOLEAN",
+            "visibilityCondition": "!model.use_existing_file"            
+
         },
         {
             "name": "clear_folder",
