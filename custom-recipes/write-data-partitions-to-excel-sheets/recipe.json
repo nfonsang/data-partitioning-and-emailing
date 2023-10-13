@@ -1,7 +1,7 @@
 {
     "meta": {
         "label": "Write data partitions to multiple sheets in an Excel file",
-        "description": "This recipe partitions data and writes data partitions to multiple sheets in an Excel file in a managed folder. Note: new file names should be unique, otherwise, new files will overwrite existing files if new and existing files have the same name.",
+        "description": "This recipe partitions data and writes data partitions to multiple sheets in an Excel file in a managed folder. Note: the name of a new file should be unique, otherwise, the new file will overwrite the existing file if the new and existing files have the same name.",
         "icon": "icon-file-text"
     },
     
