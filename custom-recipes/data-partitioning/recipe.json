@@ -2,7 +2,7 @@
     "meta": {
         "label": "Data partitioning",
         "description": "This recipe partitions data and saves the partitions as CSV or EXCEL files in a managed folder.",
-        "icon": "icon-the"
+        "icon": "icon-th"
     },
     
     // kind of plugin recipe
