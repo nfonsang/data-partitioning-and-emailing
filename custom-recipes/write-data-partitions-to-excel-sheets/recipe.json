@@ -72,7 +72,7 @@
         {
             "name": "use_existing_file",
             "label": "Write to an existing Excel file in the folder",
-            "description": "Check this button to write to an existing Excel file in the folder.",
+            "description": "Check this button to write to an existing Excel file in the folder. Existing sheets will be preserved and new sheets will be added to the existing file.",
             "type": "BOOLEAN"
         }, 
         {
