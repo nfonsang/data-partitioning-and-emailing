@@ -68,12 +68,29 @@
             "description": "These is(are) the column(s) to exclude from the data partitions written to the folder.",
             "mandatory": false
         },
+        
+        {
+            "name": "use_existing_file",
+            "label": "Write to an existing Excel file in the folder",
+            "description": "Check this button to use or write to an existing file in the folder.",
+            "type": "BOOLEAN"
+        }, 
+        {
+            "name": "existing_file",
+            "label": "Existing File Name [Required]",
+            "type": "STRING",
+            "description": "Enter the existing file as it appears in the folder without the .xlsx extension.",
+            "mandatory": true,
+            "visibilityCondition": "model.use_existing_file"            
+        },
         {
             "name": "file_name",
-            "label": "Excel File Name [Optional]",
+            "label": "New Excel File Name [Optional]",
             "type": "STRING",
-            "description": "Enter the Excel file name. The dataset name will be used if this field is left empty.",
-            "mandatory": false
+            "description": "Enter a unique and new Excel file name. If this name already exists in the folder, the existing file will be overwritten. The dataset name will be used if this field is left empty.",
+            "mandatory": false,
+            "visibilityCondition": "!model.use_existing_file"            
+            
         },
         {
             "name": "start_col",
