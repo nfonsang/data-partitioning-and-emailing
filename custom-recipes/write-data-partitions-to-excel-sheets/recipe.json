@@ -2,7 +2,7 @@
     "meta": {
         "label": "Write data partitions to multiple sheets in an Excel file",
         "description": "This recipe partitions data and writes data partitions to multiple sheets in an Excel file in a managed folder",
-        "icon": "icon-th"
+        "icon": "icon-file-text"
     },
     
     // kind of plugin recipe
