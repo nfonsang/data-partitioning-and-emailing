@@ -72,14 +72,14 @@
         {
             "name": "use_existing_file",
             "label": "Write to an existing Excel file in the folder",
-            "description": "Check this button to use or write to an existing file in the folder.",
+            "description": "Check this button to write to an existing Excel file in the folder.",
             "type": "BOOLEAN"
         }, 
         {
             "name": "existing_file",
             "label": "Existing File Name [Required]",
             "type": "STRING",
-            "description": "Enter the existing file as it appears in the folder without the .xlsx extension.",
+            "description": "Enter the existing file name as it appears in the folder without including the .xlsx extension.",
             "mandatory": true,
             "visibilityCondition": "model.use_existing_file"            
         },
