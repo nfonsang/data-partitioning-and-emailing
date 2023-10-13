@@ -119,7 +119,10 @@ folder_info = output_folder.get_info()
 
 # write data partitions or entire data to folder
 def write_partitions():
-    path = os.path.join(folder_info['path'], excel_name)
+    if use_existing_file:
+        path = os.path.join(folder_info['path'], existing_file)
+    else:
+        path = os.path.join(folder_info['path'], excel_name)
     writer = pd.ExcelWriter(path)
      
     if partitioning_columns:
