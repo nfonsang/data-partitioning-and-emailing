@@ -118,7 +118,9 @@
             "name": "clear_folder",
             "label": "Clear folder",
             "description": "Check this button to clear the folder before writing new CSV or EXCEL files.",
-            "type": "BOOLEAN"
+            "type": "BOOLEAN",
+            "visibilityCondition": "!model.use_existing_file"            
+            
 
         }
 
