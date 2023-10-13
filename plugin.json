@@ -1,6 +1,6 @@
 {
     "id": "data-partitioning-and-emailing",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "meta": {
         "label": "data partitioning and emailing",
         "description": "This plugin provides three recipe components for partitioning data into files and emailing data partitions. The data-partition recipe component allows you to save data partitions as CSV/EXCEL files into a folder. The emailing recipe component lets you to email the data partitions as CSV files or embedded HTML tables to recipients. The write-data-partitions-to-excel-sheets recipe component allows you to write data partition to multiple sheets on a single Excel file.",
