@@ -125,9 +125,11 @@ folder_info = output_folder.get_info()
 def write_partitions():
     if use_existing_file:
         path = os.path.join(folder_info['path'], existing_file)
+        writer = pd.ExcelWriter(path, engine='xlsxwriter',  mode='a')
     else:
         path = os.path.join(folder_info['path'], excel_name)
-    writer = pd.ExcelWriter(path, engine='xlsxwriter')
+        writer = pd.ExcelWriter(path, engine='xlsxwriter')
+    
      
     if partitioning_columns:
         i=0
@@ -135,7 +137,7 @@ def write_partitions():
             dframe =dframe.applymap(str)
             if use_partition_value_for_sheetname:
                 if use_existing_file:
-                    dframe.to_excel(writer, sheet_name=final_sheet_names[i], mode='a', startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
+                    dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
                 else:
                     dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
             else:
