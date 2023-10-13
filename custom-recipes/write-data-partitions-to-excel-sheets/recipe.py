@@ -32,6 +32,8 @@ sheet_name = get_recipe_config().get("sheet_name", "Sheet1")
 use_partition_value_for_sheetname = get_recipe_config().get('use_partition_value_for_sheetname', None)
 columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
 file_name = get_recipe_config().get('file_name', None)
+use_existing_file = get_recipe_config().get('use_existing_file', None)
+
 start_col = get_recipe_config().get('start_col', 0)
 start_row = get_recipe_config().get('start_row', 0)
 include_timestamp = get_recipe_config().get("include_timestamp", None)
