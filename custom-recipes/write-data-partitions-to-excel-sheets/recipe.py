@@ -125,10 +125,10 @@ folder_info = output_folder.get_info()
 def write_partitions():
     if use_existing_file:
         path = os.path.join(folder_info['path'], existing_file)
-        writer = pd.ExcelWriter(path, engine='xlsxwriter',  mode='a')
+        writer = pd.ExcelWriter(path, engine='openpyxl',  mode='a')
     else:
         path = os.path.join(folder_info['path'], excel_name)
-        writer = pd.ExcelWriter(path, engine='xlsxwriter')
+        writer = pd.ExcelWriter(path, engine='openpyxl')
     
      
     if partitioning_columns:
