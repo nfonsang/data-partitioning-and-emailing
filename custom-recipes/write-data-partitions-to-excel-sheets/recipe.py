@@ -124,7 +124,7 @@ folder_info = output_folder.get_info()
 # write data partitions or entire data to folder
 def write_partitions():
     if use_existing_file:
-        path = os.path.join(folder_info['path'], existing_file)
+        path = os.path.join(folder_info['path'], f'{existing_file}.xlsx')
         writer = pd.ExcelWriter(path, engine='openpyxl',  mode='a')
     else:
         path = os.path.join(folder_info['path'], excel_name)
