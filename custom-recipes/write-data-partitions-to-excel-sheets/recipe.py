@@ -121,12 +121,15 @@ if not use_existing_file:
     else:
         data_name = input_dataset_name.split(".")[-1]
         excel_name = f"{data_name}.xlsx"
-
+else:
+    excel_name = f"{existing_file}.xlsx"
+    
+    
 # write data partitions or entire data to folder
 def write_partitions():
     if use_existing_file:
         # read an existing file  
-        with onedrive_folder.get_download_stream(existing_file) as file:
+        with output_folder.get_download_stream(excel_name) as file:
             data = existing_file.read() # binary data 
             stream = io.BytesIO(data)
             # save data as excel fomat into bytes string    
@@ -138,7 +141,7 @@ def write_partitions():
     if partitioning_columns:
         i=0
         for dframe in dfs:
-            dframe =dframe.applymap(str)
+            dframe = dframe.applymap(str)
             if use_partition_value_for_sheetname:
                 dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
             else:
@@ -162,7 +165,7 @@ def write_partitions():
         writer.save()
         stream.seek(0)
 
-    with onedrive_folder.get_writer("CarData.xlsx") as writer:
+    with output_folder.get_writer("CarData.xlsx") as writer:
         writer.write(stream.read())
 
 # write partitions or entire data to folder with time stamps included
