@@ -122,35 +122,6 @@ if not use_existing_file:
         data_name = input_dataset_name.split(".")[-1]
         excel_name = f"{data_name}.xlsx"
 
-
-
-#=========================================================
-#if writing to an existing file
-onedrive_folder = dataiku.Folder("EoOFq6pS")
-
-# Read the myfile.csv file in the folder
-file_name = "/CarData.xlsx"
-with onedrive_folder.get_download_stream(file_name) as file:
-    data = file.read() # binary data 
-    stream = io.BytesIO(data) # create in-memory binary data stream 
-
-    # save data as excel fomat into bytes string    
-    writer = pd.ExcelWriter(stream, engine='openpyxl',  mode='a')
-    dframe =df.applymap(str)
-    dframe.to_excel(writer, sheet_name='Sheet5')
-    # save
-    writer.save()
-    
-stream.seek(0)
-
-with onedrive_folder.get_writer("CarData.xlsx") as writer:
-    writer.write(stream.read())
-       
-#================================================================
-
-
-
-
 # write data partitions or entire data to folder
 def write_partitions():
     if use_existing_file:
