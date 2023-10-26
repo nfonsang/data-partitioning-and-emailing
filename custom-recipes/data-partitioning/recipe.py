@@ -41,7 +41,7 @@ sheet_name = get_recipe_config().get('sheet_name', "Sheet1")
 start_col = get_recipe_config().get('start_col', 0)
 start_row = get_recipe_config().get('start_row', 0)
 
-# clear folder before partitioning the datasets into CSV files)
+# clear folder before writing new files
 if clear_folder:
     for file in output_folder.list_paths_in_partition(''):
         output_folder.delete_path(file)

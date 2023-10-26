@@ -88,7 +88,7 @@ write_data_to_folder = get_recipe_config().get('write_data_to_folder', False)
 include_timestamp = get_recipe_config().get('include_timestamp', False)
 clear_folder = get_recipe_config().get('clear_folder', False)
 
-# clear folder before partitioning the datasets into CSV files)
+# clear folder before writing new files
 if clear_folder:
     for file in output_folder.list_paths_in_partition(''):
         output_folder.delete_path(file)
