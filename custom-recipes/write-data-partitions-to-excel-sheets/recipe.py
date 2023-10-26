@@ -122,8 +122,14 @@ if not use_existing_file:
     else:
         data_name = input_dataset_name.split(".")[-1]
         excel_file_name = f"{data_name}.xlsx"
+   
+   if use_timestamp:
+        current_time = datetime.datetime.now()
+        current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
+    else:
 else:
-    excel_file_name = f"{existing_file}.xlsx"
+    
+        excel_file_name = f"{existing_file}.xlsx"
     
     
 # write data partitions or entire data to folder
@@ -174,6 +180,11 @@ def write_partitions_timestamp():
     # get current timestamp
     current_time = datetime.datetime.now()
     current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
+    
+    #===========================
+    
+    #===========================
+    
     
     if use_existing_file:
         excel_name_1 = f"{existing_file}_{current_time}.xlsx"
