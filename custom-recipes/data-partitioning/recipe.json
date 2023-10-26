@@ -104,7 +104,7 @@
         {
             "name": "include_timestamp",
             "label": "Include timestamp to CSV or EXCEL file names",
-            "description": "Check this button to include timestamps to CSV or EXCEL file names.",
+            "description": "WARNING! All existing files in the folder will be deleted before the new file is written if this button is checked.",
             "type": "BOOLEAN"
         },
         {
