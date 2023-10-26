@@ -119,7 +119,7 @@ if partitioning_columns:
 current_time = datetime.datetime.now()
 current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
 if not use_existing_file:   
-    if use_timestamp:
+    if include_timestamp:
         if file_name:
              excel_file_name = f"{file_name}_{current_time}.xlsx"
         else:
