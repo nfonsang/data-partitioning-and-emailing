@@ -156,7 +156,7 @@ def write_partitions():
     if use_existing_file:
         # read an existing file  
         with onedrive_folder.get_download_stream(existing_file) as file:
-        data = file.read() # binary data 
+        data = existing_file.read() # binary data 
         stream = io.BytesIO(data)
         # save data as excel fomat into bytes string    
         writer = pd.ExcelWriter(stream, engine='openpyxl',  mode='a')
