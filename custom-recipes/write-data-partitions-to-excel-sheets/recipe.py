@@ -122,33 +122,57 @@ if not use_existing_file:
         data_name = input_dataset_name.split(".")[-1]
         excel_name = f"{data_name}.xlsx"
 
-folder_info = output_folder.get_info()  
+
+
+#=========================================================
+#if writing to an existing file
+onedrive_folder = dataiku.Folder("EoOFq6pS")
+
+# Read the myfile.csv file in the folder
+file_name = "/CarData.xlsx"
+with onedrive_folder.get_download_stream(file_name) as file:
+    data = file.read() # binary data 
+    stream = io.BytesIO(data) # create in-memory binary data stream 
+
+    # save data as excel fomat into bytes string    
+    writer = pd.ExcelWriter(stream, engine='openpyxl',  mode='a')
+    dframe =df.applymap(str)
+    dframe.to_excel(writer, sheet_name='Sheet5')
+    # save
+    writer.save()
+    
+stream.seek(0)
+
+with onedrive_folder.get_writer("CarData.xlsx") as writer:
+    writer.write(stream.read())
+       
+#================================================================
+
+
+
 
 # write data partitions or entire data to folder
 def write_partitions():
     if use_existing_file:
-        path = os.path.join(folder_info['path'], f'{existing_file}.xlsx')
-        writer = pd.ExcelWriter(path, engine='openpyxl',  mode='a')
+        # read an existing file  
+        with onedrive_folder.get_download_stream(existing_file) as file:
+        data = file.read() # binary data 
+        stream = io.BytesIO(data)
+        # save data as excel fomat into bytes string    
+        writer = pd.ExcelWriter(stream, engine='openpyxl',  mode='a')
     else:
-        path = os.path.join(folder_info['path'], excel_name)
-        writer = pd.ExcelWriter(path, engine='openpyxl')
-    
-     
+        stream = io.BytesIO() # create in-memory binary data stream 
+        writer = pd.ExcelWriter(stream, engine='openpyxl')
+   
     if partitioning_columns:
         i=0
         for dframe in dfs:
             dframe =dframe.applymap(str)
             if use_partition_value_for_sheetname:
-                if use_existing_file:
-                    dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
-                else:
-                    dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
+                dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
             else:
                 sheet_name_1 = "Sheet" + str(i+1)
-                if use_existing_file:    
-                    dframe.to_excel(writer, sheet_name=sheet_name_1, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
-                else:  
-                    dframe.to_excel(writer, sheet_name=sheet_name_1,  startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
+                dframe.to_excel(writer, sheet_name=sheet_name_1, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
             i=i+1
         writer.save()
 
@@ -159,13 +183,12 @@ def write_partitions():
             df_frame = input_data_df.drop(columns, axis=1) 
         else:
            df_frame = input_data_df.copy()
-        dframe =df_frame.applymap(str)
+        dframe = df_frame.applymap(str)
         if use_existing_file:
             dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
         else:
             dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)    
         writer.save()
-
 
 # write partitions or entire data to folder with time stamps included
 def write_partitions_timestamp():
