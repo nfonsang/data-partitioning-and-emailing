@@ -155,7 +155,7 @@ def write_partitions():
         else:
            df_frame = input_data_df.copy()
         dframe = df_frame.applymap(str)
-        if sheetname:
+        if sheet_name:
             dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
         else:
             dframe.to_excel(writer, sheet_name="Sheet1", startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)    
