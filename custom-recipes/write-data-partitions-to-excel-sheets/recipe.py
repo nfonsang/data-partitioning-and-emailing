@@ -40,7 +40,7 @@ start_row = get_recipe_config().get('start_row', 0)
 include_timestamp = get_recipe_config().get("include_timestamp", None)
 clear_folder = get_recipe_config().get("clear_folder", None)
 
-# clear folder before partitioning the datasets into CSV files)
+# clear folder before writing new files
 if use_existing_file:
     pass
 else:
