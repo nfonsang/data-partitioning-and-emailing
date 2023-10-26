@@ -89,9 +89,13 @@ include_timestamp = get_recipe_config().get('include_timestamp', False)
 clear_folder = get_recipe_config().get('clear_folder', False)
 
 # clear folder before partitioning the datasets into CSV files)
-if clear_folder:
-    logging.info("clearing folder")
-    output_folder.clear()
+if use_existing_file:
+    pass
+else:
+    if clear_folder:
+        for file in output_folder.list_paths_in_partition(''):
+            output_folder.delete_path(file)
+            logging.info(f"deleting {file}")
     
 # get dataframe from dataset
 input_data_df = input_dataset.get_dataframe()
