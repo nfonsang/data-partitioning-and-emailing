@@ -148,7 +148,7 @@ def write_partitions():
                 sheet_name_1 = "Sheet" + str(i+1)
                 dframe.to_excel(writer, sheet_name=sheet_name_1, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
             i=i+1
-        writer.save()
+            writer.save()
 
     # write entire dataframe
     else:
