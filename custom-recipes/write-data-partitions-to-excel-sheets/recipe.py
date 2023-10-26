@@ -45,8 +45,8 @@ if use_existing_file:
     pass
 else:
     if clear_folder:
-        for file in fold.list_paths_in_partition(''):
-            fold.delete_path ('/dumm4.csv')
+        for file in output_folder.list_paths_in_partition(''):
+            output_folder.delete_path (file)
         logging.info(f"deleting {file}")
 
 # get dataframe from dataset
