@@ -117,19 +117,19 @@ if partitioning_columns:
 # get file name
 if not use_existing_file:
     if file_name:
-        excel_name = f"{file_name}.xlsx"
+        excel_file_name = f"{file_name}.xlsx"
     else:
         data_name = input_dataset_name.split(".")[-1]
-        excel_name = f"{data_name}.xlsx"
+        excel_file_name = f"{data_name}.xlsx"
 else:
-    excel_name = f"{existing_file}.xlsx"
+    excel_file_name = f"{existing_file}.xlsx"
     
     
 # write data partitions or entire data to folder
 def write_partitions():
     if use_existing_file:
         # read an existing file  
-        with output_folder.get_download_stream(excel_name) as file:
+        with output_folder.get_download_stream(excel__file_name) as file:
             data = existing_file.read() # binary data 
             stream = io.BytesIO(data)
             # save data as excel fomat into bytes string    
@@ -165,7 +165,7 @@ def write_partitions():
         writer.save()
         stream.seek(0)
 
-    with output_folder.get_writer("CarData.xlsx") as writer:
+    with output_folder.get_writer(excel_file_name) as writer:
         writer.write(stream.read())
 
 # write partitions or entire data to folder with time stamps included
