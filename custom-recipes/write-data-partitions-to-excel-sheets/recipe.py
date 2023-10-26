@@ -116,20 +116,26 @@ if partitioning_columns:
 # sheet_name entered in the UI or default "Sheet1" will be used
 
 # get file name
-if not use_existing_file:
-    if file_name:
-        excel_file_name = f"{file_name}.xlsx"
+current_time = datetime.datetime.now()
+current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
+if not use_existing_file:   
+    if use_timestamp:
+        if file_name:
+             excel_file_name = f"{file_name}_{current_time}.xlsx"
+        else:
+            excel_file_name = f"{data_name}_{current_time}.xlsx"
+            
+    # no timestamp used    
     else:
-        data_name = input_dataset_name.split(".")[-1]
-        excel_file_name = f"{data_name}.xlsx"
-   
-   if use_timestamp:
-        current_time = datetime.datetime.now()
-        current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
-    else:
+        if file_name:
+            excel_file_name = f"{file_name}.xlsx"
+        else:
+            data_name = input_dataset_name.split(".")[-1]
+            excel_file_name = f"{data_name}.xlsx"
+            
+# existing file is use: existing file name required and no timestamp field
 else:
-    
-        excel_file_name = f"{existing_file}.xlsx"
+    excel_file_name = f"{existing_file}.xlsx"
     
     
 # write data partitions or entire data to folder
