@@ -184,10 +184,10 @@ def write_partitions():
         else:
            df_frame = input_data_df.copy()
         dframe = df_frame.applymap(str)
-        if use_existing_file:
+        if sheetname:
             dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
         else:
-            dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)    
+            dframe.to_excel(writer, sheet_name="Sheet1", startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)    
         writer.save()
 
 # write partitions or entire data to folder with time stamps included
