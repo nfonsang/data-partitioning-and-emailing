@@ -117,7 +117,7 @@
         {
             "name": "clear_folder",
             "label": "Clear folder",
-            "description": "WARNING! Existing files in this folder will be deleted if Check this button to clear the folder before writing new EXCEL files.",
+            "description": "WARNING! Existing files in the folder will be deleted before the new file is written if this button is checked.",
             "type": "BOOLEAN",
             "visibilityCondition": "!model.use_existing_file"            
             
