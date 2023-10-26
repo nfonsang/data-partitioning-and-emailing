@@ -163,7 +163,7 @@ def write_partitions():
         else:
             dframe.to_excel(writer, sheet_name="Sheet1", startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)    
         writer.save()
-        stream.seek(0)
+    stream.seek(0)
 
     with output_folder.get_writer(excel_file_name) as writer:
         writer.write(stream.read())
