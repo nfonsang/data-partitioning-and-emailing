@@ -181,65 +181,8 @@ def write_partitions():
     with output_folder.get_writer(excel_file_name) as writer:
         writer.write(stream.read())
 
-# write partitions or entire data to folder with time stamps included
-def write_partitions_timestamp():
-    # get current timestamp
-    current_time = datetime.datetime.now()
-    current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
-    
-    #===========================
-    
-    #===========================
-    
-    
-    if use_existing_file:
-        excel_name_1 = f"{existing_file}_{current_time}.xlsx"
-        path = os.path.join(folder_info['path'], excel_name_1)
-        writer = pd.ExcelWriter(path, engine='openpyxl', mode='a')
-    else:
-        excel_name_1 = f"{excel_name}_{current_time}.xlsx"
-        path = os.path.join(folder_info['path'], excel_name_1)
-        writer = pd.ExcelWriter(path, engine='openpyxl')
-    
-    if partitioning_columns:
-        i=0
-        for dframe in dfs:
-            dframe =dframe.applymap(str)
-            if use_partition_value_for_sheetname:
-                if use_existing_file:
-                    dframe.to_excel(writer, sheet_name=final_sheet_names[i],  startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
-                else:
-                    dframe.to_excel(writer, sheet_name=final_sheet_names[i], startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
-            else:
-                sheet_name_1 = "Sheet" + str(i+1)
-                if use_existing_file:    
-                    dframe.to_excel(writer, sheet_name=sheet_name_1, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
-                else:  
-                    dframe.to_excel(writer, sheet_name=sheet_name_1, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)            
-            i=i+1
-        writer.save()
 
-
-    # write entire dataframe
-    else:
-        if columns_to_exclude:
-            columns = [item.strip() for item in columns_to_exclude.split(",")]
-            df_frame = input_data_df.drop(columns, axis=1) 
-        else:
-           df_frame = input_data_df.copy()
-        dframe =df_frame.applymap(str)
-        if use_existing_file:
-            dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
-        else:
-            dframe.to_excel(writer, sheet_name=sheet_name, startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)
-        writer.save()
-
-# function calls to write data
-if include_timestamp:
-    write_partitions_timestamp()
-else:
-    write_partitions()
-    
+write_partitions()
 logging.info("Finished writing files to the folder")
 
 
