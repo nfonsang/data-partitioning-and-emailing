@@ -220,7 +220,7 @@
         {
             "name": "clear_folder",
             "label": "Clear folder",
-            "description": "Check this button to clear the folder before writing new CSV files",
+            "description": "WARNING! All existing files in the folder will be deleted before the new file is written if this button is checked.",
             "type": "BOOLEAN",
             "visibilityCondition": "model.write_data_to_folder"
         }
