@@ -130,7 +130,7 @@ def write_partitions():
     if use_existing_file:
         # read an existing file  
         with output_folder.get_download_stream(excel_file_name) as file:
-            data = existing_file.read() # binary data 
+            data = file.read() # binary data 
             stream = io.BytesIO(data)
             # save data as excel fomat into bytes string    
             writer = pd.ExcelWriter(stream, engine='openpyxl',  mode='a')
