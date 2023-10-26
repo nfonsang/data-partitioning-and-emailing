@@ -42,13 +42,10 @@ start_col = get_recipe_config().get('start_col', 0)
 start_row = get_recipe_config().get('start_row', 0)
 
 # clear folder before partitioning the datasets into CSV files)
-if use_existing_file:
-    pass
-else:
-    if clear_folder:
-        for file in output_folder.list_paths_in_partition(''):
-            output_folder.delete_path(file)
-            logging.info(f"deleting {file}")
+if clear_folder:
+    for file in output_folder.list_paths_in_partition(''):
+        output_folder.delete_path(file)
+        logging.info(f"deleting {file}")
             
 # get dataframe from dataset
 input_data_df = input_dataset.get_dataframe()
