@@ -156,10 +156,10 @@ def write_partitions():
     if use_existing_file:
         # read an existing file  
         with onedrive_folder.get_download_stream(existing_file) as file:
-        data = existing_file.read() # binary data 
-        stream = io.BytesIO(data)
-        # save data as excel fomat into bytes string    
-        writer = pd.ExcelWriter(stream, engine='openpyxl',  mode='a')
+            data = existing_file.read() # binary data 
+            stream = io.BytesIO(data)
+            # save data as excel fomat into bytes string    
+            writer = pd.ExcelWriter(stream, engine='openpyxl',  mode='a')
     else:
         stream = io.BytesIO() # create in-memory binary data stream 
         writer = pd.ExcelWriter(stream, engine='openpyxl')
@@ -189,6 +189,10 @@ def write_partitions():
         else:
             dframe.to_excel(writer, sheet_name="Sheet1", startrow=start_row, startcol=start_col, encoding='utf-8', index = None, header = True)    
         writer.save()
+        stream.seek(0)
+
+    with onedrive_folder.get_writer("CarData.xlsx") as writer:
+        writer.write(stream.read())
 
 # write partitions or entire data to folder with time stamps included
 def write_partitions_timestamp():
