@@ -184,6 +184,6 @@ def write_partitions():
 
 
 write_partitions()
-logging.info("Finished writing files to the folder")
+logging.info("Finished writing the file(s) to the folder")
 
 
