@@ -25,8 +25,8 @@ This recipe partitions data and write data partitions to multiple sheets in an E
 After installing the plugin, configure the SMTP server presets with the user email and password associated with the SMTP server of the email sender. There are two SMTP server presets that can be set up through the settings of the plugin: the SMTP Host Server Personal Preset and SMTP Host Server Shared Preset. The SMTP Host Server Personal Preset allows the sender to authenticate into the SMTP Server through their DSS profile. The SMTP Host Server Shared Preset allows authentication into the sender SMTP Server at the instance level. 
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/aa9a6dfd-51e9-4ba7-91c0-99527bd6f54b)
 
-## Python Environment 
+# Python Environment 
 This plugin requires a Python environment to work. The Python environment can be created when the plugin is being installed and a specific version of Python could be selected amongs various versions of Python including PYTHON36, PYTHON37, PYTHON38, PYTHON39, PYTHON10, and PYTHON11.
 
-License 
+# License
 This plugin is distributed under the [Apache License version 2.0.](https://github.com/nfonsang/data-partitioning-and-emailing/blob/main/LICENSE)
