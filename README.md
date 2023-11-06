@@ -29,4 +29,4 @@ After installing the plugin, configure the SMTP server presets with the user ema
 This plugin requires a Python environment to work. The Python environment can be created when the plugin is being installed and a specific version of Python could be selected amongs various versions of Python including PYTHON36, PYTHON37, PYTHON38, PYTHON39, PYTHON10, and PYTHON11.
 
 License 
-This plugin is distributed under the [Apache License version 2.0.](https://github.com/nfonsang/data-partitioning-and-emailing/blob/main/LICENSE)https://github.com/nfonsang/data-partitioning-and-emailing/blob/main/LICENSE
+This plugin is distributed under the [Apache License version 2.0.](https://github.com/nfonsang/data-partitioning-and-emailing/blob/main/LICENSE)
