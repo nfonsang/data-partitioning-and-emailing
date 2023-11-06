@@ -15,7 +15,7 @@ This recipe partitions data and emails the data partitions as CSV files or embed
 
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/08ce0bba-b610-4bfd-8301-d97bc96f2521)
 
-# Write Data Partitions to Multiple Sheets in an Excel File 
+# Write Data Partitions to Multiple Sheets in an Excel File Recipe
 This recipe partitions data and write data partitions to multiple sheets in an Excel file in a managed folder. 
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/37612598-cc1f-4f76-99e8-4578493827c0)
 
