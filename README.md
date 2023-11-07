@@ -1,6 +1,6 @@
 # Data Partitioning Plugin
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/c7b9a8de-dc59-436b-b5db-c84432e89fa3)
-The plugin provides three recipe components for partitioning data into files, then writing the files to folders or emailing the data partitions as embbedded tables or attached files. 
+The plugin provides three recipe components for partitioning data into files, then writing the files to folders or emailing the data partitions as embedded tables or attached files. 
 # Data Partitioning Recipe
 This plugin recipe component partitions data and saves the partitions as CSV or EXCEL files in a managed folder. 
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/8d0a4bf9-313a-4d1c-a072-a95d89cf0df4)
@@ -16,7 +16,7 @@ This recipe partitions data and emails the data partitions as CSV files or embed
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/08ce0bba-b610-4bfd-8301-d97bc96f2521)
 
 # Write Data Partitions to Multiple Sheets in an Excel File Recipe
-This recipe partitions data and write data partitions to multiple sheets in an Excel file in a managed folder. 
+This recipe partitions data and writes data partitions to multiple sheets in an Excel file in a managed folder. 
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/37612598-cc1f-4f76-99e8-4578493827c0)
 
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/3c3a4f34-40a7-4f0b-bb30-76da5288b60f)
@@ -26,7 +26,7 @@ After installing the plugin, configure the SMTP server presets with the user ema
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/aa9a6dfd-51e9-4ba7-91c0-99527bd6f54b)
 
 # Python Environment 
-This plugin requires a Python environment to work. The Python environment can be created when the plugin is being installed and a specific version of Python could be selected amongs various versions of Python including PYTHON36, PYTHON37, PYTHON38, PYTHON39, PYTHON10, and PYTHON11.
+This plugin requires a Python environment to work. The Python environment can be created when the plugin is being installed, and a specific version of Python could be selected among various versions of Python, including PYTHON36, PYTHON37, PYTHON38, PYTHON39, PYTHON10, and PYTHON11.
 
 # License
 This plugin is distributed under the [Apache License version 2.0.](https://github.com/nfonsang/data-partitioning-and-emailing/blob/main/LICENSE)
