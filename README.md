@@ -1,4 +1,4 @@
-# Data Partitioning Plugin
+# Data Partitioning and Emailing Plugin
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/c7b9a8de-dc59-436b-b5db-c84432e89fa3)
 The plugin provides three recipe components for partitioning data into files, then writing the files to folders or emailing the data partitions as embedded tables or attached files. 
 # Data Partitioning Recipe
