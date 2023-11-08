@@ -87,7 +87,8 @@
         {
             "name": "sender_email",
             "label": "Sender email (required)",
-            "description": "Email address of sender",
+            "description": "Email address of sender. This email should match with the email used as the SMTP Server username in the Plugin Preset",
+            "type": "STRING",
             "type": "STRING",
             "mandatory":true 
         },
