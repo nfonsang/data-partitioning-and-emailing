@@ -80,7 +80,7 @@
         {
             "name": "sender_name",
             "label": "Sender name (required)",
-            "description": "Enter email sender name or'On the Behalf of (put your name here)'.",
+            "description": "Enter email sender name or 'On the Behalf of (put your name here)'.",
             "type": "STRING",
             "mandatory":true 
         },
