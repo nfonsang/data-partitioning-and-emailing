@@ -11,8 +11,7 @@ This plugin recipe component partitions data and saves the partitions as CSV or 
 
 # Emailing Data Partitions Recipe
 This recipe partitions data and emails the data partitions as CSV files or embedded HTML tables to recipients. Emailed data partitions can be optinally saved in a folder. 
-![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/b5c8695e-b4aa-4582-a5c9-0f06c66c39bd)
-
+![image](https://github.com/dataiku/dss-plugin-data-partitioning-and-emailing/assets/45580710/55409764-40f8-4746-a55e-4e32f8d21034)
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/08ce0bba-b610-4bfd-8301-d97bc96f2521)
 
 # Write Data Partitions to Multiple Sheets in an Excel File Recipe
