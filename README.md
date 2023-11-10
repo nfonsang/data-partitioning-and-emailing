@@ -10,6 +10,7 @@ After installing the plugin, configure the SMTP server presets with the user ema
 
 # How to Use the Plugin
 
+
 ## Data Partitioning Recipe
 This plugin recipe component partitions data and saves the partitions as CSV or EXCEL files in a managed folder. 
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/8d0a4bf9-313a-4d1c-a072-a95d89cf0df4)
@@ -25,7 +26,6 @@ This recipe partitions data and emails the data partitions as CSV files or embed
 This recipe partitions data and writes data partitions to multiple sheets in an Excel file in a managed folder. 
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/37612598-cc1f-4f76-99e8-4578493827c0)
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/3c3a4f34-40a7-4f0b-bb30-76da5288b60f)
-
 
 # Python Environment
 This plugin requires a Python environment to work. The Python environment can be created when the plugin is being installed, and a specific version of Python could be selected among various versions of Python, including PYTHON36, PYTHON37, PYTHON38, PYTHON39, PYTHON10, and PYTHON11.
