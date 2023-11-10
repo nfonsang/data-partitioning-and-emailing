@@ -10,7 +10,6 @@ After installing the plugin, configure the SMTP server presets with the user ema
 
 # How to Use the Plugin
 
-
 ## Data Partitioning Recipe
 This plugin recipe component partitions data and saves the partitions as CSV or EXCEL files in a managed folder. 
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/8d0a4bf9-313a-4d1c-a072-a95d89cf0df4)
