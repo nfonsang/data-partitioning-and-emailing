@@ -1,12 +1,11 @@
 {
     "id": "data-partitioning-and-emailing",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "meta": {
         "label": "data partitioning and emailing",
-        "description": "This email partitions data based on a partition column and emails data 
-partitions",
-        "author": "Organization (Neba Nfonsang)",
-        "icon": "icon-font-awesome-3.2.1",
+        "description": "This plugin provides three recipe components for partitioning data into files and emailing data partitions. The Data partitioning recipe component allows you to save data partitions as CSV/EXCEL files into a folder. The Emailing data partitions recipe component lets you to email the data partitions as CSV files or embedded HTML tables to recipients. The Write data partitions to multiple sheet in an Excel file recipe component allows you to write data partition to multiple sheets on a single Excel file.",
+        "author": "Dataiku (Neba Nfonsang)",
+        "icon": "icon-plane",
         "licenseInfo": "Apache Software License",
         "url": "https://www.dataiku.com/product/plugins/data-partitioning-and-emailing",
         "tags": [

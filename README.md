@@ -1,133 +1,33 @@
-# Plugin Template
+# Data Partitioning and Emailing Plugin
+![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/c7b9a8de-dc59-436b-b5db-c84432e89fa3)
 
-This repository is a template for developers to create Dataiku DSS plugins from GitHub.
+# The Goal of the Plugin
+The plugin provides three recipe components for partitioning data into files, then writing the files to folders or emailing the data partitions as embedded tables or attached files. 
 
-Use it and adapt it as you wish, and have fun with Dataiku!
+# How to Set-up the Plugin
+After installing the plugin, configure the SMTP server presets with the user email and password associated with the SMTP server of the email sender. There are two SMTP server presets that can be set up through the settings of the plugin: the SMTP Host Server Personal Preset and SMTP Host Server Shared Preset. The SMTP Host Server Personal Preset allows the sender to authenticate into the SMTP Server through their DSS profile. The SMTP Host Server Shared Preset allows authentication into the sender SMTP Server at the instance level. 
+![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/aa9a6dfd-51e9-4ba7-91c0-99527bd6f54b)
 
+# How to Use the Plugin
 
-# How to test your plugin
+## Data Partitioning Recipe
+This plugin recipe component partitions data and saves the partitions as CSV or EXCEL files in a managed folder. 
+![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/8d0a4bf9-313a-4d1c-a072-a95d89cf0df4)
+![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/45d581cd-473a-416c-8f71-4ab59f4c3a80)
+![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/1facd6c6-77cf-44f4-b16f-0e3092e83ab6)
 
-We recommend supporting your development cycle with unit and integration tests.
-To operate integration tests, you will need the help of the `dataiku-plugin-tests-utils` package to automate their executions while targeting dedicated DSS instances.
+## Emailing Data Partitions Recipe
+This recipe component partitions data and emails the data partitions as CSV files or embedded HTML tables to recipients. Emailed data partitions can be optinally saved in a folder. 
+![image](https://github.com/dataiku/dss-plugin-data-partitioning-and-emailing/assets/45580710/55409764-40f8-4746-a55e-4e32f8d21034)
+![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/08ce0bba-b610-4bfd-8301-d97bc96f2521)
 
-`dataiku-plugin-tests-utils` will be installed as a `pytest plugin`. Install that package inside an environment dedicated to integration tests; otherwise, `pytest` will complain about unused fixtures inside your unit tests.
+## Write Data Partitions to Multiple Sheets in an Excel File Recipe
+This recipe component partitions data and writes data partitions to multiple sheets in an Excel file in a managed folder. 
+![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/37612598-cc1f-4f76-99e8-4578493827c0)
+![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/3c3a4f34-40a7-4f0b-bb30-76da5288b60f)
 
-# How to install in your plugin
+# Python Environment
+This plugin requires a Python environment to work. The Python environment can be created when the plugin is being installed, and a specific version of Python could be selected among various versions of Python, including PYTHON36, PYTHON37, PYTHON38, PYTHON39, PYTHON10, and PYTHON11.
 
-To install the `dataiku-plugin-tests-utils` package for your plugins, use the following line depending on your preferred way to managed packages.
-
-## Using requirements.txt
-
-### Development
-
-```
-git+https://github.com/dataiku/dataiku-plugin-tests-utils.git@<BRANCH>#egg=dataiku-plugin-tests-utils
-```
-
-Replace `<BRANCH>` with the most accurate value
-
-### Stable release
-
-```
-git+https://github.com/dataiku/dataiku-plugin-tests-utils.git@releases/tag/<RELEASE_VERSION>#egg=dataiku-plugin-tests-utils
-```
-
-Replace `<RELEASE_VERSION>` with the most accurate value
-
-## Using pipfile
-
-Put the following line under `[dev-packages]` section
-
-### Development cycle
-
-```
-dku-plugin-test-utils = {git = "https://github.com/dataiku/dataiku-plugin-tests-utils.git", ref = "<BRANCH>"}
-```
-
-### Stable release
-TBD
-
-## Dev env
-
-### Config
-
-First, ensure that you have personal API Keys for the DSS you want to target.
-Secondly, define a config file that will give the DSS you will target.
-```
-{
-	"DSSX":
-	{
-		"url": ".......",
-		"users": {
-			"usrA": "api_key",
-			"usrB": "api_key",
-			"default": "usrA"
-		},
-        "python_interpreter": ["PYTHON27", "PYTHON36"]
-
-	},
-	"DSSY":
-	{
-		"url": "......",
-		"users": {
-			"usrA": "api_key",
-			"usrB": "api_key",
-			"default": "usrB"
-		},
-        "python_interpreter": ["PYTHON36", "PYTHON39"]
-	}
-}
-
-```
-
-**BEWARE**: User names must be identical in the configuration file between the different DSS instances.
-Then, set the environment variable `PLUGIN_INTEGRATION_TEST_INSTANCE` to point to the config file.
-
-# How to use the package
-
-## General information
-
-To use the package in your test files:
-```python
-import dku_plugin_test_utils
-import dku_plugin_test_utils.subpakcage.subsymbol
-```
-Look at the next section for more information about potential `subpackage` and `subsymbol`.
-
-The python integration test files are indirections towards the "real" tests written as DSS scenarios on DSS instances.
-The python test function triggers the targeted DSS scenario and waits either for its successful or failed completion.
-Thence your test function should look like the following snippet :
-```python
-# Mandatory imports
-from dku_plugin_test_utils import dss_scenario
-
-def test_run_some_dss_scenario(user_dss_clients):
-     dss_scenario.run(user_clients, 'PROJECT_KEY', 'scenario_id', user="user1")
-
-# [... other tests ...]
-```
-With:
-- `user_dss_clients`: representing the DSS client corresponding to the desired user.
-- `PROJECT_KEY`: The project that holds the test scenarios
-- `scenario_id`: The test scenario to run
-- `user`: Specify the user to run the scenario with. It is an optional argument. By default, it is "default".
-
-## How to generate a graphical report with Allure for integration tests
-
-For each plugin, a folder named `allure_report` should exist inside the `test` folder; reports will be generated inside that folder.
-To generate the graphical report, you must have Allure installed on your system as described [on their installation guide](https://docs.qameta.io/allure/#_manual_installation). Once the installation is done, run the following :
-```shell
-allure serve path/to/the/allure_report/dir/inside/you/plugin/test/folder/
-```
-
-# Package hierarchy
-
-As it is a tooling package for integration tests, it will aggregate different packages with different goals. 
-The following hierarchy exposes the different sub-package contained in `dku_plugin_test_utils` with their aim 
-and the list of public symbols:
-
-- `run_config`:
-  - `ScenarioConfiguration`: Class exposing the parsed run configuration as a python dictionary.
-  - `PluginInfo`: Parse the plugin.json and the code-env desc.json files to extract plugin metadata as a python dictionary.
-- `dss_scenario`: 
-  - `run`: Run the target DSS scenario and wait for its completion (either success or failure).
+# License
+This plugin is distributed under the [Apache License version 2.0.](https://github.com/nfonsang/data-partitioning-and-emailing/blob/main/LICENSE)

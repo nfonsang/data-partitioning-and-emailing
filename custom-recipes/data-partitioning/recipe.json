@@ -1,8 +1,8 @@
 {
     "meta": {
         "label": "Data partitioning",
-        "description": "This recipe partitions data and saves the partitions as CSV files in managed folder",
-        "icon": "icon-file-text"
+        "description": "This recipe partitions data and saves the partitions as CSV or EXCEL files in a managed folder.",
+        "icon": "icon-th"
     },
     
     // kind of plugin recipe
@@ -14,7 +14,7 @@
         {
             "name": "input_dataset",
             "label": "Input dataset",
-            "description": "This is the input dataset that will be partitioned",
+            "description": "This is the input dataset that will be partitioned.",
             "arity": "UNARY",
             "required": true,
             "acceptsDataset": true
@@ -26,7 +26,7 @@
         {
             "name": "output_folder",
             "label": "Output Folder",
-            "description": "This is the folder where the data partitions will saved",
+            "description": "This is the folder where the data partitions will saved.",
             "arity": "UNARY",
             "required": true,
             "acceptsDataset": false,
@@ -36,34 +36,83 @@
     
     // parameters
     "params": [
-                        
-        {
-            "name": "separator_1",
-            "label":"Data paritioning parameters",
-            "type":"SEPARATOR"
-             
-        },
-        
                 
         {
             "name": "partitioning_column",
-            "label": "Partitioning column",
+            "label": "Partitioning column(s)",
             "type": "STRING",
-            "description": "Name of column in the input dataset whose unique values will be used to filter partitions",
-            "mandatory": true
+            "description": "Enter the column or columns in the input dataset whose unique values will be used to filter the data partitions. Separate several columns with commas. If this field is empty, the whole data will be written to the folder. The partitioning column value or combination of partitioning column values will be used as default file names.",
+            "mandatory": false
         },
-        
+        {
+            "name": "add_prefix",
+            "label": "Add prefix to file names - [optional]",
+            "type": "STRING",
+            "description": "Add prefix to file names.",
+            "mandatory": false
+        },
+        {
+            "name": "add_suffix",
+            "label": "Add suffix to file names - [optional]",
+            "type": "STRING",
+            "description": "Add suffix to file name(s).",
+            "mandatory": false
+        },
+
+        {
+            "name": "columns_to_exclude",
+            "label": "Column(s) to exclude",
+            "type": "STRING",
+            "description": "These is(are) the column(s) to exclude from the data partitions written to the folder.",
+            "mandatory": false
+        },
+        {
+            "name": "file_format",
+            "label" : "File format",
+            "type": "SELECT",
+            "defaultValue" : "csv",
+            "description" : "Select the file format of the data to be written.",
+            "selectChoices" : [
+                {"value":  "csv" , "label":"CSV"},
+                {"value":  "excel" , "label":"EXCEL"}
+            ]
+        }, 
+        {
+            "name": "sheet_name",
+            "label": "Sheet Name [Optional]",
+            "type": "STRING",
+            "description": "Enter sheet name. The default name, Sheet1, will be used if this field is left empty.",
+            "mandatory": false,
+            "visibilityCondition": "model.file_format == 'excel'"
+        },
+        {
+            "name": "start_col",
+            "label": "Start column [Optional]",
+            "type": "INT",
+            "description": "This is the upper left cell column to dump data. The default value is 0, and will be used if this field is left empty.",
+            "mandatory": false,
+            "visibilityCondition": "model.file_format == 'excel'"
+        },
+        {
+            "name": "start_row",
+            "label": "Start row [Optional]",
+            "type": "INT",
+            "description": "This is the upper left cell row to dump data. The default value is 0, and will be used if this field is left empty.",
+            "mandatory": false,
+            "visibilityCondition": "model.file_format == 'excel'"
+        },
         {
             "name": "include_timestamp",
-            "label": "Include timestamp to CSV file names",
-            "description": "Check this button to include timestamps to csv file names. The default file name is the value of the partitioning column used to create the file",
+            "label": "Include timestamp to CSV or EXCEL file names",
+            "description": "Check this button to include timestamps to CSV or EXCEL file names.",
             "type": "BOOLEAN"
         },
         {
             "name": "clear_folder",
             "label": "Clear folder",
-            "description": "Check this button to clear the folder before writing new CSV files",
+            "description": "WARNING! All existing files in the folder will be deleted before new files are written if this button is checked.",
             "type": "BOOLEAN"
+
         }
 
     ],
@@ -71,7 +120,3 @@
     "resourceKeys": []
 
 }
-
-
-
-

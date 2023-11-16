@@ -1,7 +1,7 @@
 {
     "meta": {
         "label": "Emailing data partitions",
-        "description": "This recipe partitions data emails data partitions as CSV files to email recipients. Emailed data partitions can be optionally saved in folder",
+        "description": "This recipe partitions data, then emails the data partitions as CSV files or embedded HTML tables to recipients. Emailed data partitions can be optionally saved in a folder",
         "icon": "icon-envelope-alt"
     },
     
@@ -36,8 +36,42 @@
     
     // parameters
     "params": [
-                        
+                                
         {
+            "name": "separator_0",
+            "label":"SMTP Host Server Parameters",
+            "type":"SEPARATOR"
+             
+        },
+        {
+            "name": "authentication_type",
+            "label": "SMTP Server Athentication",
+            "type": "SELECT",
+            "defaultValue" : "shared-preset",
+            "selectChoices" : [
+                {"value":  "shared_preset" , "label":"SMTP Server Shared Preset"},
+                {"value":  "personal_preset" , "label":"SMTP Server Personal Preset"}
+            ]
+        }, 
+        
+        {
+            "name": "smtp_personal_connection",
+            "label": "SMTP HOST Server Personal Preset",
+            "type": "PRESET",
+            "parameterSetId": "smtp-personal-connection",
+            "visibilityCondition": "model.authentication_type == 'personal_preset'"
+        },   
+            
+        {
+            "name": "smtp_shared_connection",
+            "label": "SMTP HOST Server Shared Preset",
+            "type": "PRESET",
+            "parameterSetId": "smtp-shared-connection",
+            "visibilityCondition": "model.authentication_type == 'shared_preset'"
+        },
+            
+        {
+            
             "name": "separator_1",
             "label":"Email header parameters",
             "type":"SEPARATOR"
@@ -46,24 +80,41 @@
         {
             "name": "sender_name",
             "label": "Sender name (required)",
-            "description": "Name of email sender",
+            "description": "Enter email sender name or 'On the Behalf of (put your name here)'.",
             "type": "STRING",
             "mandatory":true 
         },
         {
             "name": "sender_email",
             "label": "Sender email (required)",
-            "description": "Email address of sender",
+            "description": "Email address of sender. This email should match with the email used as the SMTP Server username in the Plugin Preset",
             "type": "STRING",
             "mandatory":true 
         },
         {
-            "name": "recipient_emails",
-            "label": "Recipient email(s) (required)",
-            "description": "Email address(es) of recipient(s). Separate email addresses with commas",
-            "type": "STRING",
-            "mandatory":true 
+            "name": "use_recipient_email_column",
+            "label" : "Use recipient email column",
+            "type": "BOOLEAN",
+            "description": "Check this box if the recipient emails are in a column in the input dataset"
         },
+        {
+            "name": "recipient_email_column",
+            "label" : "Column with recipient email",
+            "type": "STRING",
+            "description": "Enter the column name that contains the emails of the recipients. This column name should be in the input dataset",
+            "mandatory": true,
+            "visibilityCondition" : "model.use_recipient_email_column" 
+        }, 
+        
+        {
+            "name": "recipient_emails",
+            "label": "Recipient email(s)",
+            "description": "Use this field to enter recipent email address(es) inline if recipient emails are not in the input dataset: all data partitions will be sent to each of these recipient emails. Separate email addresses with commas",
+            "type": "STRING",
+            "mandatory":false,
+            "visibilityCondition" : "!model.use_recipient_email_column" 
+        },
+        
         {
             "name": "cc",
             "label": "CC",
@@ -72,9 +123,9 @@
             "mandatory":false 
         },
         {
-            "name": "bcc",
-            "label": "BCC",
-            "description": "Email addres(es) in the BCC field. Separate email addresses with commas",
+            "name": "bc",
+            "label": "BC",
+            "description": "Email addres(es) in the BC field. Separate email addresses with commas",
             "type": "STRING",
             "mandatory":false 
         },
@@ -113,8 +164,8 @@
              
         },  
         {
-            "name": "use_email_body_text",
-            "label" : "Use email body text",
+            "name": "use_email_body",
+            "label" : "Use email body",
             "type": "BOOLEAN",
             "description": "Checking this box allows you to write the email body text if needed"
         },
@@ -123,73 +174,12 @@
             "name": "email_body_text",
             "label" : "Email body text",
             "type": "TEXTAREA",
-            "description" : "Provide the text of the email body. You can use recipient's name in email by using the variable {recipient}. You can also use the value used to partition the data as {partition}. For example: Hi {name}, this is the {partion} data",
+            "description" : "Provide the text of the email body. You can use the partitioning column value in the text by using the variable {partition}. For example: Hi, this is the {partition} data",
             "mandatory": false,
-            "visibilityCondition" : "model.use_email_body_text"        
-        },
-        {
-            "name": "recipient_name_column",
-            "label" : "Column with recipient names",
-            "type": "STRING",
-            "description": "To use the recipient's name in the email body dynamically, provide column in the input dataset containing the recipient's name. This is optional.",
-            "mandatory": true,
-            "visibilityCondition" : "model.use_email_body_text" 
-        },             
+            "visibilityCondition" : "model.use_email_body"        
+        },            
         
-        {
-            "name": "separator_4",
-            "label":"SMTP authentication server parameters",
-            "type":"SEPARATOR"
-             
-        },    
-        
-        {
-            "name": "smtp_host",
-            "label" : "SMTP Host (required)",
-            "defaultValue" : "localhost",
-            "description": "Domain of the sender's SMTP Host server. For example: smtp.gmail.com",
-            "type": "STRING",
-            "mandatory": true
-        },          
-        {
-            "name": "smtp_port",
-            "label" : "SMTP port (required)",
-            "defaultValue" : 25,
-            "type": "INT"
-        },
-        {
-            "name": "smtp_use_tls",
-            "label" : "Use TLS",
-            "type": "BOOLEAN",
-            "description": "TLS encryption may be required depending on the SMTP Host Server used"
-        },
-        {
-            "name": "smtp_use_ssl",
-            "label" : "Use SSL",
-            "type": "BOOLEAN",
-            "description": "SSL encryption may be required depending on the SMTP Host Server used"
-        },
-        
-        {
-            "name": "smtp_use_auth",
-            "label" : "Use authentication",
-            "description": "Check this button if SMTP server requires authentication. For example: smtp.gmail.com requires SSL or TLS authentication.",               
-            "type": "BOOLEAN"
-        },  
-        
-        {
-            "name": "smtp_user",
-            "label" : "SMTP Server Username",
-            "type": "STRING",
-            "visibilityCondition" : "model.smtp_use_auth"
-        },
-        {
-            "name": "smtp_password",
-            "label" : "SMTP Sever Password",
-            "type": "PASSWORD",
-            "visibilityCondition" : "model.smtp_use_auth"
-        },
-        
+    
         {
             "name": "separator_5",
             "label":"Data management parameters",
@@ -197,20 +187,21 @@
              
         }, 
         {
-            "name": "partitioning_column",
-            "label": "Partitioning column",
+            "name": "partitioning_columns",
+            "label": "Partitioning column(s)",
             "type": "STRING",
-            "description": "Name of column in the input dataset whose unique values will be used to filter data partitions",
-            "mandatory": true
+            "description": "Enter the column or columns in the input dataset whose unique values will be used to filter the data partitions. Separate several columns with commas. If this field is empty, the whole data will be written to the folder. The partitioning column value or combination of partitioning column values will be used as default file names.",
+            "mandatory": false
         },
-                
+
         {
             "name": "columns_to_exclude",
             "label": "Columns to exclude",
             "type": "STRING",
-            "description": "These are the columns to exclude in the dataset to email. For example, you may want to exclude email columns in the final data partition to be sent through email",
-            "mandatory": true
+            "description": "These are the columns to exclude in the dataset or data partitions to email. For example, you may want to exclude the email column in the final data partition to be sent through email. Use commas to separate columns",
+            "mandatory": false
         },
+        
         {
             "name": "write_data_to_folder",
             "label": "Write data partitions to folder",
@@ -225,22 +216,20 @@
             "type": "BOOLEAN",
             "visibilityCondition" : "model.write_data_to_folder"
         },
+        
         {
             "name": "clear_folder",
             "label": "Clear folder",
-            "description": "Check this button to clear the folder before writing new CSV files",
+            "description": "WARNING! All existing files in the folder will be deleted before the new file is written if this button is checked.",
             "type": "BOOLEAN",
-            "visibilityCondition" : "model.write_data_to_folder"
+            "visibilityCondition": "model.write_data_to_folder"
         }
         
-
     ],
 
     "resourceKeys": []
 
 }
-
-
 
 
 
