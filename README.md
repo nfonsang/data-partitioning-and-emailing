@@ -18,7 +18,7 @@ This plugin recipe component partitions data and saves the partitions as CSV or 
 
 ## Emailing Data Partitions Recipe
 This recipe component partitions data and emails the data partitions as CSV files or embedded HTML tables to recipients. Emailed data partitions can be optinally saved in a folder. 
-![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/7a5ea9c9-4830-4616-9642-f33d4611b53e)
+![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/890098f1-5d95-4eec-8fb1-d0e751565318)
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/08ce0bba-b610-4bfd-8301-d97bc96f2521)
 
 ## Write Data Partitions to Multiple Sheets in an Excel File Recipe
@@ -27,7 +27,7 @@ This recipe component partitions data and writes data partitions to multiple she
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/3c3a4f34-40a7-4f0b-bb30-76da5288b60f)
 
 # Python Environment
-This plugin requires a Python environment to work. The Python environment can be created when the plugin is being installed, and a specific version of Python could be selected among various versions of Python, including PYTHON36, PYTHON37, PYTHON38, PYTHON39, PYTHON10, and PYTHON11.
+This plugin requires a Python environment to work. The Python environment can be created when the plugin is being installed, and a specific version of Python could be selected among various versions of Python, including PYTHON39, PYTHON10, and PYTHON11.
 
 # License
 This plugin is distributed under the [Apache License version 2.0.](https://github.com/nfonsang/data-partitioning-and-emailing/blob/main/LICENSE)
