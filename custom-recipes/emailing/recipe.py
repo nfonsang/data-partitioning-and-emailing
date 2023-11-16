@@ -99,7 +99,7 @@ input_data_df = input_dataset.get_dataframe()
 
 # get partition dataframe and partition values from dataset
 input_data_df = input_dataset.get_dataframe()
-if partitioning_column:
+if not(partitioning_column==""):
     partition_values = input_data_df[partitioning_column].unique()
     recipient_emails_for_partitions = []
     partition_dfs = []
@@ -181,7 +181,12 @@ def send_email(partition_df, partition):
         if (not smtp_use_ssl) and (not smtp_use_tls) and (not smtp_use_auth):
             smtp_client = smtplib.SMTP(smtp_host, port=smtp_port, timeout=120)
         # send email message/attachment
-        smtp_client.sendmail(from_addr=sender_email,
+        if use_recipient_email_column:
+            smtp_client.sendmail(from_addr=sender_email,
+                                 to_addrs=rec_emails.split(",") + cc.split(",") + bc.split(","),
+                                 msg=msg.as_string())
+        else:
+            smtp_client.sendmail(from_addr=sender_email,
                                  to_addrs=recipient_emails.split(",") + cc.split(",") + bc.split(","),
                                  msg=msg.as_string())
         # log success message
@@ -195,7 +200,7 @@ def send_email(partition_df, partition):
     smtp_client.quit()
 # send emails
 i=0
-if partitioning_column:
+if not(partitioning_column==""):
     # email data partitions
     for partition_df in partition_dfs:
         partition = partition_values[i]
@@ -213,7 +218,7 @@ else:
     send_email(input_data_df, partition)
 # write data partitions or entire data to folder
 def write_partitions(df, partition):
-    if partitioning_column:
+    if not(partitioning_column==""):
         data = df.to_csv(index=False)
         file_name = f"{partition}.csv"
         logging.info(f"writing {file_name} to the folder")
