@@ -28,7 +28,10 @@ This recipe component partitions data and writes data partitions to multiple she
 ![image](https://github.com/nfonsang/data-partitioning-and-emailing/assets/45580710/3c3a4f34-40a7-4f0b-bb30-76da5288b60f)
 
 # Python Environment
-This plugin requires a Python environment to work. The Python environment can be created when the plugin is being installed, and a specific version of Python could be selected among various versions of Python, including PYTHON39, PYTHON10, and PYTHON11.
+This plugin requires a Python environment to work. The Python environment can be created when the plugin is being 
+installed, and a specific version of Python could be selected among various versions of Python, including PYTHON39, 
+PYTHON10, and PYTHON11.
 
 # License
+
 This plugin is distributed under the [Apache License version 2.0.](https://github.com/nfonsang/data-partitioning-and-emailing/blob/main/LICENSE)
