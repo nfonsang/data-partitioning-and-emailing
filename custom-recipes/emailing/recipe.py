@@ -82,7 +82,11 @@ if authentication_type=="shared_preset":
     except: smtp_password = None
     
 # get data management parameter values
+<<<<<<< HEAD
 partitioning_columns = get_recipe_config().get('partitioning_columns', "")
+=======
+partitioning_column = get_recipe_config().get('partitioning_column', "")
+>>>>>>> 2272e6a05b1b46376c77a223d2d955f03a24142a
 columns_to_exclude = get_recipe_config().get('columns_to_exclude', "")
 write_data_to_folder = get_recipe_config().get('write_data_to_folder', False)
 include_timestamp = get_recipe_config().get('include_timestamp', False)
@@ -99,6 +103,7 @@ input_data_df = input_dataset.get_dataframe()
 
 # get partition dataframe and partition values from dataset
 input_data_df = input_dataset.get_dataframe()
+<<<<<<< HEAD
 if partitioning_columns:
     partitioning_columns = partitioning_columns.split(",")
     partitioning_columns =[item.strip() for item in partitioning_columns]
@@ -115,6 +120,14 @@ if partitioning_columns:
         mask_df = input_data_df[partitioning_columns].isin(unique_record)
         partition_df = input_data_df[mask_df.sum(axis=1)==len(unique_record)]
         
+=======
+if partitioning_column:
+    partition_values = input_data_df[partitioning_column].unique()
+    recipient_emails_for_partitions = []
+    partition_dfs = []
+    for partition in partition_values:
+        partition_df = input_data_df[input_data_df[partitioning_column]==partition]
+>>>>>>> 2272e6a05b1b46376c77a223d2d955f03a24142a
         # get recipient email address(es) before dropping columns
         if use_recipient_email_column:
             rec_emails_in_partition = partition_df[recipient_email_column].unique().tolist()
@@ -122,6 +135,7 @@ if partitioning_columns:
         if columns_to_exclude:
             columns = [item.strip() for item in columns_to_exclude.split(",")]
             partition_df = partition_df.drop(columns, axis=1)
+<<<<<<< HEAD
         partition_dfs.append(partition_df)   
 
     # get file names 
@@ -134,6 +148,9 @@ if partitioning_columns:
         partition_value = clean_name
         partition_values.append(partition_value)
 
+=======
+        partition_dfs.append(partition_df)
+>>>>>>> 2272e6a05b1b46376c77a223d2d955f03a24142a
 else:
     # for the entire dataset
     if use_recipient_email_column:
@@ -141,7 +158,10 @@ else:
     if columns_to_exclude:
         columns = [item.strip() for item in columns_to_exclude.split(",")]
         input_data_df = input_data_df.drop(columns, axis=1)
+<<<<<<< HEAD
            
+=======
+>>>>>>> 2272e6a05b1b46376c77a223d2d955f03a24142a
 # convert dataframe to csv
 def get_csv_partition(partition_df):
     # convert dataframe to csv file
@@ -203,6 +223,7 @@ def send_email(partition_df, partition):
         if (not smtp_use_ssl) and (not smtp_use_tls) and (not smtp_use_auth):
             smtp_client = smtplib.SMTP(smtp_host, port=smtp_port, timeout=120)
         # send email message/attachment
+<<<<<<< HEAD
         if use_recipient_email_column:
             smtp_client.sendmail(from_addr=sender_email,
                                  to_addrs=rec_emails.split(",") + cc.split(",") + bc.split(","),
@@ -211,6 +232,11 @@ def send_email(partition_df, partition):
             smtp_client.sendmail(from_addr=sender_email,
                                  to_addrs=recipient_emails.split(",") + cc.split(",") + bc.split(","),
                                  msg=msg.as_string())           
+=======
+        smtp_client.sendmail(from_addr=sender_email,
+                                 to_addrs=recipient_emails.split(",") + cc.split(",") + bc.split(","),
+                                 msg=msg.as_string())
+>>>>>>> 2272e6a05b1b46376c77a223d2d955f03a24142a
         # log success message
         if use_recipient_email_column:
             logging.info(f"Email with {partition} data was successfully sent to {rec_emails}")
@@ -222,7 +248,11 @@ def send_email(partition_df, partition):
     smtp_client.quit()
 # send emails
 i=0
+<<<<<<< HEAD
 if partitioning_columns:
+=======
+if partitioning_column:
+>>>>>>> 2272e6a05b1b46376c77a223d2d955f03a24142a
     # email data partitions
     for partition_df in partition_dfs:
         partition = partition_values[i]
@@ -238,6 +268,7 @@ else:
         rec_emails = recipient_emails_for_partitions # all emails
         rec_emails = ",".join(rec_emails)
     send_email(input_data_df, partition)
+<<<<<<< HEAD
     
 # write data partitions or entire data to folder
 def write_partitions(df, partition):
@@ -247,32 +278,60 @@ def write_partitions(df, partition):
         output_folder.upload_stream(file_name, data)
         logging.info(f"Finished writing {partition} file to the folder")
 
+=======
+# write data partitions or entire data to folder
+def write_partitions(df, partition):
+    if partitioning_column:
+        data = df.to_csv(index=False)
+        file_name = f"{partition}.csv"
+        logging.info(f"writing {file_name} to the folder")
+        output_folder.upload_stream(file_name, data)
+>>>>>>> 2272e6a05b1b46376c77a223d2d955f03a24142a
     else:
         # write entire dataframe
         data = df.to_csv(index=False)
         partition = input_dataset_name.split(".")[-1]
         file_name = f"{partition}.csv"
+<<<<<<< HEAD
         output_folder.upload_stream(file_name, data)
         logging.info(f"Finished writing {partition} file to the folder")
 
+=======
+        logging.info(f"writing {file_name} to the folder")
+        output_folder.upload_stream(file_name, data)
+>>>>>>> 2272e6a05b1b46376c77a223d2d955f03a24142a
 # write partitions or entire data to folder with time stamps included
 def write_partitions_timestamp(df, partition):
     # get current timestamp
     current_time = datetime.datetime.now()
     current_time = current_time.strftime("%m-%d-%Y-%H-%M-%S")
+<<<<<<< HEAD
     if partitioning_columns:
         data = df.to_csv(index=False)
         file_name = f"{partition}_{current_time}.csv"
         output_folder.upload_stream(file_name, data)
         logging.info(f"Finished writing {partition} file to the folder")
+=======
+    if partitioning_column:
+        data = df.to_csv(index=False)
+        file_name = f"{partition}_{current_time}.csv"
+        logging.info(f"writing {file_name} to the folder")
+        output_folder.upload_stream(file_name, data)
+>>>>>>> 2272e6a05b1b46376c77a223d2d955f03a24142a
     else:
         # write entire data to managed folder
         data = input_data_df.to_csv(index=False)
         partition = input_dataset_name.split(".")[-1]
         file_name = f"{partition}_{current_time}.csv"
+<<<<<<< HEAD
         output_folder.upload_stream(file_name, data)
         logging.info(f"Finished writing {partition} file to the folder")
 if partitioning_columns:
+=======
+        logging.info(f"writing {file_name} to the folder")
+        output_folder.upload_stream(file_name, data)
+if partitioning_column:
+>>>>>>> 2272e6a05b1b46376c77a223d2d955f03a24142a
     # partition the dataset and write partitions to the managed folder
     i=0
     for partition_df in partition_dfs:
@@ -282,10 +341,19 @@ if partitioning_columns:
         else:
             write_partitions(partition_df, partition)
         i=i+1
+<<<<<<< HEAD
+=======
+        logging.info("Finished writing CSV files to the folder")
+>>>>>>> 2272e6a05b1b46376c77a223d2d955f03a24142a
 else:
     # write write the entire data to the managed folder
     partition = input_dataset_name.split(".")[-1]
     if include_timestamp:
         write_partitions_timestamp(input_data_df, partition)
     else:
+<<<<<<< HEAD
         write_partitions(input_data_df, partition)
+=======
+        write_partitions(input_data_df, partition)
+    logging.info("Finished writing CSV files to the folder")
+>>>>>>> 2272e6a05b1b46376c77a223d2d955f03a24142a

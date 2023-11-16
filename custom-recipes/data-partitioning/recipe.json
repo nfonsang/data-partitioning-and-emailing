@@ -110,7 +110,11 @@
         {
             "name": "clear_folder",
             "label": "Clear folder",
+<<<<<<< HEAD
             "description": "WARNING! All existing files in the folder will be deleted before new files are written if this button is checked.",
+=======
+            "description": "WARNING! All existing files in the folder will be deleted before the new file is written if this button is checked.",
+>>>>>>> 2272e6a05b1b46376c77a223d2d955f03a24142a
             "type": "BOOLEAN"
 
         }
